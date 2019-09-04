@@ -7,7 +7,8 @@ class dustbin(models.Model):
     bin_street = models.CharField( max_length=50)
     bin_logitude = models.FloatField()
     bin_latitude = models.FloatField()
-    bin_status = models.IntegerField()
+    bin_status = models.IntegerField(default=-1)
     
     def __str__(self):
         return 'bin'+str(self.bin_no)
+

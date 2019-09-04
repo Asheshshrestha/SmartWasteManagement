@@ -22,11 +22,12 @@ function initMap() {
   // The map, centered at Uluru
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom:12 , center: uluru});
-      var icon='static/images.png';
+     var image = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQxFoh469eOsZQkuPOLpZn3R6yyIExkZCxOxf4ywfeY3v330EwP3Q";
+
   // The marker, positioned at Uluru
   {% for i in bins %}
  var data = {lat:{{i.bin_logitude|safe}}, lng:{{i.bin_latitude|safe}} };
-var marker= new google.maps.Marker({position: data, map: map, label:'Bin{{i.bin_no|safe}}'});
+var marker= new google.maps.Marker({position: data,icon:image, map: map, title:'Bin{{i.bin_no|safe}}\n Status:{{i.bin_status}}'});
 {% endfor %}
 }
     </script>
@@ -36,7 +37,7 @@ var marker= new google.maps.Marker({position: data, map: map, label:'Bin{{i.bin_
     * The callback parameter executes the initMap() function
     -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgmwys6DvyxdQ_Nim2dkitVnMR_K6ZKUU&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFjR24dT-4ftyBy8_7oJH3Q4jgweWBDtI&v=3&&callback=initMap">
     </script>
     
   </body>
