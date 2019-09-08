@@ -20,8 +20,9 @@ from trashcan.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
  
-    path('',home),
-    path('',include('bin.urls'),)
+    path('',home,name='home'),
+    path('',include('bin.urls')),
+    path('',include('accounts.urls')),
    
 
 ]

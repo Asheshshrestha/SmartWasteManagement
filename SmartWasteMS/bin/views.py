@@ -10,6 +10,13 @@ def loopmarker(request):
    
     return render(request,'maptest.html',bins)
 
+def loopmarker1(request):
+    bins = dustbin.objects.all()
+    return render(request,'index.html',bins)
+
+
+    
+
 def bin_update(request,bin_id,bin_status):
     bin_id=bin_id
     bin_status=bin_status

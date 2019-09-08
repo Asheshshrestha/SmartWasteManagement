@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class dustbin(models.Model):
-    bin_no = models.IntegerField()
+    bin_no = models.IntegerField(primary_key=True)
     bin_area = models.CharField( max_length=50)
     bin_street = models.CharField( max_length=50)
     bin_logitude = models.FloatField()
