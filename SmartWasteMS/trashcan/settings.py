@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+
    
 
     
@@ -138,3 +140,7 @@ STATICFILES_DIRS = (
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/profile/'
+
+
+MEDIA_URL ='/userpic/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'userpic')

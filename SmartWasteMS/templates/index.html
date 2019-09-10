@@ -1,3 +1,4 @@
+
 <!doctype html>
 {% load static %}
 <html lang="en">
@@ -62,8 +63,8 @@
     <div class="col-2 bg-success text-white" >
      <!-- profile settings start -->
     
-     <img src="{% static '52-512.png'%}" alt="Responsive image" class="rounded-circle" width="100" height="100">
-     {{ request.user.username }}
+     <img src="{{ user.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="100" height="100">
+     {{ user.username }}
 
      <div class="btn-group-vertical">
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Profile</a>
@@ -95,10 +96,20 @@ function initMap() {
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom:12 , center: uluru});
      
-      var full = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-      var half = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-      var empty = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-       var damage= 'http://maps.google.com/mapfiles/kml/pal3/icon33.png';
+       var damage = {url:'http://127.0.0.1:8080/static/images/damage.png',
+                      scaledSize: new google.maps.Size(50, 50), // scaled size
+       };
+       var full = {url:'http://127.0.0.1:8080/static/images/full.png',
+                      scaledSize: new google.maps.Size(25, 25), // scaled size
+       };
+       var empty = {url:'http://127.0.0.1:8080/static/images/empty.png',
+                      scaledSize: new google.maps.Size(25, 25), // scaled size
+       };
+       var half = {url:'http://127.0.0.1:8080/static/images/half.png',
+                      scaledSize: new google.maps.Size(25, 25), // scaled size
+       };
+
+
 
   // The marker, positioned at Uluru
   {% for x in bins %}
@@ -127,7 +138,8 @@ function initMap() {
     -->
     
     <div class="col-3">
-      One of three columns 
+      One of three columns      
+
       
     </div>
   </div>

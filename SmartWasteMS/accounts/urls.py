@@ -2,6 +2,8 @@ from django.urls import path, include
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView
 from accounts.views import SignUpView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('success/', views.success, name='success'),
