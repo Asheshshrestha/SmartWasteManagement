@@ -47,7 +47,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">logged in as {{ request.user.username }} </a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">logged in as {{ request.user.username }}{% if user.is_superuser %}(admin) {% else %}(Staff){% endif %} </a>
       </li>
     </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -67,12 +67,12 @@
      {{ user.username }}
 
      <div class="btn-group-vertical">
-    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Profile</a>
+    <a href="{% url 'profile_display'%}" class="list-group-item list-group-item-action list-group-item-primary">Profile</a>
     {% if user.is_superuser %}
-         <a href="{% url 'signup'%}" class="list-group-item list-group-item-action list-group-item-primary">Add User</a>
+         <a href="{% url 'user_list'%}" class="list-group-item list-group-item-action list-group-item-primary">User</a>
 
      {% endif %}
-    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Add Dustbin</a>
+    <a href="{% url 'create_dustbin'%}" class="list-group-item list-group-item-action list-group-item-primary">Add Dustbin</a>
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Status</a>
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Notifications</a>
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Message</a>
@@ -94,7 +94,90 @@ function initMap() {
   var uluru = {lat: 27.685565,lng:85.349384};
   // The map, centered at Uluru
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom:12 , center: uluru});
+      document.getElementById('map'), 
+      {zoom:12 ,
+       center: uluru,
+       styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+      });
      
        var damage = {url:'http://127.0.0.1:8080/static/images/damage.png',
                       scaledSize: new google.maps.Size(50, 50), // scaled size
@@ -108,9 +191,8 @@ function initMap() {
        var half = {url:'http://127.0.0.1:8080/static/images/half.png',
                       scaledSize: new google.maps.Size(25, 25), // scaled size
        };
-
-
-
+//=========================================================================================
+//=======================================================================================
   // The marker, positioned at Uluru
   {% for x in bins %}
   {% if x.bin_status < 30 %}
