@@ -22,14 +22,14 @@ def success(request):
     template_name='accounts/success.html'
     return render(request, template_name)
 
-
+#========================================================================================
 @login_required
 def userprofile(request):
     bins = dustbin.objects.all()
 
     template_name='index.html'
     return render(request,template_name,{'bins':bins})
-
+#=====================================================================================
 @login_required
 def display_users(request):
     if request.user.is_superuser:
@@ -40,7 +40,16 @@ def display_users(request):
     else:
         return HttpResponseNotFound()         
 
+#==============================================================================
 
+def delete_user(request,username):
+    user = User.objects.all()
+    template_name='accounts/delete_success.html'
+    for i in user:
+        if i.username == username:
+            i.delete()
+    
+    return render(request,template_name)
 
 
 

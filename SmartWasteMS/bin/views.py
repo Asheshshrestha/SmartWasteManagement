@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.views.generic.edit import CreateView
 from bin.forms import AddNewDustbin
 from django.views.generic import View
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -33,7 +35,31 @@ class BinCreateView(LoginRequiredMixin,CreateView):
     def loadmarker(request):
         bins = dustbin.objects.all()
         return render(request,template_name,{'bins':bins})
+#======================================================================================
 
+@login_required
+def display_dustbins(request):
+    
+
+    bins=dustbin.objects.all()
+
+    template_name = 'dustbin/dustbin_list.html'
+    return render(request, template_name ,{'bins':bins})
+          
+
+#======================================================================================
+
+def delete_dustbin(request,bin_id):
+    bins = dustbin.objects.all()
+    bin_id=bin_id
+
+    template_name='dustbin/delete_success.html'
+    for i in bins:
+        if i.bin_no == int(bin_id):
+            i.delete()
+    
+    return render(request,template_name)
+#======================================================================================
 
 
 
