@@ -144,3 +144,11 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 MEDIA_URL ='/userpic/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'userpic')
+
+
+
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
+#python -m smtpd -n -c DebuggingServer localhost:1025
