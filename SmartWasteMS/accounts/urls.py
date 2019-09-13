@@ -14,6 +14,7 @@ urlpatterns = [
     path('update_profile/',update_profile,name='update_profile'),
     path('profile_display/',userprofile_display,name='profile_display'),
     path('user_list/',views.display_users,name='user_list'),
+    path('user_delete/<str:username>/',views.delete_user,name='user_delete'),
     path('password-reset/',
          PasswordResetView.as_view(
              template_name='accounts/password_reset.html'
