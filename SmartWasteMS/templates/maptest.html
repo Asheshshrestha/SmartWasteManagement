@@ -54,7 +54,7 @@
           </div>
           <div class="col-6">
             <p class="mb-0 float-right">
-              <span class="mr-3"><a href="tel://#"> <span class="icon-phone mr-2"></span><span class="d-none d-lg-inline-block">+977 9862920744</span></a></span>
+              <span class="mr-3"><a href="tel://#"> <span class="icon-phone mr-2"></span><span class="d-none d-lg-inline-block">+977 98629207</span></a></span>
               <span><a href="#"><span class="icon-envelope mr-2"></span><span class="d-none d-lg-inline-block">info@TrashCan.com</span></a></span>
             </p>
             
@@ -62,14 +62,14 @@
         </div>
       </div> 
     </div>
-
+<!-- .....................NAV BAR .......................  -->
     <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
 
       <div class="container">
         <div class="row align-items-center">
           
           <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="{% url 'home' %}" class="text-black h2 mb-0">TrashCan<span class="text-primary">.</span> </a></h1>
+            <h1 class="mb-0 site-logo"><a href="{% url 'home' %}" class="text-black h2 mb-0"><img src="{% static 'images/logo.jpg' %}" >TrashCan<span class="text-primary">.</span> </a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
@@ -80,7 +80,7 @@
                 <li><a href="#team-section" class="nav-link">Team</a></li>
                 <li><a href="#services-section" class="nav-link">Services</a></li>
                 <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
-                <li><a href="#blog-section" class="nav-link">Blog</a></li>
+                <li><a href="#blog-section" class="nav-link">Notice</a></li>
                 <li><a href="#contact-section" class="nav-link">Contact</a></li>
               </ul>
             </nav>
@@ -93,10 +93,11 @@
       </div>
       
     </header>
+    <!-- ...........................END OF NAV BAR .......................  -->
 
   
-     
-    <div class="site-blocks-cover overlay" style="background-image: url({% static 'images/hero_2.jpg' %});" data-aos="fade">
+     <!-- ..............BANNER.................. -->
+    <div class="site-blocks-cover overlay" style="background-image: url({% static 'images/waste1.jpg' %});" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
 
@@ -104,8 +105,8 @@
                         
             <div class="row mb-4">
               <div class="col-md-6">
-                <h1>We Are The Best Consulting Agency</h1>
-                <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
+                <h1>Smart Waste Managment System</h1>
+                <p class="mb-5">We are trying to make the system better and use the modern technology to manage the problem simply in running condition.</p>
                 <div>
                   <a href="{% url 'login' %}" class="btn btn-primary mr-2 mb-2">Login</a>
                 </div>
@@ -116,27 +117,31 @@
         </div>
       </div>
     </div>  
+    <!-- ........................... END OF BANNER ................... -->
 
-
+    <!-- ........................... ABOUT US ........................-->
     <div class="site-section" id="about-section">
       <div class="container">
         <div class="row align-items-lg-center">
           <div class="col-md-6 mb-5 mb-lg-0 position-relative">
             <img src="{% static 'images/about_1.jpg' %}" class="img-fluid" alt="Image">
             <div class="experience">
-              <span class="year">5 years</span>
-              <span class="caption">of experience</span>
+              <span class="year">Thinking Big</span>
+              <span class="caption">On going project</span>
             </div>
           </div>
           <div class="col-md-5 ml-auto">
             <h3 class="section-sub-title">About Us</h3>
-            <h2 class="section-title mb-3">Welcome To Consula</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui fuga ipsa, repellat blanditiis nihil, consectetur. Consequuntur eum inventore, rem maxime, nisi excepturi ipsam libero ratione adipisci alias eius vero vel!</p>
+            <h2 class="section-title mb-3">Welcome To Smart Technology</h2>
+            <p class="mb-4">We are trying to make the work simple and fast as well as reduce the number of worker.Our team working for further process (advancing the system) using the modern technology</p>
             <p><a href="#" class="btn btn-primary btn-black--hover">Learn More</a></p>
           </div>
         </div>
       </div>
     </div>
+    <!-- ............................ END OF ABOUT US ......................-->
+
+    <!-- ............................ OUR TEAM ......................-->
 
     <section class="site-section border-bottom" id="team-section">
       <div class="container">
@@ -208,6 +213,9 @@
         </div>
       </div>
     </section>
+    <!-- ............................ END OF OUR TEAM ......................-->
+
+    <!-- ............................ HOW IT WORKS ......................-->
 
     <section class="site-section">
       <div class="container">
@@ -257,10 +265,12 @@
       </div>
     </section>
 
+    <!-- ............................ END OF HOW IT WORKS ......................-->
+
 
 
     
-
+    <!-- ............................ OUR SERVICES ......................-->
     <section class="site-section border-bottom bg-light" id="services-section">
       <div class="container">
         <div class="row mb-5">
@@ -337,6 +347,10 @@
       </div>
     </section>
 
+    <!-- ............................ END OF OUR SERVICES ......................-->
+
+    <!-- ............................ TESTIMONIALS......................-->
+
     <section class="site-section testimonial-wrap" id="testimonials-section">
       <div class="container">
         <div class="row mb-5">
@@ -351,12 +365,12 @@
             <div class="testimonial">
               
               <blockquote class="mb-5">
-                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                <p>&ldquo;this is best online website which helps to solve our regular home problem.i.e waste problem where to through and how to manage it &rdquo;</p>
               </blockquote>
 
               <figure class="mb-4 d-flex align-items-center justify-content-center">
-                <div><img src="{% static 'images/person_3.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
-                <p>John Smith</p>
+                <div><img src="{% static 'images/sajan.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Sajan Kafle</p>
               </figure>
             </div>
           </div>
@@ -455,8 +469,8 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h3 class="section-sub-title">Blog</h3>
-            <h2 class="section-title mb-3">Our Blog Posts</h2>
+            <h3 class="section-sub-title">Notice</h3>
+            <h2 class="section-title mb-3">Our Notice</h2>
           </div>
         </div>
 
@@ -575,13 +589,14 @@
       </div>
     </section>
 
-    <a href="#" class="bg-primary py-5 d-block">
+   <!-- <a href="#" class="bg-primary py-5 d-block">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md10"><h2 class="text-white">Let's Get Started</h2></div>
         </div>
       </div>  
     </a>
+  -->
     
     <footer class="site-footer">
       <div class="container">
