@@ -15,6 +15,9 @@ urlpatterns = [
     path('profile_display/',userprofile_display,name='profile_display'),
     path('user_list/',views.display_users,name='user_list'),
     path('user_delete/<str:username>/',views.delete_user,name='user_delete'),
+    path('user_delete_confirm/<str:username>/',views.delete_user_confirm,name='delete_user_confirm'),
+    path('user_suspend/<str:username>/',views.inactive_user,name="inactive_user"),
+    path('user_suspend_confirm/<str:username>/',views.inactive_user_confirm,name='inactive_user_confirm'),
     path('password-reset/',
          PasswordResetView.as_view(
              template_name='accounts/password_reset.html'

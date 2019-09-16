@@ -36,6 +36,7 @@ class BinCreateView(LoginRequiredMixin,CreateView):
         bins = dustbin.objects.all()
         return render(request,template_name,{'bins':bins})
 #======================================================================================
+#======================================================================================
 
 @login_required
 def display_dustbins(request):

@@ -21,6 +21,7 @@
       <th scope="col">UserName</th>
       <th scope="col">Email</th>
       <th scope="col">User Type</th>
+      <th scope="col">Status</th>
       <th scope="col"> Age</th>
       <th scope="col">Address </th>
       <th scope="col">Gender</th>
@@ -35,10 +36,11 @@
       <td>{{i.username}}</td>
       <td>{{i.email}}</td>
       <td> {% if i.is_superuser %}admin {% else %}Staff{% endif %}</td>
-      <td>{{i.userprofile.age}}</td>
+      <td>  <a href="{% url 'inactive_user_confirm' username=i.username %}">{% if i.is_active %}Active{% else %}Inactive{% endif %}</a></td>
+      <td>{% if i.userprofile.age is not null %}{{i.userprofile.age}}{% else %} N/A{% endif %}</td>
       <td>{{i.userprofile.address}}</td>
       <td>{{i.userprofile.gender}}</td>
-      <td> <a href="{% url 'user_delete' username=i.username %}">Delete</a></td>
+      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}">Delete</a>{% endif %}</td>
 
     </tr>
         {% endfor %}

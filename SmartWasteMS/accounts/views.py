@@ -53,7 +53,49 @@ def delete_user(request,username):
     
     return render(request,template_name)
 
+#=====================================================================================
 
+def delete_user_confirm(request,username):
+    username=username
+    user = User.objects.all()
+
+    template_name = 'accounts/delete_user_confirm.html'
+
+    context={
+        'username':username,
+        'user' : user
+    }
+
+    return render(request,template_name,context)
+
+
+
+#===================================================================================
+def inactive_user(request,username):
+    username= username
+    user= User.objects.all()
+    template_name = 'accounts/inactive_user_success.html'
+    for i in user:
+        if i.username == username:
+            if i.is_active == True:
+                i.is_active = False
+            else:
+                i.is_active = True
+            i.save()
+    
+    return render(request,template_name)
+#===================================================================================
+def inactive_user_confirm(request,username):
+    username=username
+    user = User.objects.all()
+
+    template_name = 'accounts/inactive_user_confirm.html'
+
+    context={
+        'username':username,
+        'user' : user
+    }
+    return render(request,template_name,context)
 
 #===================================================================================
 @login_required

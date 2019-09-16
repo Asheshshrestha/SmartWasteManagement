@@ -42,6 +42,7 @@ class CreateUserProfile(forms.ModelForm):
         model = UserProfile
         fields = [
                 "image",
+                "phone_no",
                 "age",
                 "gender",
                 "address",
