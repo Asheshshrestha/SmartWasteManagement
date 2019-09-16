@@ -1,0 +1,30 @@
+admin = most not be logout
+user profile update most be required
+delete blogs
+direct verification should be avoided
+requsest most me forwarded to admin
+view map to specific location(dusbin)
+join the name isted to first name and last name
+add phone number
+contact info
+user type
+user name not to be change 
+email can be changed
+gender can not be in drop down 
+male female others
+van number is not complersory 
+admin can restpwassord for everyone
+admin can not be delete to another admin
+add superuser that can not be deleted by other ... that most be hero 
+defalt tends to none =N/A
+while delete (comformation most be requied )
+mail not be send while delete condition 
+add status 
+suspend condition most be required
+add archive function
+search to dustbin
+change the none of id to sensor id 
+team viewer
+
+
+

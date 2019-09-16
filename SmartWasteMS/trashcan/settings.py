@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from accounts.email_data import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     #user apps
     'accounts',
     'bin',
+    'blogs',
 
     #third party apps
     'crispy_forms'
@@ -148,7 +150,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'userpic')
 
 
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+
+EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
 
 #python -m smtpd -n -c DebuggingServer localhost:1025

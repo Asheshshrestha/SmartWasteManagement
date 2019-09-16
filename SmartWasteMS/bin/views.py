@@ -62,10 +62,6 @@ def delete_dustbin(request,bin_id):
 #======================================================================================
 
 
-
-
-    
-
 def bin_update(request,bin_id,bin_status):
     bin_id=bin_id
     bin_status=bin_status

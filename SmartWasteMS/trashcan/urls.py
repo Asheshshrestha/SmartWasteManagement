@@ -23,6 +23,7 @@ urlpatterns = [
     path('',home,name='home'),
     path('',include('bin.urls')),
     path('',include('accounts.urls')),
+    path('',include('blogs.urls')),
    
 
 ]

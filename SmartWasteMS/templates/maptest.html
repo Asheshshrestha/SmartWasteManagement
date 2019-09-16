@@ -54,7 +54,7 @@
           </div>
           <div class="col-6">
             <p class="mb-0 float-right">
-              <span class="mr-3"><a href="tel://#"> <span class="icon-phone mr-2"></span><span class="d-none d-lg-inline-block">+977 98629207</span></a></span>
+              <span class="mr-3"><a href="tel://#"> <span class="icon-phone mr-2"></span><span class="d-none d-lg-inline-block">+977 9862920744</span></a></span>
               <span><a href="#"><span class="icon-envelope mr-2"></span><span class="d-none d-lg-inline-block">info@TrashCan.com</span></a></span>
             </p>
             
@@ -97,7 +97,7 @@
 
   
      <!-- ..............BANNER.................. -->
-    <div class="site-blocks-cover overlay" style="background-image: url({% static 'images/waste1.jpg' %});" data-aos="fade">
+    <div class="site-blocks-cover overlay" style="background-image: url({% static 'images/ShowImage.jpg' %});" data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center">
 
@@ -475,34 +475,18 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
-              <h2 class="font-size-regular"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-              <div class="meta mb-4">Ham Brook <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
-              <p><a href="#">Continue Reading...</a></p>
-            </div> 
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <img src="{% static 'images/img_2.jpg' %}" alt="Image" class="img-fluid">
-              <h2 class="font-size-regular"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-              <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
-              <p><a href="#">Continue Reading...</a></p>
+           {% for i in blogs %}
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+              <div class="h-entry">
+                <img src="{{i.cover_image.url}}" alt="Image" class="img-fluid">
+                <h2 class="font-size-regular"><a href="#">{{i.title}}</a></h2>
+                <div class="meta mb-4">{{i.author}} <span class="mx-2">&bullet;</span>{{i.created_at}}<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
+                <p>{{i.article}}</p>
+                <p><a href="#">Continue Reading...</a></p>
+              </div> 
             </div>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
-              <h2 class="font-size-regular"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h2>
-              <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
-              <p><a href="#">Continue Reading...</a></p>
-            </div> 
-          </div>
-          
+          {% endfor %}
+         
         </div>
       </div>
     </section>
@@ -514,8 +498,8 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h3 class="section-sub-title">Services</h3>
-            <h2 class="section-title mb-3">Our Services</h2>
+            <h3 class="section-sub-title">Contacts</h3>
+            <h2 class="section-title mb-3">Our Contacts</h2>
           </div>
         </div>
         <div class="row">

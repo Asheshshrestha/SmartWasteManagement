@@ -1,4 +1,6 @@
 <!doctype html>
+{% load crispy_forms_tags %}
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -11,24 +13,35 @@
     <title>Hello, world!</title>
   </head>
   <body>
-
-<section id="contentSection">
+      <section id="contentSection">
     <div class="row">
       <div class="col-lg-2 col-md-2 col-sm-2">
 
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8">
-       <h2> You are register  Successfully. </h2>
-       <a  class="btn btn-success" href='{% url 'profile' %}' >Dashboard</a>
-       </div
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4"> Login</legend>
+              {{ form|crispy }}
+              {% comment %} {% for field in form %}
 
-      <div class="col-lg-2 col-md-4 col-sm-2" >
+               {{ field.label_tag }}: {{ field }}
+              {% endfor %} {% endcomment %}
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-info" type="submit">Upload</button>
+              
+          </div>
+      </form>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-2">
         
       </div>
     </div>
   </section>
 
-  <!-- Optional JavaScript -->
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

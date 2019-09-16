@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from bin.models import dustbin
+from blogs.models import Blogs
 
 def home(request):
-    bins = dustbin.objects.all()
+
+    blogs=Blogs.objects.all()
     template_name='maptest.html'
-    return render(request,template_name,{'bins':bins})
+    return render(request,template_name,{'blogs':blogs})
 
 
 

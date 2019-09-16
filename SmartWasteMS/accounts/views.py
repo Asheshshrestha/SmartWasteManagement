@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from bin.models import dustbin
 from django.views import View
 from accounts.forms import SignUpForm
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
@@ -12,6 +13,7 @@ from django.contrib import messages
 from accounts.models import UserProfile
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotFound
+from django.core.mail import send_mail
 
 
 
@@ -98,6 +100,12 @@ class SignUpView(View):
             username = form.cleaned_data['username']
             user.set_password(raw_password)
             user.save()
+            subject = "Congratulation you are Inside the Trashcan Board"
+            from_email = settings.EMAIL_HOST_USER
+            to_mail = [user.email]
+            signup_message = """ Wellcome to TrashCan SmartWaste management system. To configure you profile please visit http://127.0.0.1:8080/login \nUsername:"""+username+"""\nPassword:"""+raw_password
+            send_mail(subject = subject,from_email=from_email,recipient_list=to_mail,message=signup_message,fail_silently=False)
+
 
             return redirect('/success/')
 
