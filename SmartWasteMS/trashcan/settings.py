@@ -157,4 +157,4 @@ EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = EMAIL_PORT
 
-#python -m smtpd -n -c DebuggingServer localhost:1025
+#python -m smtpd -n -c DebuggingServer localhost:102500
