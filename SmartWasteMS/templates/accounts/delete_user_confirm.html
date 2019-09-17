@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>User profile</title>
+    <title>Delete Confirm </title>
   </head>
   <body>
     
@@ -28,7 +28,7 @@
     <p>Van No:    {% if i.userprofile.van_no is not null %} {{i.userprofile.van_no}}{% else %} N/A{% endif %}</p>
     
     <div class="form-group">
-     
+     <h3>Do you seriously want to delete this user? </h3>
       <a href="{% url 'user_delete' username=i.username %}" class="btn btn-info">Confirm Delete</a>
       <a href="{% url 'user_list'%}" class="btn btn-info">Cancel</a>
         {% endif %}

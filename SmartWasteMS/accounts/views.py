@@ -14,7 +14,8 @@ from accounts.models import UserProfile
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotFound
 from django.core.mail import send_mail
-
+from accounts.email_data import DOMAIN
+from trashcan.settings import ALLOWED_HOSTS
 
 
 
@@ -28,9 +29,11 @@ def success(request):
 @login_required
 def userprofile(request):
     bins = dustbin.objects.all()
+    domain = DOMAIN
+    site = ALLOWED_HOSTS
 
     template_name='index.html'
-    return render(request,template_name,{'bins':bins})
+    return render(request,template_name,{'bins':bins,'domain':domain,'site':site})
 #=====================================================================================
 @login_required
 def display_users(request):

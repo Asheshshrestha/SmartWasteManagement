@@ -3,6 +3,7 @@
 {% load static %}
 <html lang="en">
   <head>
+    {% comment %} <meta http-equiv="refresh" content="5"> {% endcomment %}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -179,16 +180,16 @@ function initMap() {
           ]
       });
      
-       var damage = {url:'http://127.0.0.1:8080/static/images/damage.png',
+       var damage = {url:'http://{{domain}}/static/images/damage.png',
                       scaledSize: new google.maps.Size(50, 50), // scaled size
        };
-       var full = {url:'http://127.0.0.1:8080/static/images/full.png',
+       var full = {url:'http://{{domain}}/static/images/full.png',
                       scaledSize: new google.maps.Size(25, 25), // scaled size
        };
-       var empty = {url:'http://127.0.0.1:8080/static/images/empty.png',
+       var empty = {url:'http://{{domain}}/static/images/empty.png',
                       scaledSize: new google.maps.Size(25, 25), // scaled size
        };
-       var half = {url:'http://127.0.0.1:8080/static/images/half.png',
+       var half = {url:'http://{{domain}}/static/images/half.png',
                       scaledSize: new google.maps.Size(25, 25), // scaled size
        };
 //=========================================================================================
@@ -220,7 +221,7 @@ function initMap() {
     -->
     
     <div class="col-3">
-      One of three columns      
+      One of three columns      {{domain}}
 
       
     </div>

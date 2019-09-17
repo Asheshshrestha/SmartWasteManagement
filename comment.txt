@@ -7,8 +7,8 @@ direct verification should be avoided requsest most me forwarded to admin
 #add phone number
 contact info
 user type
-user name not to be change  email can be changed
-gender can not be in drop down  male female others
+#user name not to be change  email can be changed                                                                                                                                                                               
+---->gender can not be in drop down  male female others(wachas)
 #van number is not complersory 
 admin can restpwassord for everyone
 #admin can not be delete to another admin
@@ -19,6 +19,7 @@ admin can restpwassord for everyone
 #add status suspend condition most be required
 add archive function
 search to dustbin
+pagination in userlist and dustbinlist
 #change the none of id to sensor id 
 team viewer
 
