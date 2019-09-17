@@ -105,6 +105,7 @@ def userprofile_display(request):
 #===================================================================================
 @login_required
 def update_profile(request):
+    user= User.objects.all()
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST,instance=request.user)
         p_form = CreateUserProfile(request.POST,
@@ -123,6 +124,7 @@ def update_profile(request):
     context={
         'u_form':u_form,
         'p_form':p_form,
+        'user':user,
     }
     return render(request,'accounts/update_profile.html',  context)
 #========================================================================================

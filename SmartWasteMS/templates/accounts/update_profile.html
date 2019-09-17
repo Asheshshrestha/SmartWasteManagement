@@ -18,6 +18,8 @@
           {% csrf_token %}
           <fieldset class="form-group">
               <legend class="border-bottom mb-4"> Update Profile</legend>
+              <img src="{{ request.user.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="100" height="100">
+              <p>UsernameName:{{request.user.username}}</p>
               {{ u_form|crispy }}
               {{ p_form|crispy }}
           </fieldset>

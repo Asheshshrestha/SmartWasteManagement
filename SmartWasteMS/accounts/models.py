@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 
 class UserProfile(models.Model):
-    CHOICES =(("male","male"),("female","female"))
+    CHOICES =(("male","male"),("female","female"),("others","others"))
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_no =models.IntegerField(null=True)
     image = models.ImageField(upload_to='accounts/usersimage',default="profile.jpg")
