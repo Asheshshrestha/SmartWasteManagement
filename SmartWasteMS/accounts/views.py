@@ -136,11 +136,13 @@ class SignUpView(View):
         return render(request,template_name,{'form':form})
 
     def post(self, request, *args, **kwargs):
+        #value = {'username':"",'email':"",'first_name':"",'last_name':"",'password1':"Ashesh1234",'password2':"Ashesh1234"}
         form = SignUpForm(request.POST)
         template_name='accounts/success.html'
         if form.is_valid():
             user =form.save(commit=False)
             raw_password = form.cleaned_data['password1']
+            #raw_password =  User.objects.make_random_password(length=8, allowed_chars="abcdefghjkmnpqrstuvwxyz01234567889!@#$%^&*")
             username = form.cleaned_data['username']
             user.set_password(raw_password)
             user.save()

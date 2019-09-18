@@ -47,7 +47,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">logged in as {{ request.user.username }}{% if user.is_superuser %}(admin) {% else %}(Staff){% endif %} </a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logged in as {% if user.is_superuser %}Admin {% else %}Staff{% endif %}({{ request.user.username }}) </a>
       </li>
     </ul>
       <form class="form-inline my-2 my-lg-0">
