@@ -25,6 +25,9 @@ class BinCreateView(LoginRequiredMixin,CreateView):
         
         bin = form.save(commit=False)
         bin.added_by = self.request.user
+        bin.bin_logitude=self.request.POST.get("bin_logitude")
+        bin.bin_latitude=self.request.POST.get("bin_latitude")
+
         bin.save()
         return super().form_valid(form)
 

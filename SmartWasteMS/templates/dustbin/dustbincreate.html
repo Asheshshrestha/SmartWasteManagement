@@ -72,8 +72,7 @@ mapbox {
       <input onclick="deleteMarkers();" type=button value="Delete Markers">
     </div>
     <div id="map"></div>
-    <p>Lat: <input type="text" id='lat'>
-Lon: <input type="text" id='lon'></p>
+    
     <script>
 
       // In the following example, markers appear when the user clicks on the map.
@@ -180,8 +179,8 @@ Lon: <input type="text" id='lon'></p>
           var clickLon = event.latLng.lng();
 
                 // show in input box
-          document.getElementById("lat").value = clickLat.toFixed(5);
-          document.getElementById("lon").value = clickLon.toFixed(5);
+          document.getElementById("id_bin_logitude").value = clickLat.toFixed(5);
+          document.getElementById("id_bin_latitude").value = clickLon.toFixed(5);
 
         });
 
@@ -235,7 +234,9 @@ Lon: <input type="text" id='lon'></p>
                                   <fieldset class="form-group">
                                       <legend class="border-bottom mb-4"> Add Dustbin</legend>
                                       {{ form|crispy}}
-                                      
+                                      Bin logitude<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="bin_logitude" step="any" class="numberinput form-control" required="" id="id_bin_logitude" value = ""> </div> </div> <div id="div_id_bin_latitude" class="form-group"> <label for="id_bin_latitude" class="col-form-label  requiredField">
+                                      Bin latitude<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="bin_latitude" step="any" class="numberinput form-control" required="" id="id_bin_latitude"value = ""> </div> </div>
+
 
                                   </fieldset>
                                     <div class="form-group">
