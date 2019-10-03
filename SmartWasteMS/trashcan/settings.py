@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     #user apps
     'accounts',
     'bin',
-    'blogs',
+   
 
     #third party apps
     'crispy_forms'
