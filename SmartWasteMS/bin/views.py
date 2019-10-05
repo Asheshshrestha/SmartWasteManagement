@@ -83,7 +83,7 @@ def route_view(request):
     template_name='dustbin/pick_route.html'
     cord=[]
     for i in bins:
-        if( i.bin_status >= 60):
+        if( i.bin_status <= 30):
             cord.append(i)
 
             
