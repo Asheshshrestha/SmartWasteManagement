@@ -26,7 +26,11 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = [SETTINGS_DOMAIN, 'localhost','192.168.1.11']
+=======
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','192.168.1.11','192.168.2.231']
+>>>>>>> dashboard
 
 
 # Application definition
@@ -157,4 +161,4 @@ EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = EMAIL_PORT
 
-#python -m smtpd -n -c DebuggingServer localhost:1025
+#python -m smtpd -n -c DebuggingServer localhost:102500

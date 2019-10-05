@@ -48,7 +48,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">logged in as {{ request.user.username }}{% if user.is_superuser %}(admin) {% else %}(Staff){% endif %} </a>
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logged in as {% if user.is_superuser %}Admin {% else %}Staff{% endif %}({{ request.user.username }}) </a>
       </li>
     </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -178,8 +178,13 @@ function initMap() {
             }
           ]
       });
+<<<<<<< HEAD
      
        var damage = {url:'http://{{domain}}/static/images/damage.png',
+=======
+      
+       var damage = {url:'http://127.0.0.1:8080/static/images/damage.png',
+>>>>>>> dashboard
                       scaledSize: new google.maps.Size(50, 50), // scaled size
        };
        var full = {url:'http://{{domain}}/static/images/full.png',
@@ -195,6 +200,7 @@ function initMap() {
 //=======================================================================================
   // The marker, positioned at Uluru
   {% for x in bins %}
+  
   {% if x.bin_status < 30 %}
  var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
  var marker= new google.maps.Marker({position: data, map: map,icon:full, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
