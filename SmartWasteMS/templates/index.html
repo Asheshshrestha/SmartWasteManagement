@@ -178,7 +178,7 @@ function initMap() {
             }
           ]
       });
-     
+      
        var damage = {url:'http://127.0.0.1:8080/static/images/damage.png',
                       scaledSize: new google.maps.Size(50, 50), // scaled size
        };
@@ -195,6 +195,7 @@ function initMap() {
 //=======================================================================================
   // The marker, positioned at Uluru
   {% for x in bins %}
+  
   {% if x.bin_status < 30 %}
  var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
  var marker= new google.maps.Marker({position: data, map: map,icon:full, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});

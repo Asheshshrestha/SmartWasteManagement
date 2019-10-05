@@ -32,9 +32,7 @@ class BinCreateView(LoginRequiredMixin,CreateView):
         print(form)
         return super(AddNewDustbin,self).form_invalid(form)
 
-    def loadmarker(request):
-        bins = dustbin.objects.all()
-        return render(request,template_name,{'bins':bins})
+    
 #======================================================================================
 #======================================================================================
 
@@ -74,5 +72,19 @@ def bin_update(request,bin_id,bin_status):
             i.save()
             return HttpResponse("Updated Sucessfully")
     return HttpResponse("Cannot update")
+
+#==========================================================================================
+
+def route_view(request):
+    bins = dustbin.objects.all()
+    template_name='dustbin/pick_route.html'
+    cord=[]
+    for i in bins:
+        if( i.bin_status >= 60):
+            cord.append(i)
+
+            
+    return render(request,template_name,{'cord':cord})
+
 
 

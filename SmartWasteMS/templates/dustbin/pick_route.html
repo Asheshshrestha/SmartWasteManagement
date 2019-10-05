@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Draw a polyline given many coordinates</title>
+
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map_canvas { height: 100% }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+
+<script>
+    function initialize() {
+        var homeLatlng = new google.maps.LatLng(27.685565,85.349384);
+        var myOptions = {
+            zoom: 15,
+            center: homeLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        // create an array of coordinates
+        var arrCoords = [];
+        var x = 0;
+        {% for i in cord %}
+            arrCoords.push(new google.maps.LatLng({{i.bin_logitude}},{{ i.bin_latitude}}));
+            
+        {% endfor %}
+         var damage = {url:'http://127.0.0.1:8080/static/images/damage.png',
+                      scaledSize: new google.maps.Size(50, 50), // scaled size
+       };
+       var full = {url:'http://127.0.0.1:8080/static/images/full.png',
+                      scaledSize: new google.maps.Size(25, 25), // scaled size
+       };
+       var empty = {url:'http://127.0.0.1:8080/static/images/empty.png',
+                      scaledSize: new google.maps.Size(25, 25), // scaled size
+       };
+       var half = {url:'http://127.0.0.1:8080/static/images/half.png',
+                      scaledSize: new google.maps.Size(25, 25), // scaled size
+       };
+//=========================================================================================
+//=======================================================================================
+  // The marker, positioned at Uluru
+  {% for x in cord %}
+  
+  {% if x.bin_status < 30 %}
+ var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
+ var marker= new google.maps.Marker({position: data, map: map,icon:full, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
+ {% elif x.bin_status < 100  %}
+ var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
+ var marker= new google.maps.Marker({position: data, map: map,icon:half, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
+ {% elif x.bin_status < 150  %}
+  var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
+ var marker= new google.maps.Marker({position: data, map: map,icon:empty, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
+ {% else %}
+ 
+ var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
+ var marker= new google.maps.Marker({position: data, map: map,icon:damage, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
+ {% endif %}  
+  {% endfor %}
+
+
+
+
+
+        // draw the route on the map            
+        var route = new google.maps.Polyline({
+            path: arrCoords,
+            strokeColor: "#00FF00",
+            strokeOpacity: 1.0,
+            strokeWeight: 4,
+            geodesic: false,
+            map: map
+        }); 
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFjR24dT-4ftyBy8_7oJH3Q4jgweWBDtI&v=3&&callback=initMap">
+    </script>
+</head>
+<body>
+  <div id="map_canvas"></div>
+</body>
+</html>
