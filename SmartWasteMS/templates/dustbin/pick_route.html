@@ -68,6 +68,8 @@ body { height: 100%; margin: 0; padding: 0 }
         // draw the route on the map            
         var route = new google.maps.Polyline({
             path: arrCoords,
+            optimizeWaypoints: true,
+
             strokeColor: "#00FF00",
             strokeOpacity: 1.0,
             strokeWeight: 4,
