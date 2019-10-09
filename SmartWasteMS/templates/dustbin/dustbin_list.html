@@ -9,11 +9,22 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>User profile</title>
+    <title>Bin List</title>
   </head>
   <body>
-    
-    <h1> Dustbins</h1>
+    <nav class="navbar navbar-expand-lg bg-gradient-success">
+  <a class="navbar-brand" href="#">Dustbin List</a>
+  
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <form method='GET' action=''>
+   <input type='text' name ='q' placeholder='Search Bins' value='{{ request.GET.q }}'/>
+   <input type='submit' value='Search'/>
+   </form>
+  </div>
+</nav>
+    <!--navbar dend-->
     <table class="table">
   <thead>
     <tr>
@@ -47,7 +58,24 @@
 
   </tbody>
 </table>
-   
+   <div class="pagination">
+    <span class="step-links">
+        {% if bins.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ bins.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ bins.number }} of {{ bins.paginator.num_pages }}.
+        </span>
+
+        {% if bins.has_next %}
+            <a href="?page={{ bins.next_page_number }}">next</a>
+            <a href="?page={{ bins.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
    
     
     <div class="form-group">

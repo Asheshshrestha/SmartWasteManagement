@@ -5,7 +5,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.views.generic.edit import CreateView
 from bin.forms import AddNewDustbin
 from django.views.generic import View
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from django.db.models import Q
+
 
 
 
@@ -43,7 +47,18 @@ class BinCreateView(LoginRequiredMixin,CreateView):
 def display_dustbins(request):
     
 
-    bins=dustbin.objects.all()
+    bins_obj=dustbin.objects.all()
+    query = request.GET.get("q")
+    if query:
+        bins_obj = bins_obj.filter(
+            Q(bin_no__icontains=query) |
+            Q(bin_area__area_name__icontains=query) |
+            Q(bin_street__street_name__icontains=query) |
+            Q(added_by__username__icontains=query)
+            ).distinct()
+    paginator = Paginator(bins_obj, 7) # Show 7 user per page
+    page = request.GET.get('page')
+    bins = paginator.get_page(page)
 
     template_name = 'dustbin/dustbin_list.html'
     return render(request, template_name ,{'bins':bins})
@@ -88,6 +103,8 @@ def route_view(request):
 
             
     return render(request,template_name,{'cord':cord})
+
+#============================================================================================
 
 
 

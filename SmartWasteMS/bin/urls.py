@@ -8,6 +8,7 @@ urlpatterns = [
     path('add_bin/',BinCreateView.as_view(),name='create_dustbin'),
     path('bin_list/',display_dustbins,name='display_bins'),
     path('delete_bin/<int:bin_id>/',delete_dustbin,name='delete_bins'),
-    path('route',route_view,name='route'),
+    path('route/',route_view,name='route'),
+   
 
 ]

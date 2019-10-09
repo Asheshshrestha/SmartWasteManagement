@@ -106,37 +106,7 @@ html, body { height: 100%; margin: 0; padding: 0; }
 
     // list of points
     var stations = [];
- /* var stations = [
-        {lat: 48.9812840, lng: 21.2171920, name: 'Station 1'},
-        {lat: 48.9832841, lng: 21.2176398, name: 'Station 2'},
-        {lat: 48.9856443, lng: 21.2209088, name: 'Station 3'},
-        {lat: 48.9861461, lng: 21.2261563, name: 'Station 4'},
-        {lat: 48.9874682, lng: 21.2294855, name: 'Station 5'},
-        {lat: 48.9909244, lng: 21.2295512, name: 'Station 6'},
-        {lat: 48.9928871, lng: 21.2292352, name: 'Station 7'},
-        {lat: 48.9921334, lng: 21.2246742, name: 'Station 8'},
-        {lat: 48.9943196, lng: 21.2234792, name: 'Station 9'},
-        {lat: 48.9966345, lng: 21.2221262, name: 'Station 10'},
-        {lat: 48.9981191, lng: 21.2271386, name: 'Station 11'},
-        {lat: 49.0009168, lng: 21.2359527, name: 'Station 12'},
-        {lat: 49.0017950, lng: 21.2392890, name: 'Station 13'},
-        {lat: 48.9991912, lng: 21.2398272, name: 'Station 14'},
-        {lat: 48.9959850, lng: 21.2418410, name: 'Station 15'},
-        {lat: 48.9931772, lng: 21.2453901, name: 'Station 16'},
-        {lat: 48.9963512, lng: 21.2525850, name: 'Station 17'},
-        {lat: 48.9985134, lng: 21.2508423, name: 'Station 18'},
-        {lat: 49.0085000, lng: 21.2508000, name: 'Station 19'},
-        {lat: 49.0093000, lng: 21.2528000, name: 'Station 20'},
-        {lat: 49.0103000, lng: 21.2560000, name: 'Station 21'},
-        {lat: 49.0112000, lng: 21.2590000, name: 'Station 22'},
-        {lat: 49.0124000, lng: 21.2620000, name: 'Station 23'},
-        {lat: 49.0135000, lng: 21.2650000, name: 'Station 24'},
-        {lat: 49.0149000, lng: 21.2680000, name: 'Station 25'},
-        {lat: 49.0171000, lng: 21.2710000, name: 'Station 26'},
-        {lat: 49.0198000, lng: 21.2740000, name: 'Station 27'},
-        {lat: 49.0305000, lng: 21.3000000, name: 'Station 28'},
-        // ... as many other stations as you need
-    ];*/
+ 
 
 stations.push({lat:27.674909,lng:85.355527,name:'Station 55'});
 {% for i in cord %}
@@ -181,19 +151,6 @@ var full = {url:'http://127.0.0.1:8080/static/images/full.png',
         renderer.setDirections(response);
     };
 
-<<<<<<< HEAD
-        // draw the route on the map            
-        var route = new google.maps.Polyline({
-            path: arrCoords,
-            optimizeWaypoints: true,
-
-            strokeColor: "#00FF00",
-            strokeOpacity: 1.0,
-            strokeWeight: 4,
-            geodesic: false,
-            map: map
-        }); 
-=======
     // Send requests to service to get route (for stations count <= 25 only one request will be sent)
     for (var i = 0; i < parts.length; i++) {
         // Waypoints does not include first station (origin) and last station (destination)
@@ -209,7 +166,6 @@ var full = {url:'http://127.0.0.1:8080/static/images/full.png',
         };
         // Send request
         service.route(service_options, service_callback);
->>>>>>> dashboard
     }
   }
 </script>

@@ -13,7 +13,18 @@
   </head>
   <body>
     
-    <h1> Users</h1>
+   <nav class="navbar navbar-expand-lg bg-gradient-success">
+  <a class="navbar-brand" href="#">User List</a>
+  
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <form method='GET' action=''>
+   <input type='text' name ='q' placeholder='Search User' value='{{ request.GET.q }}'/>
+   <input type='submit' value='Search'/>
+   </form>
+  </div>
+</nav>
     <table class="table">
   <thead>
     <tr>
@@ -44,10 +55,27 @@
 
     </tr>
         {% endfor %}
-
+        
   </tbody>
 </table>
-   
+   <div class="pagination">
+    <span class="step-links">
+        {% if user.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ user.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ user.number }} of {{ user.paginator.num_pages }}.
+        </span>
+
+        {% if user.has_next %}
+            <a href="?page={{ user.next_page_number }}">next</a>
+            <a href="?page={{ user.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
    
     
     <div class="form-group">

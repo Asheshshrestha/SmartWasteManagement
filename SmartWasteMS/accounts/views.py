@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from bin.models import dustbin
 from django.views import View
 from accounts.forms import SignUpForm
+from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -39,7 +40,13 @@ def userprofile(request):
 def display_users(request):
     if request.user.is_superuser:
 
-        user=User.objects.all()
+        user_obj=User.objects.all()
+        query = request.GET.get("q")
+        if query:
+            user_obj= user_obj.filter(username__icontains=query)
+        paginator = Paginator(user_obj, 7) # Show 7 user per page
+        page = request.GET.get('page')
+        user = paginator.get_page(page)
         template_name = 'accounts/user_list.html'
         return render(request, template_name ,{'user':user})
     else:

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from bin.models import Area
 
 
 class UserProfile(models.Model):
@@ -24,6 +25,14 @@ def create_profile(sender, **kwargs):
 post_save.connect(create_profile, sender=User)
 
     
+class Task_done(models.Model):
+    user = models.OneToOneField(User,on_delete = models.CASCADE)
+    work_time = models.TimeField()
+    area = models.OneToOneField(Area,on_delete = models.SET_NULL, null = True)
+
+
+
+
 
    
 

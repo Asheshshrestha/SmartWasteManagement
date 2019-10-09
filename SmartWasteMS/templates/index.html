@@ -5,6 +5,8 @@
   <head>
     {% comment %} <meta http-equiv="refresh" content="5"> {% endcomment %}
     <!-- Required meta tags -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -76,11 +78,8 @@
     <a href="{% url 'display_bins'%}" class="list-group-item list-group-item-action list-group-item-primary">Dustbin</a>
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Status</a>
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Notifications</a>
-<<<<<<< HEAD
-=======
-    <a href="{% url 'blog_list'%}" class="list-group-item list-group-item-action list-group-item-primary">Blogs</a>
+    {% comment %} <a href="{% url 'blog_list'%}" class="list-group-item list-group-item-action list-group-item-primary">Blogs</a> {% endcomment %}
     <a href="{% url 'route'%}" class="list-group-item list-group-item-action list-group-item-primary">Route</a>
->>>>>>> dashboard
     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Settings</a>
     <a href="{% url 'logout'%}" class="list-group-item list-group-item-action list-group-item-primary">logout</a>
    
@@ -224,8 +223,8 @@ function initMap() {
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    
-    <div class="col-3">
+  </div>  
+    <div class="col-2">
       One of three columns      {{domain}}
 
       
