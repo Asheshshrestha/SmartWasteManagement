@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView,PasswordResetView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetCompleteView
-from accounts.views import SignUpView,update_profile,userprofile_display
+from accounts.views import SignUpView,update_profile,userprofile_display,update_user_profile
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('createuser/', SignUpView.as_view(), name='signup'),
     path('profile/',views.userprofile,name='profile'),
     path('update_profile/',update_profile,name='update_profile'),
+    path('update_user_profile/<str:username>/',update_user_profile,name='update_user_profile'),
     path('profile_display/',userprofile_display,name='profile_display'),
     path('user_list/',views.display_users,name='user_list'),
     path('user_delete/<str:username>/',views.delete_user,name='user_delete'),

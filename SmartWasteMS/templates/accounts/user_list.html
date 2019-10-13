@@ -45,13 +45,13 @@
     <tr>
       <td><img src="{{ i.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="40" height="40"></td>
       <td>{{i.username}}</td>
-      <td>{{i.email}}</td>
+      <td>{% if i.userprofile.age is not null %}{{i.email}}{% else %} N/A{% endif %}</td>
       <td> {% if i.is_superuser %}admin {% else %}Staff{% endif %}</td>
       <td>  <a href="{% url 'inactive_user_confirm' username=i.username %}">{% if i.is_active %}Active{% else %}Inactive{% endif %}</a></td>
       <td>{% if i.userprofile.age is not null %}{{i.userprofile.age}}{% else %} N/A{% endif %}</td>
       <td>{{i.userprofile.address}}</td>
       <td>{{i.userprofile.gender}}</td>
-      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}">Delete</a>{% endif %}</td>
+      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}">Delete</a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}">Update</a></td>
 
     </tr>
         {% endfor %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from bin.models import dustbin
+from bin.forms import RouteSelect
 from django.views import View
 from accounts.forms import SignUpForm
 from django.core.paginator import Paginator
@@ -29,6 +30,8 @@ def success(request):
 #========================================================================================
 @login_required
 def userprofile(request):
+
+
     bins = dustbin.objects.all()
     domain = DOMAIN
     site = ALLOWED_HOSTS
@@ -44,7 +47,7 @@ def display_users(request):
         query = request.GET.get("q")
         if query:
             user_obj= user_obj.filter(username__icontains=query)
-        paginator = Paginator(user_obj, 7) # Show 7 user per page
+        paginator = Paginator(user_obj, 6) # Show 6 user per page
         page = request.GET.get('page')
         user = paginator.get_page(page)
         template_name = 'accounts/user_list.html'
@@ -137,6 +140,35 @@ def update_profile(request):
         'user':user,
     }
     return render(request,'accounts/update_profile.html',  context)
+#========================================================================================
+@login_required
+def update_user_profile(request,username):
+    user= User.objects.all()
+    for i in user:
+        if i.username == username:
+
+            if request.method == 'POST':
+                u_form = UserUpdateForm(request.POST,instance=i)
+                p_form = CreateUserProfile(request.POST,
+                                            request.FILES,
+                                            instance= i.userprofile)
+                if u_form.is_valid() and p_form.is_valid():
+                    u_form.save()
+                    p_form.save()
+                    messages.success(request,f'Your accounts has been updated!')
+                    return redirect('profile')
+
+            else:
+                u_form = UserUpdateForm(instance=i)
+                p_form = CreateUserProfile(instance= i.userprofile)
+
+            context={
+                'u_form':u_form,
+                'p_form':p_form,
+                'user':user,
+                'i':i,
+            }
+            return render(request,'accounts/update_user_profile.html',  context)
 #========================================================================================
 class SignUpView(View):
     

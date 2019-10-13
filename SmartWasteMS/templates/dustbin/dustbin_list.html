@@ -32,6 +32,7 @@
       <th scope="col">Area</th>
       <th scope="col">Street</th>
       <th scope="col">Added by</th>
+      <th scope="col">Updated by</th>
       <th scope="col">Location</th>
       <th scope="col">Status </th>
       <th scope="col">Added At</th>
@@ -46,12 +47,13 @@
       <td>{{i.bin_area}}</td>
       <td>{{i.bin_street}}</td>
       <td> {{i.added_by}}</td>
+      <td>{{i.updated_by}}</td>
       <td><a href= https://www.google.com/maps/place/{{i.bin_logitude}}+-{{i.bin_latitude}}/@{{i.bin_logitude}},-{{i.bin_latitude}},15z>see in map</a></td>
       
       
       <td>{{i.bin_status}}</td>
       <td>{{i.added_at}}</td>
-      <td> <a href="{% url 'delete_bins' bin_id=i.bin_no %}">Delete</a></td>
+      <td> <a href="{% url 'delete_bins' bin_id=i.bin_no %}">Delete</a>|<a href="{% url 'update_dustbin_data' bin_no=i.bin_no %}">Update</a></td>
 
     </tr>
         {% endfor %}

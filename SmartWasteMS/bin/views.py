@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from bin.models import dustbin
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.views.generic.edit import CreateView
-from bin.forms import AddNewDustbin
+from bin.forms import AddNewDustbin,UpdateDustbin
 from django.views.generic import View
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -41,6 +41,35 @@ class BinCreateView(LoginRequiredMixin,CreateView):
 
     
 #======================================================================================
+@login_required
+def update_dustbin_data(request,bin_no):
+    bin_no=bin_no
+    bin = dustbin.objects.get(bin_no=bin_no)
+    u_form = UpdateDustbin(request.POST or None,instance=bin)
+
+   
+    if request.method =='POST':
+        u_form = UpdateDustbin(request.POST,instance=bin)
+
+        bin.updated_by =request.user
+        bin.bin_logitude=request.POST.get("bin_logitude")
+        bin.bin_latitude=request.POST.get("bin_latitude")
+        if u_form.is_valid():
+            u_form.save()
+            bin.save()
+            return redirect('/bin_list/')
+        else:
+            u_form = UpdateDustbin(instance= bin)
+            
+    context={
+                'u_form':u_form,
+                'bin_no':bin_no,
+                'lnga':bin.bin_logitude,
+                'lata':bin.bin_latitude,
+
+            }
+    return  render(request,'dustbin/update_dustbin.html',context)             
+
 #======================================================================================
 
 @login_required
@@ -103,6 +132,8 @@ def route_view(request):
 
             
     return render(request,template_name,{'cord':cord})
+
+#============================================================================================
 
 #============================================================================================
 

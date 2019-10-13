@@ -21,13 +21,16 @@ class street(models.Model):
 
 class dustbin(models.Model):
     bin_no = models.IntegerField(primary_key=True)
-    added_by = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    added_by = models.ForeignKey(User,related_name="added_by",on_delete=models.SET_NULL,null=True)
     bin_area = models.ForeignKey(Area,on_delete=models.SET_NULL,null=True)
     bin_street = models.ForeignKey(street,on_delete=models.SET_NULL,null=True)
     bin_logitude = models.FloatField()
     bin_latitude = models.FloatField()
     bin_status = models.IntegerField(default=-1) 
     added_at = models.DateTimeField(auto_now_add=True)
+    updated_at =models.DateTimeField(auto_now_add=True)
+    updated_by = models.ForeignKey(User,related_name="updated_by",on_delete=models.SET_NULL,null=True)
+
     
     def __str__(self):
         return 'bin'+str(self.bin_no)

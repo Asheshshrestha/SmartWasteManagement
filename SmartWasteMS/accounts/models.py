@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     phone_no =models.IntegerField(null=True)
     image = models.ImageField(upload_to='accounts/usersimage',default="profile.jpg")
     age=models.IntegerField(null=True)
-    gender =models.CharField(max_length=6,default="male",choices=CHOICES)
+    gender =models.CharField(max_length=6,default="N/A",choices=CHOICES)
     address = models.CharField(max_length=225,default="N/A")
     van_no=models.IntegerField(null=True)
 
@@ -22,12 +22,13 @@ class UserProfile(models.Model):
 def create_profile(sender, **kwargs):
     if kwargs['created']:
         user_profile = UserProfile.objects.create(user = kwargs['instance'])
-post_save.connect(create_profile, sender=User)
+        post_save.connect(create_profile, sender=User)
 
     
 class Task_done(models.Model):
     user = models.OneToOneField(User,on_delete = models.CASCADE)
     work_time = models.TimeField()
+    work_date = models.DateField()
     area = models.OneToOneField(Area,on_delete = models.SET_NULL, null = True)
 
 
