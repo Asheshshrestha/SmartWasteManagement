@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from accounts.models import UserProfile
+from accounts.models import UserProfile,Task_done
 
 
 class EmailValidation(forms.EmailField):
@@ -60,3 +60,12 @@ class CreateUserProfile(forms.ModelForm):
                 "gender",
                 "address",
                 "van_no"]
+
+class Task_record(forms.ModelForm):
+    
+    class Meta:
+        model = Task_done
+        fields= [
+            "area",
+            
+        ]

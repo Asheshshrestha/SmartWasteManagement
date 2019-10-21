@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from bin.models import dustbin
 from bin.forms import RouteSelect
 from django.views import View
-from accounts.forms import SignUpForm
+from accounts.forms import SignUpForm,Task_record
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib.auth import authenticate, login
@@ -18,7 +18,7 @@ from django.http import HttpResponseNotFound
 from django.core.mail import send_mail
 from accounts.email_data import DOMAIN
 from trashcan.settings import ALLOWED_HOSTS
-
+from datetime import datetime
 
 
 # Create your views here.
@@ -30,14 +30,30 @@ def success(request):
 #========================================================================================
 @login_required
 def userprofile(request):
+    u_form = Task_record(request.POST)
 
+    if request.method =="POST":
+        print("ashesh")
+        u_form = Task_record(request.POST)
+        
+        if u_form.is_valid():
+            user_obj= u_form.save(commit=False)
+            user_obj.user=request.user
+            user_obj.date_time= datetime.now()
+            area= u_form.cleaned_data["area"]
+            
+            user_obj.save()
+            print(area)
+            return redirect("/route/"+str(area))
+        else:
+            u_form=Task_record(request.POST)
 
     bins = dustbin.objects.all()
     domain = DOMAIN
     site = ALLOWED_HOSTS
 
     template_name='index.html'
-    return render(request,template_name,{'bins':bins,'domain':domain,'site':site})
+    return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form})
 #=====================================================================================
 @login_required
 def display_users(request):
@@ -170,6 +186,20 @@ def update_user_profile(request,username):
             }
             return render(request,'accounts/update_user_profile.html',  context)
 #========================================================================================
+def reset_user_password(request,username):
+    user_obj = User.objects.get(username=username)
+    template_name = 'accounts/reset_user_password.html'
+    if request.method == 'POST':
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+        print(password1)
+        if password1 == password2:
+            user_obj.set_password(password1)
+        else:
+            print("ashesh")
+    return render(request,template_name,{'user_obj':user_obj})#========================================
+        
+#========================================================================================
 class SignUpView(View):
     
     def get(self, request, *args, **kwargs):
@@ -199,3 +229,7 @@ class SignUpView(View):
 
         else:
             return render(request, 'accounts/signup.html', {'form':form})
+
+
+
+

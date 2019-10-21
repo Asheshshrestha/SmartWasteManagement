@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
-from bin.models import dustbin
+from bin.models import dustbin,Area,street
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.views.generic.edit import CreateView
-from bin.forms import AddNewDustbin,UpdateDustbin
+from bin.forms import AddNewDustbin,UpdateDustbin,Add_AreaForm,Add_StreetForm
 from django.views.generic import View
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -40,6 +40,36 @@ class BinCreateView(LoginRequiredMixin,CreateView):
         return super(AddNewDustbin,self).form_invalid(form)
 
     
+#======================================================================================
+class AreaCreateView(LoginRequiredMixin,CreateView):
+    model = Area
+    template_name = "dustbin/add_area.html"
+    form_class = Add_AreaForm
+    success_url = '/bin_list/'
+    def form_valid(self,form):
+        area = form.save(commit=False)
+        area.area_logitude=self.request.POST.get("area_logitude")
+        area.area_latitude=self.request.POST.get("area_latitude")
+        area.save()
+        return super().form_valid(form)
+    def form_invalid(self,form):
+        print(form)
+        return super(Add_AreaForm,self).form_invalid(form)
+        
+#======================================================================================
+class StreetCreateView(LoginRequiredMixin,CreateView):
+    model = street
+    template_name = "dustbin/add_street.html"
+    form_class =Add_StreetForm
+    success_url = '/bin_list/'
+    def form_valid(self,form):
+        street_name=form.save(commit=False)
+        street_name.save()
+        return super().form_valid(form)
+    def form_invalid(self,form):
+        print(form)
+        return super(Add_StreetForm,self).form_invalid(form)
+        
 #======================================================================================
 @login_required
 def update_dustbin_data(request,bin_no):
@@ -122,8 +152,8 @@ def bin_update(request,bin_id,bin_status):
 
 #==========================================================================================
 
-def route_view(request):
-    bins = dustbin.objects.all()
+def route_view(request,area):
+    bins = dustbin.objects.filter(bin_area__area_name__icontains=area)
     template_name='dustbin/pick_route.html'
     cord=[]
     for i in bins:

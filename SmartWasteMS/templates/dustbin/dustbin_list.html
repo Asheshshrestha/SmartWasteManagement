@@ -21,7 +21,12 @@
    <form method='GET' action=''>
    <input type='text' name ='q' placeholder='Search Bins' value='{{ request.GET.q }}'/>
    <input type='submit' value='Search'/>
+   <a href="{% url 'create_area'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Area</a>
+    <a href="{% url 'create_street'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Street</a>
+
    </form>
+
+   
   </div>
 </nav>
     <!--navbar dend-->

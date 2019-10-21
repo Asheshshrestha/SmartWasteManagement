@@ -51,7 +51,7 @@
       <td>{% if i.userprofile.age is not null %}{{i.userprofile.age}}{% else %} N/A{% endif %}</td>
       <td>{{i.userprofile.address}}</td>
       <td>{{i.userprofile.gender}}</td>
-      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}">Delete</a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}">Update</a></td>
+      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}">Delete</a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}">Update</a>|<a href = "{% url 'reset-user-password' username=i.username %}">Reset</a></td>
 
     </tr>
         {% endfor %}

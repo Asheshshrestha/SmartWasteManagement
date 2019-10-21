@@ -1,5 +1,5 @@
 #admin = most not be logout
-user profile update most be required
+#user profile update most be required
 #delete blogs
 direct verification should be avoided requsest most me forwarded to admin
 #view map to specific location(dusbin)
@@ -18,8 +18,8 @@ admin can restpwassord for everyone
 #mail not be send while delete condition 
 #add status suspend condition most be required
 add archive function
-search to dustbin
-pagination in userlist and dustbinlist
+#search to dustbin
+#pagination in userlist and dustbinlist
 #change the none of id to sensor id 
 team viewer
 

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     
     #user apps
+    'notification',
     'accounts',
     'bin',
    
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'crispy_forms'
 
 ]
+
 
 
 
@@ -158,3 +160,4 @@ EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = EMAIL_PORT
 
 #python -m smtpd -n -c DebuggingServer localhost:102500
+
