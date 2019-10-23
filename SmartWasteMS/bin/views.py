@@ -9,6 +9,9 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.db.models import Q
+from notifications.signals import notify
+from django.contrib.auth.models import User
+
 
 
 
@@ -26,13 +29,16 @@ class BinCreateView(LoginRequiredMixin,CreateView):
     success_url = '/profile/'
     
     def form_valid(self,form):
-        
+        user = User.objects.all()
         bin = form.save(commit=False)
         bin.added_by = self.request.user
         bin.bin_logitude=self.request.POST.get("bin_logitude")
         bin.bin_latitude=self.request.POST.get("bin_latitude")
 
         bin.save()
+        notify.send(self.request.user, recipient=user, verb=' added new dustbin',action_object=self.request.user,description='ID:'+'N\A'+ '\nLocation:')
+                                                 
+
         return super().form_valid(form)
 
     def form_invalid(self,form):
@@ -43,6 +49,8 @@ class BinCreateView(LoginRequiredMixin,CreateView):
 #======================================================================================
 class AreaCreateView(LoginRequiredMixin,CreateView):
     model = Area
+    user = User.objects.all()
+
     template_name = "dustbin/add_area.html"
     form_class = Add_AreaForm
     success_url = '/bin_list/'
@@ -51,6 +59,8 @@ class AreaCreateView(LoginRequiredMixin,CreateView):
         area.area_logitude=self.request.POST.get("area_logitude")
         area.area_latitude=self.request.POST.get("area_latitude")
         area.save()
+        notify.send(self.request.user, recipient=user, verb=' added new Area',action_object=self.request.user,description='ID:'+'N\A'+ '\nLocation:')
+
         return super().form_valid(form)
     def form_invalid(self,form):
         print(form)
@@ -59,12 +69,16 @@ class AreaCreateView(LoginRequiredMixin,CreateView):
 #======================================================================================
 class StreetCreateView(LoginRequiredMixin,CreateView):
     model = street
+    user = User.objects.all()
+
     template_name = "dustbin/add_street.html"
     form_class =Add_StreetForm
     success_url = '/bin_list/'
     def form_valid(self,form):
         street_name=form.save(commit=False)
         street_name.save()
+        notify.send(self.request.user, recipient=user, verb=' added new Street',action_object=self.request.user,description='ID:'+'N\A'+ '\nLocation:')
+
         return super().form_valid(form)
     def form_invalid(self,form):
         print(form)
@@ -128,10 +142,13 @@ def display_dustbins(request):
 def delete_dustbin(request,bin_id):
     bins = dustbin.objects.all()
     bin_id=bin_id
+    user = User.objects.all()
 
     template_name='dustbin/delete_success.html'
     for i in bins:
         if i.bin_no == int(bin_id):
+            
+            notify.send(request.user, recipient=user, verb=' deleted dustbin',action_object=request.user,description='ID:'+str(i.bin_no)+'\nLocation:')
             i.delete()
     
     return render(request,template_name)
@@ -153,14 +170,15 @@ def bin_update(request,bin_id,bin_status):
 #==========================================================================================
 
 def route_view(request,area):
+    user = User.objects.all()
     bins = dustbin.objects.filter(bin_area__area_name__icontains=area)
     template_name='dustbin/pick_route.html'
     cord=[]
     for i in bins:
         if( i.bin_status <= 30):
             cord.append(i)
-
-            
+    notify.send(request.user, recipient=user, verb=' Checked out the bins of '+str(area),action_object=request.user,description='Area:'+str(area))
+           
     return render(request,template_name,{'cord':cord})
 
 #============================================================================================

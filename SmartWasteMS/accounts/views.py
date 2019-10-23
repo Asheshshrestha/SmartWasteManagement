@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from bin.models import dustbin
 from bin.forms import RouteSelect
 from django.views import View
@@ -19,6 +19,11 @@ from django.core.mail import send_mail
 from accounts.email_data import DOMAIN
 from trashcan.settings import ALLOWED_HOSTS
 from datetime import datetime
+from notifications.models import Notification
+from notifications.utils import id2slug, slug2id
+from notifications.signals import notify
+
+
 
 
 # Create your views here.
@@ -49,11 +54,26 @@ def userprofile(request):
             u_form=Task_record(request.POST)
 
     bins = dustbin.objects.all()
+    user = User.objects.get(pk=request.user.pk)
+    notice = user.notifications.unread()
     domain = DOMAIN
     site = ALLOWED_HOSTS
 
     template_name='index.html'
-    return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form})
+    return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form,'notice':notice})
+#=====================================================================================
+def notice_display(request):
+    user = User.objects.get(pk=request.user.pk)
+    notice_unread = user.notifications.unread()
+    notice_read = user.notifications.read()
+    context = {
+        'notice_unread':notice_unread,
+        'notice_read':notice_read,
+    }
+   
+    template_name= 'notification/notice.html'
+    return render(request,template_name,context)
+
 #=====================================================================================
 @login_required
 def display_users(request):
@@ -194,9 +214,18 @@ def reset_user_password(request,username):
         password2 = request.POST.get("password2")
         print(password1)
         if password1 == password2:
-            user_obj.set_password(password1)
-        else:
             print("ashesh")
+            user_obj.set_password(password1)
+            user_obj.save()
+            messages.success(request,f'Password has been changed successfully!')
+            subject = "Password Reset"
+            from_email = settings.EMAIL_HOST_USER
+            to_mail = [user_obj.email]
+            signup_message = """ Wellcome to TrashCan SmartWaste management system. To configure you profile please visit http://127.0.0.1:8080/login \nUsername:"""+username+"""\nPassword:"""+password1+"""Dear"""+username+""",\nYour password has been changed by admin("""+request.user.username+""") now you can sign in you account easyily . \n Thank you """
+            send_mail(subject = subject,from_email=from_email,recipient_list=to_mail,message=signup_message,fail_silently=False)
+            
+        else:
+            messages.error(request,f'Password doesnot match!')
     return render(request,template_name,{'user_obj':user_obj})#========================================
         
 #========================================================================================
@@ -230,6 +259,22 @@ class SignUpView(View):
         else:
             return render(request, 'accounts/signup.html', {'form':form})
 
+
+
+@login_required
+def mark_as_read_notice(request, slug=None):
+    notification_id = slug2id(slug)
+
+    notification = get_object_or_404(
+        Notification, recipient=request.user, id=notification_id)
+    notification.mark_as_read()
+
+    _next = request.GET.get('next')
+
+    if _next:
+        return redirect(_next)
+
+    return redirect('/noticelist')
 
 
 
