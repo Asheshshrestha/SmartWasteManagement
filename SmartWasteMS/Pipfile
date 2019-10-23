@@ -9,6 +9,9 @@ verify_ssl = true
 django = "==2.2.2"
 pillow = "*"
 django-crispy-forms = "*"
+django-notifications-hq = "*"
+jsonfield = "*"
+django-jsonfield = "*"
 
 [requires]
 python_version = "3.7"

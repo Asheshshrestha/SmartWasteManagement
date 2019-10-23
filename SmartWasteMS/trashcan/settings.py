@@ -50,7 +50,10 @@ INSTALLED_APPS = [
    
 
     #third party apps
-    'crispy_forms'
+    'crispy_forms',
+    'notifications',
+    'jsonfield',
+
 
 ]
 
@@ -161,3 +164,4 @@ EMAIL_PORT = EMAIL_PORT
 
 #python -m smtpd -n -c DebuggingServer localhost:102500
 
+DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}

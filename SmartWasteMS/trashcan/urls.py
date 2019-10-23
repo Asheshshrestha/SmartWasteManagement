@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import path,include
 from trashcan.views import home
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
  
     path('',home,name='home'),
     path('',include('bin.urls')),
     path('',include('accounts.urls')),
+    path('^inbox/notifications/', include('notifications.urls', namespace='notifications')),
+
 
    
 
