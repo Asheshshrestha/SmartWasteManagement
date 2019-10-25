@@ -22,6 +22,7 @@ from datetime import datetime
 from notifications.models import Notification
 from notifications.utils import id2slug, slug2id
 from notifications.signals import notify
+from django.db.models import Q
 
 
 
@@ -82,7 +83,10 @@ def display_users(request):
         user_obj=User.objects.all()
         query = request.GET.get("q")
         if query:
-            user_obj= user_obj.filter(username__icontains=query)
+            user_obj= user_obj.filter(
+                Q(username__icontains=query) |
+                Q(email__icontains=query) 
+                ).distinct()
         paginator = Paginator(user_obj, 6) # Show 6 user per page
         page = request.GET.get('page')
         user = paginator.get_page(page)

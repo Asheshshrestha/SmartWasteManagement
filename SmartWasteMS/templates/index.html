@@ -51,7 +51,7 @@
 
      {% endif %}
     <a href="{% url 'display_bins'%}" class="list-group-item list-group-item-action list-group-item-primary">Dustbin</a>
-    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Status</a>
+    <a href="{% url 'status'%}" class="list-group-item list-group-item-action list-group-item-primary">Status</a>
     {% notifications_unread as unread_count %}
     <a href="{% url 'notice_display'%}" class="list-group-item list-group-item-action list-group-item-primary">Notifications <span class="badge badge-light">{{ unread_count }}</span></a>
  

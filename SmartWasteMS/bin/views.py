@@ -182,6 +182,30 @@ def route_view(request,area):
     return render(request,template_name,{'cord':cord})
 
 #============================================================================================
+def status(request):
+    bins= dustbin.objects.all()
+    f=0
+    h=0
+    e=0
+    t=0
+    n=0
+    for i in bins:
+        if i.bin_status==-1:
+            n=n+1
+        elif i.bin_status>30:
+            f=f+1
+        elif i.bin_status>100:
+            h=h+1
+        elif i.bin_status>150:
+            e = e+1
+        else:
+
+            t=t+1
+
+    template_name='charts/status.html'
+    data= {'Full Dustbin['+str(f)+']': f, 'Half Dustbin['+str(h)+']': h, 'Empty Dustbin['+str(e)+']': e,'Damaged Dustbin['+str(t)+']' : t,'New Dustbin['+str(n)+']':n}
+    
+    return render(request,template_name,{'data':data})
 
 #============================================================================================
 

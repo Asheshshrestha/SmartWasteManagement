@@ -53,10 +53,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'notifications',
     'jsonfield',
+    'chartkick',
 
 
 ]
 
+import chartkick
 
 
 
@@ -142,7 +144,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
+    
     os.path.join(BASE_DIR, "static"),
+    chartkick.js(),
+    
 )
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
