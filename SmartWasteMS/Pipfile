@@ -12,6 +12,7 @@ django-crispy-forms = "*"
 django-notifications-hq = "*"
 jsonfield = "*"
 django-jsonfield = "*"
+chartkick = "*"
 
 [requires]
 python_version = "3.7"
