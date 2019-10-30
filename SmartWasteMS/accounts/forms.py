@@ -21,16 +21,7 @@ class EmailValidation(forms.EmailField):
 
 class SignUpForm(UserCreationForm):
     email = EmailValidation(required=True)
-    # psw = User.objects.make_random_password(length=8, allowed_chars="abcdefghjkmnpqrstuvwxyz01234567889!@#$%^&*")
-    # password1 = psw # Standard django password input
-    # password2 = psw # Standard django password confirmation input
-    # def __init__(self, *args, **kwargs):
-    #      super(UserCreationForm, self).__init__(*args, **kwargs)
-    
-    #      self.fields['password1'].widget.attrs['autocomplete'] = 'off'
-    #      self.fields['password2'].widget.attrs['autocomplete'] = 'off'
-    #      del self.fields['password1']
-    #      del self.fields['password2']
+ 
 
     class Meta:
         model =User
@@ -51,6 +42,8 @@ class UserUpdateForm(forms.ModelForm):
                  'last_name')
 
 class CreateUserProfile(forms.ModelForm):
+    CHOICES =(("male","male"),("female","female"),("others","others"))
+    gender = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
     class Meta:
         model = UserProfile
         fields = [

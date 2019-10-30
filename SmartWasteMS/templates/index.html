@@ -1,108 +1,20 @@
 
-<!doctype html>
+{% extends 'base_layout.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% load notifications_tags %}
-<html lang="en">
-  <head>
-    {% comment %} <meta http-equiv="refresh" content="5"> {% endcomment %}
-    <!-- Required meta tags -->
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+{% block body %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 500px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
-    </style>
-    <title>Hello, world!</title>
-    <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
-    {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
-  </head>
-  <body>
-    <!--navbar start-->
-<nav class="navbar navbar-expand-lg bg-dark">
-  <a class="navbar-brand" href="#">TrashCan</a>
-  
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><h10>Logged in as </h10>{% if user.is_superuser %}Admin {% else %}Staff{% endif %}({{ request.user.username }}) </a>
-     
-</nav>
-    <!--navbar dend-->
-
-    <div class="container">
-  <div class="row">
-    <div class="col-2 bg-success text-white" >
-     <!-- profile settings start -->
-    
-     <img src="{{ user.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="100" height="100">
-     {{ user.username }}
-
-     <div class="btn-group-vertical">
-    <a href="{% url 'profile_display'%}" class="list-group-item list-group-item-action list-group-item-primary">Profile</a>
-    {% if user.is_superuser %}
-         <a href="{% url 'user_list'%}" class="list-group-item list-group-item-action list-group-item-primary">User</a>
-
-     {% endif %}
-    <a href="{% url 'display_bins'%}" class="list-group-item list-group-item-action list-group-item-primary">Dustbin</a>
-    <a href="{% url 'status'%}" class="list-group-item list-group-item-action list-group-item-primary">Status</a>
-    {% notifications_unread as unread_count %}
-    <a href="{% url 'notice_display'%}" class="list-group-item list-group-item-action list-group-item-primary">Notifications <span class="badge badge-light">{{ unread_count }}</span></a>
- 
-</button>
-    {% comment %} <a href="{% url 'blog_list'%}" class="list-group-item list-group-item-action list-group-item-primary">Blogs</a> {% endcomment %}
-    {% comment %} <a href="{% url 'route'%}" class="list-group-item list-group-item-action list-group-item-primary">Route</a> {% endcomment %}
-    <a class="list-group-item list-group-item-action list-group-item-primary"  data-toggle="modal" data-target="#exampleModalCenter">Route</a>
-    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Settings</a>
-    <a href="{% url 'logout'%}" class="list-group-item list-group-item-action list-group-item-primary">logout</a>
    
-
-</div>
-     <!-- profile settings end -->
-    </div>
-    <div class="col-8">
+    
     <!--The div element for the map -->
-    <div id="map"></div>
+    <div class="container-fluid">
+        <h1 class="h3 mb-0 text-gray-800"> Map View </h1>
+    <div  class="card border-left-danger shadow h-1000 py-2 px-1" id="map"></div>
+    </div>
    <!-- ============================================================= -->
   
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Work sheet(Register)</h5> 
-        
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="POST">
-      <div class="modal-body">
-   
 
-  {% csrf_token %}
-          <fieldset class="form-group">
-             
-              {{ u_form|crispy }}
-          </fieldset>
-
-      </div>
-      <div class="modal-footer">
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
    <!-- ============================================================= -->
     <script>
 // Initialize and add the map
@@ -236,22 +148,10 @@ function initMap() {
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-  </div>  
-    <div class="col-2">
-      
-
-    </div>
-  </div>
-</div>
+ 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFjR24dT-4ftyBy8_7oJH3Q4jgweWBDtI&v=3&&callback=initMap">
     </script>
-</div>
-   
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock body %}

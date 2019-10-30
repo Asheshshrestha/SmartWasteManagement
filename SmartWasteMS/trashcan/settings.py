@@ -44,7 +44,6 @@ INSTALLED_APPS = [
 
     
     #user apps
-    'notification',
     'accounts',
     'bin',
    
@@ -82,6 +81,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'notice.processor.notice_context',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -151,7 +151,7 @@ STATICFILES_DIRS = (
 )
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/status/'
 
 
 MEDIA_URL ='/userpic/'

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
      
 class Area(models.Model):
-    area_name = models.CharField(max_length=50)
+    area_name = models.CharField(max_length=50,unique=True)
     area_logitude = models.FloatField(null=True)
     area_latitude = models.FloatField(null=True)
     
@@ -14,7 +14,7 @@ class Area(models.Model):
         return self.area_name
 
 class street(models.Model):
-    street_name = models.CharField(max_length = 50)
+    street_name = models.CharField(max_length = 50,unique=True)
     street_area = models.ForeignKey(Area,on_delete=models.SET_NULL,null=True)
     def __str__(self):
         return self.street_name

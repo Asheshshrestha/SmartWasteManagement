@@ -8,9 +8,9 @@ direct verification should be avoided requsest most me forwarded to admin
 contact info
 user type
 #user name not to be change  email can be changed                                                                                                                                                                               
----->gender can not be in drop down  male female others(wachas)
+#gender can not be in drop down  male female others(wachas)ash
 #van number is not complersory 
-admin can restpwassord for everyone
+#admin can restpwassord for everyone
 #admin can not be delete to another admin
 #add superuser that can not be deleted by other ... that most be hero 
 #defalt tends to none =N/A
