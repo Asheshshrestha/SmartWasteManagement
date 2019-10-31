@@ -81,22 +81,20 @@ def notice_display(request):
 #=====================================================================================
 @login_required
 def display_users(request):
-    if request.user.is_superuser:
 
-        user_obj=User.objects.all()
-        query = request.GET.get("q")
-        if query:
-            user_obj= user_obj.filter(
-                Q(username__icontains=query) |
-                Q(email__icontains=query) 
-                ).distinct()
-        paginator = Paginator(user_obj, 6) # Show 6 user per page
-        page = request.GET.get('page')
-        user = paginator.get_page(page)
-        template_name = 'accounts/user_list.html'
-        return render(request, template_name ,{'user':user})
-    else:
-        return HttpResponseNotFound()         
+    user_obj=User.objects.all()
+    query = request.GET.get("q")
+    if query:
+        user_obj= user_obj.filter(
+            Q(username__icontains=query) |
+            Q(email__icontains=query) 
+            ).distinct()
+    paginator = Paginator(user_obj, 6) # Show 6 user per page
+    page = request.GET.get('page')
+    user = paginator.get_page(page)
+    template_name = 'accounts/user_list.html'
+    return render(request, template_name ,{'user':user})
+            
 
 #==============================================================================
 

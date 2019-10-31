@@ -77,7 +77,9 @@ color: #f48fb1;
                         <th > Age</th>
                         <th >Address </th>
                         <th >Gender</th>
+                        {% if request.user.is_superuser %}
                         <th >Settings</th>
+                        {% endif %}
                     </tr>
                   </thead>
                   
@@ -89,12 +91,13 @@ color: #f48fb1;
       <td>{{i.username}}</td>
       <td>{% if i.userprofile.age is not null %}{{i.email}}{% else %} N/A{% endif %}</td>
       <td> {% if i.is_superuser %}admin {% else %}Staff{% endif %}</td>
-      <td>  <a href="{% url 'inactive_user_confirm' username=i.username %}">{% if i.is_active %}<img src="https://img.icons8.com/cute-clipart/64/000000/ok.png" width="20" height="20">{% else %}<img src="https://img.icons8.com/cute-clipart/64/000000/cancel.png" width="20" height="20">{% endif %}</a></td>
+      <td> {% if request.user.is_superuser%} <a href="{% url 'inactive_user_confirm' username=i.username %}">{% if i.is_active %}<img src="https://img.icons8.com/cute-clipart/64/000000/ok.png" width="20" height="20">{% else %}<img src="https://img.icons8.com/cute-clipart/64/000000/cancel.png" width="20" height="20">{% endif %}{% else %}{% if i.is_active %}<img src="https://img.icons8.com/cute-clipart/64/000000/ok.png" width="20" height="20">{% else %}<img src="https://img.icons8.com/cute-clipart/64/000000/cancel.png" width="20" height="20">{% endif %}{% endif %}</a></td>
       <td>{% if i.userprofile.age is not null %}{{i.userprofile.age}}{% else %} N/A{% endif %}</td>
       <td>{{i.userprofile.address}}</td>
       <td>{{i.userprofile.gender}}</td>
+      {% if request.user.is_superuser %}
       <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a>|<a href = "{% url 'reset-user-password' username=i.username %}"><img src="https://img.icons8.com/windows/32/000000/password1.png"  width="20" height="20"></a></td>
-
+      {% endif %}
     </tr>
         {% endfor %}
                   </tbody>
