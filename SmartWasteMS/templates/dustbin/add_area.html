@@ -1,59 +1,27 @@
-
-<!doctype html>
+{% extends 'base_layout.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% block head %}
 
     <style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 80%;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
-       mapbox, formadd {
-	height: 100%;
-	float: left;
-	}
-mapbox {
-	background-color:#F7FDEB;
-  
-	width:60%;
-	}
-  formadd {
-	background-color:#DAE9BC;
-  height:100%;
-	width:40%;
-    </style>
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <!--navbar start-->
-
-    <!--navbar dend-->
-
-    <mapbox>
-  <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+    #map{
    
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #floating-panel {
+      left:20px;
+      
+    }
+    #row{
+      top:30%;
+    }
+    #formadd{
+      top:70px;
+      left:25px;
+      height:60%;
+    }
+   #floating-panel {
         position: absolute;
-        top: 10px;
-        left: 15%;
+        top: 15%;
+        left: 20%;
         z-index: 5;
         background-color: #fff;
         padding: 5px;
@@ -62,16 +30,54 @@ mapbox {
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
-      }
+   }
     </style>
-  </head>
-  <body>
+{% endblock head %}
+
+  {% block body %}
+ 
+  
     <div id="floating-panel">
       <input onclick="clearMarkers();" type=button value="Hide Markers">
       <input onclick="showMarkers();" type=button value="Show All Markers">
       <input onclick="deleteMarkers();" type=button value="Delete Markers">
     </div>
-    <div id="map"></div>
+    <div class="row" id="row">
+    <div id="map" class="col-md-8 card-header card-header-primary border-left-info border-right-info"></div>
+    <div id="formadd" class=" col-md-3 card card-profile border-left-info bx-3">
+    
+                  <form method="POST">
+                    {% csrf_token %}
+                                  <fieldset class="form-group">
+                                      <legend class="border-bottom mb-4"> Add Area</legend>
+                                      {{ form|crispy}}
+                                       <div id="div_id_bin_logitude" class="form-group">
+                                       <label for="id_bin_logitude" class="col-form-label  requiredField">
+                                      Bin logitude<span class="asteriskField">*</span> </label> <div class=""> 
+                                      <input type="number" name="area_logitude" step="any" class="numberinput form-control" required="" id="id_area_logitude" value = ""> 
+                                      </div> 
+                                      </div> 
+                                      <div id="div_id_bin_latitude" class="form-group">
+                                       <label for="id_bin_latitude" class="col-form-label  requiredField">
+                                      Bin latitude<span class="asteriskField">*</span> </label>
+                                       <div class=""> 
+                                       <input type="number" name="area_latitude" step="any" class="numberinput form-control" required="" id="id_area_latitude"value = "">
+                                        </div>
+                                         </div>
+                                  </fieldset>
+                                    <div class="form-group">
+                                        <button class="btn btn-info" type="submit">Add</button>
+                                        <a href="{% url 'profile'%}" class="btn btn-info">Cancel</a>
+
+                                        
+                                    
+                                    </div>
+                </form>
+     
+
+
+</div>
+</div>
     
     <script>
 
@@ -222,44 +228,16 @@ mapbox {
       }
 
     </script>
-    </mapbox>
+   
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    <formadd>
-                  <form method="POST">
-                    {% csrf_token %}
-                                  <fieldset class="form-group">
-                                      <legend class="border-bottom mb-4"> Add Area</legend>
-                                      {{ form|crispy}}
-                                      Area logitude<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="area_logitude" step="any" class="numberinput form-control" required="" id="id_area_logitude" value = ""> </div> </div> <div id="div_id_bin_latitude" class="form-group"> <label for="id_bin_latitude" class="col-form-label  requiredField">
-                                      Area latitude<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="area_latitude" step="any" class="numberinput form-control" required="" id="id_area_latitude"value = ""> </div> </div>
-
-
-                                  </fieldset>
-                                    <div class="form-group">
-                                        <button class="btn btn-info" type="submit">Add</button>
-                                        <a href="{% url 'profile'%}" class="btn btn-info">Cancel</a>
-
-                                        <small class="text-muted">
-                                        
-                                    </small>
-                                    
-                                    </div>
-                </form>
-     
-
-</formadd>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFjR24dT-4ftyBy8_7oJH3Q4jgweWBDtI&v=3&&callback=initMap">
     </script>
-</div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+ {% endblock body %}

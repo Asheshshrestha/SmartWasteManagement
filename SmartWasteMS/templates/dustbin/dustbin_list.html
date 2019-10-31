@@ -1,37 +1,42 @@
-<!doctype html>
+{% extends 'base_layout.html' %}
+
 {% load static %}
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% block body %}
 
-    <title>Bin List</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-gradient-success">
-  <a class="navbar-brand" href="#">Dustbin List</a>
-  
+    <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">User List</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+  <div class="row">
+<div class="col-md-4">
+<form class="form-inline active-cyan-3 active-cyan-4" method='GET' action=''>
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" name='q' type="text" placeholder="Search" aria-label="Search" value='{{ request.GET.q }}'>
+</form>
+</div>
+<div class="col-md-4">
+<a href="{% url 'create_area'%}" class="btn btn-primary active" role="button" aria-pressed="true">Add Area</a>
+</div>
+<div class="col-md-4">
+
+<a href="{% url 'create_street'%}" class="btn btn-primary active" role="button" aria-pressed="true">Add Street</a>
 
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-   <form method='GET' action=''>
-   <input type='text' name ='q' placeholder='Search Bins' value='{{ request.GET.q }}'/>
-   <input type='submit' value='Search'/>
-   <a href="{% url 'create_area'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Area</a>
-    <a href="{% url 'create_street'%}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Street</a>
 
-   </form>
-
+</div>
+</div>
+   
    
   </div>
-</nav>
-    <!--navbar dend-->
-    <table class="table">
-  <thead>
+            <div class="card-body">
+              <div class="table-responsive ">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
     <tr>
        <th scope="col">Sensor ID</th>
       <th scope="col">Area</th>
@@ -53,54 +58,60 @@
       <td>{{i.bin_street}}</td>
       <td> {{i.added_by}}</td>
       <td>{{i.updated_by}}</td>
-      <td><a href= https://www.google.com/maps/place/{{i.bin_logitude}}+-{{i.bin_latitude}}/@{{i.bin_logitude}},-{{i.bin_latitude}},15z>see in map</a></td>
+      <td><a href= https://www.google.com/maps/place/{{i.bin_logitude}}+{{i.bin_latitude}}/@{{i.bin_logitude}},{{i.bin_latitude}},15z><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a></td>
       
       
       <td>{{i.bin_status}}</td>
       <td>{{i.added_at}}</td>
-      <td> <a href="{% url 'delete_bins' bin_id=i.bin_no %}">Delete</a>|<a href="{% url 'update_dustbin_data' bin_no=i.bin_no %}">Update</a></td>
+      <td> <a href="{% url 'delete_bins' bin_id=i.bin_no %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|<a href="{% url 'update_dustbin_data' bin_no=i.bin_no %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a></td>
 
     </tr>
         {% endfor %}
 
   </tbody>
-</table>
-   <div class="pagination">
-    <span class="step-links">
-        {% if bins.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ bins.previous_page_number }}">previous</a>
+  </table>
+  <!--START-->
+   
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+     {% if bins.has_previous %}
+                    
+    <li>
+      <a class="page-link" href="?page={{ bins.previous_page_number }}" aria-disabled="">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item"><a class="page-link">{{ bins.number }}</a></li>
+    <li class="page-item"><a class="page-link">of</a></li>
+    <li class="page-item"><a class="page-link">{{ bins.paginator.num_pages }}</a></li>
+    <li class="page-item">
+    {% if bins.has_next %}
+      <a class="page-link" href="?page={{ bins.next_page_number }}">Next</a>
+   
         {% endif %}
-
-        <span class="current">
-            Page {{ bins.number }} of {{ bins.paginator.num_pages }}.
-        </span>
-
-        {% if bins.has_next %}
-            <a href="?page={{ bins.next_page_number }}">next</a>
-            <a href="?page={{ bins.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    </li>
+  </ul>
+</nav>
+  <!-- end -->
+    
 
    
     
     <div class="form-group">
      
       <a href="{% url 'create_dustbin'%}" class="btn btn-info">Create Dustbin</a>
-      <a href="{% url 'profile'%}" class="btn btn-info">Cancel</a>
+      <a href="{% url 'status'%}" class="btn btn-info">Cancel</a>
     </div>
 
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+   
 
 
 
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock body %}

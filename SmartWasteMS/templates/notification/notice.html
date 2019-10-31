@@ -1,37 +1,39 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% extends 'base_layout.html'%}
+{% load static %}
+{% block head %}
+<style>
+.anyClass {
+    height: 400px;
+    overflow-y: scroll;
+}
+</style>
+{% endblock head %}
+{% block body %}
 
-    <title>notice</title>
-  </head>
- <h1> Notices </h1>
-  <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+ <h1 class="h3 mb-0 text-gray-800"> Notices </h1>
+ <div class="container-fluid shadow h-100 py-2">
+    <div class="card shadow mb-4">
+  <div class = "notificationscroll anyClass">
   
      {% for i in notice_unread %}
      <div class="alert alert-primary" role="alert" >
       <div class="media">
-        <div class="media-left">
-          <div class="media-object">
-            <img src={{i.actor.userprofile.image.url}} class="img-circle" alt="Name"height=90 >
-          </div>
-        </div>
+              <div class="media-left">
+                        <div class="media-object">
+                                    <img src={{i.actor.userprofile.image.url}} class="img-circle" alt="Name"height=90 >
+                        </div>
+              </div>
         <div class="media-body">
-          <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="#">Detail</a><a class="close pull-right" href="{% url 'mark_as_read_notice' i.slug %}">
-Mark as Read</a></strong>
-          <p class="notification-desc">{{i.description}}</p>
+              <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="#">Detail</a><a class="close pull-right" href="{% url 'mark_as_read_notice' i.slug %}">Mark as Read</a></strong>
+              <p class="notification-desc">{{i.description}}</p>
 
-          <div class="notification-meta">
-            <small class="timestamp">{{i.timestamp}}</small>
-          </div>
+              <div class="notification-meta">
+                <small class="timestamp">{{i.timestamp}}</small>
+              </div>
         </div>
       </div>
-  </div>
+   </div>
      {% endfor %}
     
      
@@ -41,7 +43,7 @@ Mark as Read</a></strong>
      <div class="media">
         <div class="media-left">
           <div class="media-object">
-            <img src={{i.actor.userprofile.image.url}} class="img-circle" alt="Name"height=90 >
+            <img src={{i.actor.userprofile.image.url}} class="img-circle" alt="Name" height=90 >
           </div>
         </div>
         <div class="media-body">
@@ -59,12 +61,7 @@ Mark as Read</a></strong>
 
 
 
+   </div>
   </div>
-  <body>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-</html>
+</div>
+{% endblock %}

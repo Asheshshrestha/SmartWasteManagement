@@ -11,6 +11,9 @@ from django.views.generic import ListView
 from django.db.models import Q
 from notifications.signals import notify
 from django.contrib.auth.models import User
+from accounts.forms import Task_record
+from datetime import datetime
+
 
 
 
@@ -49,12 +52,13 @@ class BinCreateView(LoginRequiredMixin,CreateView):
 #======================================================================================
 class AreaCreateView(LoginRequiredMixin,CreateView):
     model = Area
-    user = User.objects.all()
+    
 
     template_name = "dustbin/add_area.html"
     form_class = Add_AreaForm
     success_url = '/bin_list/'
     def form_valid(self,form):
+        user = User.objects.all()
         area = form.save(commit=False)
         area.area_logitude=self.request.POST.get("area_logitude")
         area.area_latitude=self.request.POST.get("area_latitude")
@@ -75,6 +79,8 @@ class StreetCreateView(LoginRequiredMixin,CreateView):
     form_class =Add_StreetForm
     success_url = '/bin_list/'
     def form_valid(self,form):
+        user = User.objects.all()
+
         street_name=form.save(commit=False)
         street_name.save()
         notify.send(self.request.user, recipient=user, verb=' added new Street',action_object=self.request.user,description='ID:'+'N\A'+ '\nLocation:')
@@ -182,7 +188,26 @@ def route_view(request,area):
     return render(request,template_name,{'cord':cord})
 
 #============================================================================================
+@login_required
 def status(request):
+    u_form = Task_record(request.POST)
+
+    if request.method =="POST":
+        print("ashesh")
+        u_form = Task_record(request.POST)
+        
+        if u_form.is_valid():
+            user_obj= u_form.save(commit=False)
+            user_obj.user=request.user
+            user_obj.date_time= datetime.now()
+            area= u_form.cleaned_data["area"]
+            
+            user_obj.save()
+            print(area)
+            return redirect("/route/"+str(area))
+        else:
+            u_form=Task_record(request.POST)
+
     bins= dustbin.objects.all()
     f=0
     h=0
@@ -203,9 +228,9 @@ def status(request):
             t=t+1
 
     template_name='charts/status.html'
-    data= {'Full Dustbin['+str(f)+']': f, 'Half Dustbin['+str(h)+']': h, 'Empty Dustbin['+str(e)+']': e,'Damaged Dustbin['+str(t)+']' : t,'New Dustbin['+str(n)+']':n}
+    data= {'Full Dustbin': f, 'Half Dustbin': h, 'Empty Dustbin': e,'Damaged Dustbin' : t,'New Dustbin':n}
     
-    return render(request,template_name,{'data':data})
+    return render(request,template_name,{'data':data,'f':f,'h':h,'e':e,'t':t,'u_form':u_form})
 
 #============================================================================================
 

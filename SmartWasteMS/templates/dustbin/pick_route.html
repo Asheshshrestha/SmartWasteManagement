@@ -1,25 +1,12 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Google Maps JavaScript API v3 Example: Directions Waypoints (LatLng)</title>
-<style>
-html, body { height: 100%; margin: 0; padding: 0; }
-#map { height: 100%; width: 80%; height: 100%;margin:10px; }
-#right_bar
-{
-  height:100%;
-  width:10%;
+{% extends 'base_layout.html' %}
+{% load static %}
 
-}
-</style>
-</head>
-<body>
-<div id="map">
-</div>
-<div id="right_bar">ashesh</div>
+{% block body %}
+<div class="container-fluid">
+        <h1 class="h3 mb-0 text-gray-800"> Map Route </h1>
+    <div  class="card border-left-danger shadow h-1000 py-2 px-2" id="map"></div>
+    </div>
 <script>
   function initMap() {
     var service = new google.maps.DirectionsService;
@@ -182,5 +169,4 @@ var full = {url:'http://127.0.0.1:8080/static/images/full.png',
 _uacct = "UA-162157-1";
 urchinTracker();
 </script> 
-</body>
-</html>
+{% endblock %}

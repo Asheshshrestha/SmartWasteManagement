@@ -1,80 +1,129 @@
-<!doctype html>
+{% extends 'base_layout.html'%}
 {% load static %}
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block head %}
+<script>
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+border-bottom: 1px solid #f48fb1;
+box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink input[type=text] {
+border-bottom: 1px solid #f48fb1;
+box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-purple-2 input[type=text]:focus:not([readonly]) {
+border-bottom: 1px solid #ce93d8;
+box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-purple input[type=text] {
+border-bottom: 1px solid #ce93d8;
+box-shadow: 0 1px 0 0 #ce93d8;
+}
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+border-bottom: 1px solid #4dd0e1;
+box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan input[type=text] {
+border-bottom: 1px solid #4dd0e1;
+box-shadow: 0 1px 0 0 #4dd0e1;
+}
+.active-cyan .fa, .active-cyan-2 .fa {
+color: #4dd0e1;
+}
+.active-purple .fa, .active-purple-2 .fa {
+color: #ce93d8;
+}
+.active-pink .fa, .active-pink-2 .fa {
+color: #f48fb1;
+}
+</script>
+{% endblock head %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% block body %}
 
-    <title>User profile</title>
-  </head>
-  <body>
     
-   <nav class="navbar navbar-expand-lg bg-gradient-success">
-  <a class="navbar-brand" href="#">User List</a>
+  
+     <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">User List</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+             
+              <!-- Search form -->
+<div class="row">
+<div class="col-md-4">
+<form class="form-inline active-cyan-3 active-cyan-4" method='GET' action=''>
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" name='q' type="text" placeholder="Search" aria-label="Search" value='{{ request.GET.q }}'>
+</form>
+</div>
+</div>
   
 
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-   <form method='GET' action=''>
-   <input type='text' name ='q' placeholder='Search User' value='{{ request.GET.q }}'/>
-   <input type='submit' value='Search'/>
-   </form>
-  </div>
-</nav>
-    <table class="table">
-  <thead>
-    <tr>
-       <th scope="col">Image</th>
-      <th scope="col">UserName</th>
-      <th scope="col">Email</th>
-      <th scope="col">User Type</th>
-      <th scope="col">Status</th>
-      <th scope="col"> Age</th>
-      <th scope="col">Address </th>
-      <th scope="col">Gender</th>
-      <th scope='col'>Settings</th>
-    </tr>
-  </thead>
-  <tbody>
-      {% for i in user %}
+            </div>
+            <div class="card-body">
+              <div class="table-responsive ">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th >Image</th>
+                        <th >UserName</th>
+                        <th >Email</th>
+                        <th >User Type</th>
+                        <th >Status</th>
+                        <th > Age</th>
+                        <th >Address </th>
+                        <th >Gender</th>
+                        {% if request.user.is_superuser %}
+                        <th >Settings</th>
+                        {% endif %}
+                    </tr>
+                  </thead>
+                  
+                  <tbody>
+                   {% for i in user %}
 
     <tr>
       <td><img src="{{ i.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="40" height="40"></td>
       <td>{{i.username}}</td>
       <td>{% if i.userprofile.age is not null %}{{i.email}}{% else %} N/A{% endif %}</td>
       <td> {% if i.is_superuser %}admin {% else %}Staff{% endif %}</td>
-      <td>  <a href="{% url 'inactive_user_confirm' username=i.username %}">{% if i.is_active %}Active{% else %}Inactive{% endif %}</a></td>
+      <td> {% if request.user.is_superuser%} <a href="{% url 'inactive_user_confirm' username=i.username %}">{% if i.is_active %}<img src="https://img.icons8.com/cute-clipart/64/000000/ok.png" width="20" height="20">{% else %}<img src="https://img.icons8.com/cute-clipart/64/000000/cancel.png" width="20" height="20">{% endif %}{% else %}{% if i.is_active %}<img src="https://img.icons8.com/cute-clipart/64/000000/ok.png" width="20" height="20">{% else %}<img src="https://img.icons8.com/cute-clipart/64/000000/cancel.png" width="20" height="20">{% endif %}{% endif %}</a></td>
       <td>{% if i.userprofile.age is not null %}{{i.userprofile.age}}{% else %} N/A{% endif %}</td>
       <td>{{i.userprofile.address}}</td>
       <td>{{i.userprofile.gender}}</td>
-      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}">Delete</a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}">Update</a>|<a href = "{% url 'reset-user-password' username=i.username %}">Reset</a></td>
-
+      {% if request.user.is_superuser %}
+      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a>|<a href = "{% url 'reset-user-password' username=i.username %}"><img src="https://img.icons8.com/windows/32/000000/password1.png"  width="20" height="20"></a></td>
+      {% endif %}
     </tr>
         {% endfor %}
-        
-  </tbody>
-</table>
-   <div class="pagination">
-    <span class="step-links">
-        {% if user.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ user.previous_page_number }}">previous</a>
+                  </tbody>
+                </table>
+             <!--START-->
+   
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+     {% if user.has_previous %}
+                    
+    <li>
+      <a class="page-link" href="?page={{ user.previous_page_number }}" aria-disabled="">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item"><a class="page-link">{{ user.number }}</a></li>
+    <li class="page-item"><a class="page-link">of</a></li>
+    <li class="page-item"><a class="page-link">{{ user.paginator.num_pages }}</a></li>
+    <li class="page-item">
+    {% if user.has_next %}
+      <a class="page-link" href="?page={{ user.next_page_number }}">Next</a>
+   
         {% endif %}
-
-        <span class="current">
-            Page {{ user.number }} of {{ user.paginator.num_pages }}.
-        </span>
-
-        {% if user.has_next %}
-            <a href="?page={{ user.next_page_number }}">next</a>
-            <a href="?page={{ user.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    </li>
+  </ul>
+</nav>
+  <!-- end -->
 
    
     
@@ -84,16 +133,18 @@
       <a href="{% url 'profile'%}" class="btn btn-info">Cancel</a>
     </div>
 
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+        
+      </div>
+   
 
 
 
 
 
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock body %}

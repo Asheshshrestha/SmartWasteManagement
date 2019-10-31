@@ -63,6 +63,7 @@ def userprofile(request):
     template_name='index.html'
     return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form,'notice':notice})
 #=====================================================================================
+@login_required
 def notice_display(request):
     user = User.objects.get(pk=request.user.pk)
     notice_unread = user.notifications.unread()
@@ -75,25 +76,25 @@ def notice_display(request):
     template_name= 'notification/notice.html'
     return render(request,template_name,context)
 
+
+        
 #=====================================================================================
 @login_required
 def display_users(request):
-    if request.user.is_superuser:
 
-        user_obj=User.objects.all()
-        query = request.GET.get("q")
-        if query:
-            user_obj= user_obj.filter(
-                Q(username__icontains=query) |
-                Q(email__icontains=query) 
-                ).distinct()
-        paginator = Paginator(user_obj, 6) # Show 6 user per page
-        page = request.GET.get('page')
-        user = paginator.get_page(page)
-        template_name = 'accounts/user_list.html'
-        return render(request, template_name ,{'user':user})
-    else:
-        return HttpResponseNotFound()         
+    user_obj=User.objects.all()
+    query = request.GET.get("q")
+    if query:
+        user_obj= user_obj.filter(
+            Q(username__icontains=query) |
+            Q(email__icontains=query) 
+            ).distinct()
+    paginator = Paginator(user_obj, 6) # Show 6 user per page
+    page = request.GET.get('page')
+    user = paginator.get_page(page)
+    template_name = 'accounts/user_list.html'
+    return render(request, template_name ,{'user':user})
+            
 
 #==============================================================================
 
@@ -168,7 +169,7 @@ def update_profile(request):
             u_form.save()
             p_form.save()
             messages.success(request,f'Your accounts has been updated!')
-            return redirect('profile')
+            return redirect('profile_display')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -221,7 +222,7 @@ def reset_user_password(request,username):
             print("ashesh")
             user_obj.set_password(password1)
             user_obj.save()
-            messages.success(request,f'Password has been changed successfully!')
+            messages.success(request,'Password has been changed successfully!')
             subject = "Password Reset"
             from_email = settings.EMAIL_HOST_USER
             to_mail = [user_obj.email]
@@ -229,7 +230,7 @@ def reset_user_password(request,username):
             send_mail(subject = subject,from_email=from_email,recipient_list=to_mail,message=signup_message,fail_silently=False)
             
         else:
-            messages.error(request,f'Password doesnot match!')
+            messages.error(request,'Password doesnot match!')
     return render(request,template_name,{'user_obj':user_obj})#========================================
         
 #========================================================================================
