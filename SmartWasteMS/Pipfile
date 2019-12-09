@@ -13,6 +13,7 @@ django-notifications-hq = "*"
 jsonfield = "*"
 django-jsonfield = "*"
 chartkick = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.7"

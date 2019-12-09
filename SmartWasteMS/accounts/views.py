@@ -66,11 +66,11 @@ def userprofile(request):
 @login_required
 def notice_display(request):
     user = User.objects.get(pk=request.user.pk)
-    notice_unread = user.notifications.unread()
-    notice_read = user.notifications.read()
+    notice= user.notifications.all()
+    
     context = {
-        'notice_unread':notice_unread,
-        'notice_read':notice_read,
+        'notice':notice,
+        
     }
    
     template_name= 'notification/notice.html'

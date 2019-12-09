@@ -26,6 +26,10 @@
               <div class="card">
                 <div class="card-header card-header-primary border-left-info border-right-info">
                   <h4 class="card-title">Profile</h4>
+                  <a href="{% url 'update_profile'%}" class="btn btn-primary " id="update_btn">Edit Profile</a> 
+                  <a href="{% url 'update_profile'%}" class="btn btn-primary " id="update_btn">change password</a> 
+                  
+                    
                 </div>
                 <div class="card-body border-left-info">
                   <form>
@@ -101,9 +105,7 @@
                     </div>
                     
                        
-                    <a href="{% url 'update_profile'%}" class="btn btn-primary " id="update_btn">Update Profile</a> 
-                  
-                      <a href="{% url 'status'%}" class="btn btn-danger">Cancel</a> 
+                    
 
                     <div class="clearfix"></div>
                   </form>

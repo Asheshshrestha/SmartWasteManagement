@@ -21,8 +21,7 @@ class EmailValidation(forms.EmailField):
 
 class SignUpForm(UserCreationForm):
     email = EmailValidation(required=True)
- 
-
+    
     class Meta:
         model =User
         fields =('username',
@@ -31,6 +30,7 @@ class SignUpForm(UserCreationForm):
                  'last_name',
                  'password1',
                  'password2',
+               
                  )
 
 class UserUpdateForm(forms.ModelForm):

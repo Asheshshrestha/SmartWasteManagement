@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 from trashcan.views import home
-from bin.views import bin_update,BinCreateView,display_dustbins,delete_dustbin,route_view,update_dustbin_data,AreaCreateView,StreetCreateView,status
+from bin.views import bin_update,BinCreateView,display_dustbins,delete_dustbin,route_view,update_dustbin_data,AreaCreateView,StreetCreateView,status,download
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
@@ -14,6 +14,8 @@ urlpatterns = [
     path('add_area',AreaCreateView.as_view(),name='create_area'),
     path('add_street',StreetCreateView.as_view(),name='create_street'),
     path('status/',status,name='status'),
+    path('download_proposal/',download,name='download_proposal'),
+    
 
    
 

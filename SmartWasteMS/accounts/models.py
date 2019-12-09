@@ -32,7 +32,7 @@ class Task_done(models.Model):
     area = models.ForeignKey(Area,on_delete = models.SET_NULL, null = True)
 
     def __str__(self):
-        return f'{self.user.username}_{self.area.area_name}_{self.date_time}'
+        return f'{self.user.username}_{self.area}_{self.date_time}'
 
 
 

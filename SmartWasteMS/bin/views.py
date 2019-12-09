@@ -13,7 +13,7 @@ from notifications.signals import notify
 from django.contrib.auth.models import User
 from accounts.forms import Task_record
 from datetime import datetime
-
+from django.http import FileResponse
 
 
 
@@ -233,6 +233,8 @@ def status(request):
     return render(request,template_name,{'data':data,'f':f,'h':h,'e':e,'t':t,'u_form':u_form})
 
 #============================================================================================
-
+def download(request):
+    file_data = FileResponse(open('D:\Smart_Waste_management_system\Smart Waste Management System   (Autosaved).docx', 'rb'))
+    return file_data
 
 

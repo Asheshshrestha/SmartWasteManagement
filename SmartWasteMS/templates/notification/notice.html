@@ -16,7 +16,8 @@
     <div class="card shadow mb-4">
   <div class = "notificationscroll anyClass">
   
-     {% for i in notice_unread %}
+     {% for i in notice %}
+     {% if i.unread %}
      <div class="alert alert-primary" role="alert" >
       <div class="media">
               <div class="media-left">
@@ -34,30 +35,29 @@
         </div>
       </div>
    </div>
+   {% else %}
+  <div class="alert " role="alert">
+      <div class="media">
+              <div class="media-left">
+                        <div class="media-object">
+                                    <img src={{i.actor.userprofile.image.url}} class="img-circle" alt="Name"height=90 >
+                        </div>
+              </div>
+        <div class="media-body">
+              <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="#">Detail</a></strong>
+              <p class="notification-desc">{{i.description}}</p>
+
+              <div class="notification-meta">
+                <small class="timestamp">{{i.timestamp}}</small>
+              </div>
+        </div>
+      </div>
+   </div>
+   {% endif %}
      {% endfor %}
     
      
-     {% for i in notice_read %}
-    <div class="alert alert-light" role="alert">
-
-     <div class="media">
-        <div class="media-left">
-          <div class="media-object">
-            <img src={{i.actor.userprofile.image.url}} class="img-circle" alt="Name" height=90 >
-          </div>
-        </div>
-        <div class="media-body">
-          <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="#">Detail</a></strong>
-          <p class="notification-desc">{{i.description}}</p>
-
-          <div class="notification-meta">
-            <small class="timestamp">{{i.timestamp}}</small>
-          </div>
-        </div>
-     </div>
-     </div>
-
-     {% endfor %}
+  
 
 
 
