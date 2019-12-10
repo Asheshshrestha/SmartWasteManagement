@@ -59,9 +59,27 @@ def userprofile(request):
     notice = user.notifications.unread()
     domain = DOMAIN
     site = ALLOWED_HOSTS
+    bins= dustbin.objects.all()
+    f=0
+    h=0
+    e=0
+    t=0
+    n=0
+    for i in bins:
+        if i.bin_status==-1:
+            n=n+1
+        elif i.bin_status>30:
+            f=f+1
+        elif i.bin_status>100:
+            h=h+1
+        elif i.bin_status>150:
+            e = e+1
+        else:
+
+            t=t+1
 
     template_name='index.html'
-    return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form,'notice':notice})
+    return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form,'notice':notice,'f':f,'h':h,'e':e,'t':t})
 #=====================================================================================
 @login_required
 def notice_display(request):

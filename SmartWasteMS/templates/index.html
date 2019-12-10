@@ -9,7 +9,86 @@
     <!--The div element for the map -->
     <div class="container-fluid">
         <h1 class="h3 mb-0 text-gray-800"> Map View </h1>
-    <div  class="card border-left-danger shadow h-1000 py-2 px-1" id="map"></div>
+        <div class="row">
+        
+    <div  class="card border-left-danger shadow h-1000 py-2 px-1 col-md-9" id="map"></div>
+    <div class="col-md-3">
+    <div class="row">
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="container">
+              <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Full Dustbins</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{f}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <img src="{% static 'images/full.png' %}" alt="Full Dustbin" width="50" height="50">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="container">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Half Dustbins</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{h}}</div>
+                    </div>
+                    <div class="col-auto">
+                       <img src="{% static 'images/half.png' %}" alt="Half Dustbin" width="50" height="50">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="container">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Empty Dustbins</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Total:{{e}}</div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                     <img src="{% static 'images/empty.png' %}" alt="Empty Dustbin" width="50" height="50">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="container">
+              <div class="card border-left-secondary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Damage Dustbins</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{t}}</div>
+                    </div>
+                    <div class="col-auto">
+                     <img src="{% static 'images/damage.png' %}" alt="Damage Dustbin" width="50" height="50">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
    <!-- ============================================================= -->
   
