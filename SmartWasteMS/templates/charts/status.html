@@ -3,7 +3,14 @@
 {% load chartkick %}
 {% load crispy_forms_tags %}
 
-
+{% block head %}
+<style>
+.anyClass {
+    height: 40px;
+    overflow-y: scroll;
+}
+</style>
+{% endblock head %}
     {% block body %}
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -121,7 +128,7 @@
                 <div class="card-body">
                   <div class="chart-area">
                    
-                    {% line_chart data %}
+                    {% column_chart data_eff %}
                     
                   </div>
                 </div>
@@ -133,13 +140,63 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Piechart view</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Members:</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Piechart View:</div>
+                      <div class="dropdown-header">Members:</div>
+                      <a class="dropdown-item" href="#">Download</a>
+                      <a class="dropdown-item" href="#">Refresh</a>
+                      <div class="dropdown-divider"></div>
+                    
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                    <div class="card border-left-secondary shadow">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Active User:</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{active_user}}</div>
+                      </div></div>
+                        <div class="card border-left-secondary shadow">
+                <div class="card-body">
+                       <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Inactive User:</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{inactive_user}}</div>
+                      </div></div>
+                        <div class="card border-left-secondary shadow">
+                <div class="card-body">
+                       <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Area(active/inactive):</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{t}}</div>
+                      </div></div>
+               
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+    <!-- Content Row -->
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-6 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Dustbin Overview</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dustbin status:</div>
                       <a class="dropdown-item" href="#">Download</a>
                       <a class="dropdown-item" href="#">Refresh</a>
                       <div class="dropdown-divider"></div>
@@ -149,25 +206,61 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                   {% pie_chart data %}
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
+                  <div class="chart-area">
+                   
+                     {% pie_chart data %}
+                    
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
+             <div class="col-xl-6 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dustbin status:</div>
+                      <a class="dropdown-item" href="#">Download</a>
+                      <a class="dropdown-item" href="#">Refresh</a>
+                      <div class="dropdown-divider"></div>
+                     
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                   <table class="table table-hover anyClass">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">User</th>
+      <th scope="col">Task</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in notice_contexts %}
+    <tr>
+      <th scope="row"><img class="rounded-circle" src="{{i.actor.userprofile.image.url}}" alt="" height="20px"></th>
+      <td>{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</td>
+      <td><small>{{i.verb}}</small></td>
+      <td><small>{{i.timestamp}}</small></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
            
            <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

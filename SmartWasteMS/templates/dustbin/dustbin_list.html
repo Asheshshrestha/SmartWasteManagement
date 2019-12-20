@@ -7,7 +7,7 @@
     <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">User List</h1>
+          <h1 class="h3 mb-2 text-gray-800">Dustbin List</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -19,12 +19,14 @@
   <input class="form-control form-control-sm ml-3 w-75" name='q' type="text" placeholder="Search" aria-label="Search" value='{{ request.GET.q }}'>
 </form>
 </div>
-<div class="col-md-4">
-<a href="{% url 'create_area'%}" class="btn btn-primary active" role="button" aria-pressed="true">Add Area</a>
-</div>
-<div class="col-md-4">
+<div class="col-md-8">
 
-<a href="{% url 'create_street'%}" class="btn btn-primary active" role="button" aria-pressed="true">Add Street</a>
+
+<a href="{% url 'create_area'%}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">Add Area</a>
+<a href="{% url 'create_street'%}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">Add Street</a>
+<a href="{% url 'create_dustbin'%}" class="btn btn-info btn-sm">Create Dustbin</a>
+<a href="{% url 'create_dustbin'%}" class="btn btn-info btn-sm">View Area</a>
+<a href="{% url 'create_dustbin'%}" class="btn btn-info btn-sm">View Street</a>
 
 
 
@@ -35,9 +37,11 @@
   </div>
             <div class="card-body">
               <div class="table-responsive ">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">             
+             <thead>
+             
     <tr>
+      <th scope="col">S/N</th>
        <th scope="col">Sensor ID</th>
       <th scope="col">Area</th>
       <th scope="col">Street</th>
@@ -50,22 +54,25 @@
     </tr>
   </thead>
   <tbody>
+ 
       {% for i in bins %}
 
     <tr>
+      <td>{{ forloop.counter }}</td>
       <td>{{i.bin_no}}</td>
       <td>{{i.bin_area}}</td>
       <td>{{i.bin_street}}</td>
       <td> {{i.added_by}}</td>
       <td>{{i.updated_by}}</td>
-      <td><a href= https://www.google.com/maps/place/{{i.bin_logitude}}+{{i.bin_latitude}}/@{{i.bin_logitude}},{{i.bin_latitude}},15z><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a></td>
+      <td><a href= https://www.google.com/maps/place/{{i.bin_logitude}}+{{i.bin_latitude}}/@{{i.bin_logitude}},{{i.bin_latitude}},15z target="_blank"><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a></td>
       
       
       <td>{{i.bin_status}}</td>
-      <td>{{i.added_at}}</td>
+      <td><small>{{i.added_at}}</small></td>
       <td> <a href="{% url 'delete_bins' bin_id=i.bin_no %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|<a href="{% url 'update_dustbin_data' bin_no=i.bin_no %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a></td>
 
     </tr>
+    
         {% endfor %}
 
   </tbody>
@@ -96,11 +103,6 @@
 
    
     
-    <div class="form-group">
-     
-      <a href="{% url 'create_dustbin'%}" class="btn btn-info">Create Dustbin</a>
-      <a href="{% url 'status'%}" class="btn btn-info">Cancel</a>
-    </div>
 
               </div>
             </div>

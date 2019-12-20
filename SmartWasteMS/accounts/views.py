@@ -77,7 +77,7 @@ def userprofile(request):
         else:
 
             t=t+1
-
+    
     template_name='index.html'
     return render(request,template_name,{'bins':bins,'domain':domain,'site':site,'u_form':u_form,'notice':notice,'f':f,'h':h,'e':e,'t':t})
 #=====================================================================================
@@ -298,6 +298,38 @@ def mark_as_read_notice(request, slug=None):
         return redirect(_next)
 
     return redirect('/noticelist')
+
+@login_required
+def active_user_list(request):
+
+    user_obj = User.objects.filter(is_active=True)
+    query = request.GET.get("q")
+    if query:
+        user_obj= user_obj.filter(
+            Q(username__icontains=query) |
+            Q(email__icontains=query) 
+            ).distinct()
+    paginator = Paginator(user_obj, 6) # Show 6 user per page
+    page = request.GET.get('page')
+    user = paginator.get_page(page)
+   
+
+    return render(request,"accounts/active_user_list.html",{'user':user})
+@login_required
+def inactive_user_list(request):
+
+    user_obj = User.objects.filter(is_active=False)
+    query = request.GET.get("q")
+    if query:
+        user_obj= user_obj.filter(
+            Q(username__icontains=query) |
+            Q(email__icontains=query) 
+            ).distinct()
+    paginator = Paginator(user_obj, 6) # Show 6 user per page
+    page = request.GET.get('page')
+    user = paginator.get_page(page)
+   
+    return render(request,"accounts/inactive_user_list.html",{'user':user})
 
 
 

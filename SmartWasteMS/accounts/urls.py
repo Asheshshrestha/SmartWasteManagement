@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth.views import LoginView, LogoutView,PasswordResetView,PasswordResetConfirmView,PasswordResetDoneView,PasswordResetCompleteView
-from accounts.views import SignUpView,update_profile,userprofile_display,update_user_profile,reset_user_password,notice_display,mark_as_read_notice
+from accounts.views import SignUpView,update_profile,userprofile_display,update_user_profile,reset_user_password,notice_display,mark_as_read_notice,active_user_list,inactive_user_list
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -42,5 +42,7 @@ urlpatterns = [
          ),
          name='password_reset_complete'),
     path('reset-user-password/<str:username>/',reset_user_password,name='reset-user-password'),
+    path('activeuserlist/',active_user_list,name='active_user_list'),
+    path('inactiveuserlist/',inactive_user_list,name='inactive_user_list'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

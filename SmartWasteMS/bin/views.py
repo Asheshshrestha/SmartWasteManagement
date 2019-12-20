@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from bin.models import dustbin,Area,street
+from bin.models import dustbin,Area,street,stat_count
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 from django.views.generic.edit import CreateView
@@ -13,7 +13,8 @@ from notifications.signals import notify
 from django.contrib.auth.models import User
 from accounts.forms import Task_record
 from datetime import datetime
-from django.http import FileResponse
+from django.http import FileResponse,JsonResponse,HttpResponse
+
 
 
 
@@ -207,6 +208,9 @@ def status(request):
             return redirect("/route/"+str(area))
         else:
             u_form=Task_record(request.POST)
+    user_active = User.objects.filter(is_active=True).count()
+    user_inactive = User.objects.filter(is_active=False).count()
+
 
     bins= dustbin.objects.all()
     f=0
@@ -229,12 +233,19 @@ def status(request):
 
     template_name='charts/status.html'
     data= {'Full Dustbin': f, 'Half Dustbin': h, 'Empty Dustbin': e,'Damaged Dustbin' : t,'New Dustbin':n}
+    data_eff = [{'data': [['2013-04-01 00:00:00 UTC', 52.9], ['2013-05-01 00:00:00 UTC', 50.7]], 'name': 'Full Dustbin'},
+    {'data': [['2013-04-01 00:00:00 UTC', 27.7], ['2013-05-01 00:00:00 UTC', 25.9]], 'name': 'Empty Dustbin'},
+    {'data': [['2013-04-01 00:00:00 UTC', 27.7], ['2013-05-01 00:00:00 UTC', 25.9]], 'name': 'Half Dustbin'}]
     
-    return render(request,template_name,{'data':data,'f':f,'h':h,'e':e,'t':t,'u_form':u_form})
+    return render(request,template_name,{'data':data,'data_eff':data_eff,'f':f,'h':h,'e':e,'t':t,'u_form':u_form,'inactive_user':user_inactive,'active_user':user_active})
 
 #============================================================================================
 def download(request):
     file_data = FileResponse(open('D:\Smart_Waste_management_system\Smart Waste Management System   (Autosaved).docx', 'rb'))
     return file_data
+
+#====================================================================================================
+
+
 
 

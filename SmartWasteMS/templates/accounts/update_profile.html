@@ -6,21 +6,128 @@
   <div class="card-header card-header-primary border-left-info border-right-info">
   
   
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
+       <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
           <fieldset class="form-group">
               <legend class="border-bottom mb-4"> Update Profile</legend>
-              <img src="{{ request.user.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="100" height="100">
-              <p>UserName:{{request.user.username}}</p>
-              {{ u_form|crispy }}
-              {{ p_form|crispy }}
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 mx-1">
+              <img id="blah" src={{ request.user.userprofile.image.url}} alt="Responsive image" class="rounded-circle" width="100" height="100">
+              <div class="my-2">
+                <p>UserName:{{request.user.username}}</p>
+                </div>
+
+
+                <div class="col-md-4">
+                <div id="div_id_image" class="form-group image_upload"> <div class="custom-file ">
+  
+<input type="file" name="image" accept="image/*" class="clearablefileinput form-control custom-file-input" id="id_image"> 
+
+
+<label class="custom-file-label" for="id_image">Choose file</label>
+ </div>
+ </div>
+
+                </div>
+              </div>
+                </div>
+             
+            
+              
+
+            <div id="div_id_email" class="form-group"> <label for="id_email" class="">
+                Email address
+            </label> <div class=""> <input type="email" name="email" value={{request.user.email}} maxlength="254" class="emailinput form-control" id="id_email"> </div> </div>
+           <div class="row">
+           <div class="col-md-6">
+            <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="">
+                First name
+            </label> <div class=""> <input type="text" name="first_name" value={{ request.user.first_name }} maxlength="30" class="textinput textInput form-control" id="id_first_name"> </div> </div>
+            </div>
+            <div class="col-md-6">
+            <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="">
+                Last name
+            </label> <div class=""> <input type="text" name="last_name" value={{ request.user.last_name}} maxlength="150" class="textinput textInput form-control" id="id_last_name"> </div> </div>
+            </div>
+            </div>
+              
+
+
+
+<div class="row">
+<div class="col-md-6">
+ <div id="div_id_phone_no" class="form-group"> 
+<label for="id_phone_no" class=" requiredField">
+                Phone no<span class="asteriskField">*</span>
+                 </label> <div class=""> 
+                 <input type="number" name="phone_no" value="{{request.user.userprofile.phone_no}}" class="numberinput form-control" required id="id_phone_no"> </div>
+                  </div> 
+                  </div>
+                  <div class="col-md-6">
+                  <div id="div_id_age" class="form-group"> <label for="id_age" class=" requiredField">
+                Age<span class="asteriskField">*</span> </label> <div class=""> 
+                <input type="number" name="age" value="{{request.user.userprofile.age}}"class="numberinput form-control" required id="id_age"> </div> </div>
+                 </div>
+                 </div>
+
+                 
+                 
+                 
+                 <div id="div_id_gender" class="form-group"> <label for="id_gender_0" class=" requiredField">
+                Gender<span class="asteriskField">*</span> 
+                </label> <div class="row px-3"> <div class="form-check">
+                 <input type="radio" class="form-check-input"  {% if request.user.userprofile.gender == 'male' %}checked="checked" {%endif%} name="gender" id="id_gender_1" value="male" >
+                  <label for="id_gender_1" class="form-check-label">
+            male
+        </label> </div> <div class="form-check">
+         <input type="radio" {% if request.user.userprofile.gender == 'female' %}checked="checked" {%endif%} class="form-check-input" name="gender" id="id_gender_2" value="female" > 
+         <label for="id_gender_2" class="form-check-label">
+            female
+        </label> </div> <div class="form-check"> <input type="radio" class="form-check-input"  {% if request.user.userprofile.gender == 'others' %}checked="checked" {%endif%} name="gender" id="id_gender_3" value="others" >
+         <label for="id_gender_3" class="form-check-label">
+            others
+        </label> </div> </div> </div>
+        
+        <div class="row">
+        <div class="col-md-6">
+         <div id="div_id_address" class="form-group"> <label for="id_address" class=" requiredField">
+                Address<span class="asteriskField">*</span> </label> <div class=""> <input type="text" name="address" value="{{request.user.userprofile.address}}" maxlength="225" class="textinput textInput form-control" required id="id_address"> </div> </div> 
+                
+        </div>
+        <div class="col-md-6">
+                <div id="div_id_van_no" class="form-group"> <label for="id_van_no" class=" requiredField">
+                Van no<span class="asteriskField">*</span> </label> <div class=""> <input type="number" name="van_no" value="{{request.user.userprofile.van_no}}" class="numberinput form-control" required id="id_van_no"> </div> </div>
+        </div>
+        </div>
           </fieldset>
           <div class="form-group">
               <button class="btn btn-info" type="submit">Update</button>
-               <a href="{% url 'profile_display'%}" class="btn btn-info">Cancel</a>
+               <a href="/profile_display/" class="btn btn-info">Cancel</a>
               
           </div>
       </form>
    </div>
    </div>
+
+
+<script>
+//-----------------------------------------preload-image-script-------------------------------------
+   function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#blah').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#id_image").change(function() {
+  readURL(this);
+});
+
+</script>
    {% endblock body %}

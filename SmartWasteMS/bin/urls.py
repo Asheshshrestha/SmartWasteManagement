@@ -15,6 +15,9 @@ urlpatterns = [
     path('add_street',StreetCreateView.as_view(),name='create_street'),
     path('status/',status,name='status'),
     path('download_proposal/',download,name='download_proposal'),
+
+
+    
     
 
    

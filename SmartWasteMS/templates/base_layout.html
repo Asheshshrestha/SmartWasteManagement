@@ -30,7 +30,23 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+    <style> 
+    .image_upload{
+      width:200px;
+      
+    }
+    .side_card{
+      margin-top:69px;
+    }
+    .card_count{
+      margin:2px;
+    }
+    .pie_chart_css{
+      height=100px;
+    }
+    </style>
      {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
      
         {% block head %}
