@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'notifications',
     'jsonfield',
     'chartkick',
+    'rest_framework',
 
 
 ]

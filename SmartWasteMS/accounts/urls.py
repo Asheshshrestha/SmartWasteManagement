@@ -42,5 +42,6 @@ urlpatterns = [
          ),
          name='password_reset_complete'),
     path('reset-user-password/<str:username>/',reset_user_password,name='reset-user-password'),
+    
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
