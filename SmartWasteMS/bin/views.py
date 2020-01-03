@@ -210,8 +210,39 @@ def status(request):
             u_form=Task_record(request.POST)
     user_active = User.objects.filter(is_active=True).count()
     user_inactive = User.objects.filter(is_active=False).count()
+    t_area = Area.objects.all().count()
 
 
+    n,f,h,e,t=bin_calculation()
+
+    template_name='charts/status.html'
+    data= {'Full Dustbin': f, 'Half Dustbin': h, 'Empty Dustbin': e,'Damaged Dustbin' : t,'New Dustbin':n}
+
+    counts = stat_count.objects.all()[:6]
+    full_list = []
+    half_list = []
+    empty_list = []
+    for i in counts:
+        full_list.append([str(i.date_time),i.full_bin])
+        half_list.append([str(i.date_time),i.half_bin])
+        empty_list.append([str(i.date_time),i.empty_bin])
+
+
+    data_eff = [{'data': full_list, 'name': 'Full Dustbin'},
+    {'data': empty_list, 'name': 'Empty Dustbin'},
+    {'data': half_list, 'name': 'Half Dustbin'}]
+    
+    
+    
+    return render(request,template_name,{'data':data,'data_eff':data_eff,'f':f,'h':h,'e':e,'t':t,'u_form':u_form,'inactive_user':user_inactive,'active_user':user_active,'area_count':t_area})
+
+#============================================================================================
+def download(request):
+    file_data = FileResponse(open('D:\Smart_Waste_management_system\Smart Waste Management System   (Autosaved).docx', 'rb'))
+    return file_data
+
+#====================================================================================================
+def bin_calculation():
     bins= dustbin.objects.all()
     f=0
     h=0
@@ -221,31 +252,16 @@ def status(request):
     for i in bins:
         if i.bin_status==-1:
             n=n+1
-        elif i.bin_status>30:
+        elif i.bin_status>50:
             f=f+1
-        elif i.bin_status>100:
+        elif i.bin_status>10:
             h=h+1
-        elif i.bin_status>150:
+        elif i.bin_status>0:
             e = e+1
         else:
 
             t=t+1
-
-    template_name='charts/status.html'
-    data= {'Full Dustbin': f, 'Half Dustbin': h, 'Empty Dustbin': e,'Damaged Dustbin' : t,'New Dustbin':n}
-    data_eff = [{'data': [['2013-04-01 00:00:00 UTC', 52.9], ['2013-05-01 00:00:00 UTC', 50.7]], 'name': 'Full Dustbin'},
-    {'data': [['2013-04-01 00:00:00 UTC', 27.7], ['2013-05-01 00:00:00 UTC', 25.9]], 'name': 'Empty Dustbin'},
-    {'data': [['2013-04-01 00:00:00 UTC', 27.7], ['2013-05-01 00:00:00 UTC', 25.9]], 'name': 'Half Dustbin'}]
-    
-    return render(request,template_name,{'data':data,'data_eff':data_eff,'f':f,'h':h,'e':e,'t':t,'u_form':u_form,'inactive_user':user_inactive,'active_user':user_active})
-
-#============================================================================================
-def download(request):
-    file_data = FileResponse(open('D:\Smart_Waste_management_system\Smart Waste Management System   (Autosaved).docx', 'rb'))
-    return file_data
-
-#====================================================================================================
-
+    return n,f,h,e,t
 
 
 

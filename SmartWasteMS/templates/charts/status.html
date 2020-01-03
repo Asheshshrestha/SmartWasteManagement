@@ -6,8 +6,7 @@
 {% block head %}
 <style>
 .anyClass {
-    height: 40px;
-    overflow-y: scroll;
+    scroll-behavior: smooth;
 }
 </style>
 {% endblock head %}
@@ -169,8 +168,8 @@
                       </div></div>
                         <div class="card border-left-secondary shadow">
                 <div class="card-body">
-                       <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Area(active/inactive):</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{t}}</div>
+                       <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Area:</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{area_count}}</div>
                       </div></div>
                
                   </div>
@@ -234,8 +233,8 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
-                   <table class="table table-hover anyClass">
+                  <div class="chart-area overflow-hidden" >
+                   <table class="table table-hoverx anyClass" >
   <thead>
     <tr>
       <th scope="col">Image</th>
@@ -244,7 +243,7 @@
       <th scope="col">Time</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody >
   {% for i in notice_contexts %}
     <tr>
       <th scope="row"><img class="rounded-circle" src="{{i.actor.userprofile.image.url}}" alt="" height="20px"></th>

@@ -44,6 +44,6 @@ class stat_count(models.Model):
     full_bin=models.IntegerField()
     empty_bin= models.IntegerField()
     half_bin = models.IntegerField()
-    date_time = models.DateTimeField()
+    date_time = models.DateTimeField(auto_now_add=True)
 
 

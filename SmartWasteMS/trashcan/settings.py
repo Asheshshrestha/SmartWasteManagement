@@ -52,16 +52,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'notifications',
     'jsonfield',
-    'djcelery',
     'chartkick',
     'django_extensions',
+    'celery',
     #'periodically',
 
 
 ]
 
 import chartkick
-
 
 
 MIDDLEWARE = [
@@ -131,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Katmandu'
 
 USE_I18N = True
 
@@ -173,20 +172,9 @@ EMAIL_PORT = EMAIL_PORT
 
 DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
 
-from celery.schedules import crontab
-CELERY_ENABLE_UTC = True
-BROKER_URL = 'amqp://127.0.0.1:8080'
-CELERY_TIMEZONE = 'Asia/Kathmandu'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/1"
-
-
-CELERY_BEAT_SCHEDULE = {
-    'task-number-one': {
-        'task': 'SmartWasteMS.bin.views.update_dustbin_chart',
-        'schedule': crontab(minute=1, hour=00)
-    },
-    
-}
+CELERY_TIMEZONE = "Asia/Katmandu"

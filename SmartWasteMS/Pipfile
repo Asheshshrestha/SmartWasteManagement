@@ -6,22 +6,15 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "==2.2.2"
-pillow = "*"
-django-crispy-forms = "*"
-django-notifications-hq = "*"
-jsonfield = "*"
-django-jsonfield = "*"
-chartkick = "*"
-psycopg2 = "*"
-apscheduler = "==2.1.2"
-django-celery = "*"
-celery = "*"
-django-extensions = "*"
-pydotplus = "*"
-wagtailcore = "*"
-pyparsing = "==1.5.7"
-pydot = "*"
+pillow = "==6.2.1"
+django-crispy-forms = "==1.8.1"
+django-notifications-hq = "==1.5.0"
+jsonfield = "==2.0.2"
+chartkick = "==0.5.0"
+psycopg2 = "==2.8.4"
+Django = "==2.2.2"
+json = "*"
+simplejson = "*"
 
 [requires]
 python_version = "3.7"
