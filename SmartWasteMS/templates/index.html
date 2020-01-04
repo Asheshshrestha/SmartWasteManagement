@@ -205,16 +205,16 @@ function initMap() {
   // The marker, positioned at Uluru
   {% for x in bins %}
   
-  {% if x.bin_status < 30 %}
+  {% if x.bin_status > 50 %}
  var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
  var marker= new google.maps.Marker({position: data, map: map,icon:full, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
- {% elif x.bin_status < 100  %}
+ {% elif x.bin_status > 10  %}
  var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
  var marker= new google.maps.Marker({position: data, map: map,icon:half, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
- {% elif x.bin_status < 150  %}
+ {% elif x.bin_status > 0  %}
   var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
  var marker= new google.maps.Marker({position: data, map: map,icon:empty, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});
- {% else %}
+ {% elif x.bin_status  < -1 %}
  
  var data = {lat:{{x.bin_logitude|safe}}, lng:{{x.bin_latitude|safe}} };
  var marker= new google.maps.Marker({position: data, map: map,icon:damage, title:'Bin{{x.bin_no|safe}}\n Status:{{x.bin_status}}'});

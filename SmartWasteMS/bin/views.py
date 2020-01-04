@@ -242,6 +242,39 @@ def download(request):
     return file_data
 
 #====================================================================================================
+def area_list_display(request):
+    template_name = 'dustbin/area_list.html'
+    area_obj = Area.objects.all()
+    query = request.GET.get("q")
+    if query:
+        area_obj = area_obj.filter(
+            Q(area_name__icontains=query) |
+            Q(assigned_user__username__icontains=query)
+            ).distinct()
+    paginator = Paginator(area_obj, 7) # Show 7 user per page
+    page = request.GET.get('page')
+    area = paginator.get_page(page)
+
+    return render(request,template_name,{'area':area})
+#====================================================================================================
+def street_list_display(request):
+    template_name = 'dustbin/street_list.html'
+    street_obj = street.objects.all()
+    query = request.GET.get("q")
+    if query:
+        street_obj = street_obj.filter(
+            Q(street_name__icontains=query) |
+            Q(street_area__area_name__icontains=query) |
+            Q(assigned_user__username__icontains=query)
+            ).distinct()
+    paginator = Paginator(street_obj, 7) # Show 7 user per page
+    page = request.GET.get('page')
+    streets = paginator.get_page(page)
+
+    return render(request,template_name,{'streets':streets})
+
+
+#====================================================================================================
 def bin_calculation():
     bins= dustbin.objects.all()
     f=0

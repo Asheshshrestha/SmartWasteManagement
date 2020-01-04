@@ -2,13 +2,17 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block body %}
-
+ <div class="container-fluid">
+  <div class="card-header card-header-primary border-left-info border-right-info">
+  
 
   {% if user.is_superuser %}
       <form method="POST">
           {% csrf_token %}
           <fieldset class="form-group">
-              <legend class="border-bottom mb-4"> Register</legend>
+              
+                  <h4 class="card-title">Create User</h4>
+                  <hr>
               {{ form|crispy }}
           </fieldset>
           <div class="form-group">
@@ -24,4 +28,6 @@
                         <a class="btn btn-sm" href="{% url 'home' %}">Home</a>
 
    {% endif %}
+   </div>
+   </div>
    {% endblock body %}

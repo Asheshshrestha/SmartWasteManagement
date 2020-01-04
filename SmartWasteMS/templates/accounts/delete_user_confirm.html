@@ -1,4 +1,12 @@
 {% extends 'base_layout.html' %}
+{% block head%}
+
+<style>
+.imagemid{
+  padding-left:40%;
+}
+</style>
+{% endblock head%}
 
 {% block body %}
 
@@ -7,10 +15,14 @@
                     <div class="card">
                 <div class="card-header card-header-primary border-left-info border-right-info">
                   <h4 class="card-title">Profile</h4>
+                  <hr>
    
     {% for i in user %}
     {% if i.username == username %}
+    <div class="imagemid">
     <img src="{{ i.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="100" height="100">
+    </div>
+    <hr>
     
      <div class="row">
                       <div class="col-md-6">
@@ -88,7 +100,7 @@
     
     <div class="form-group">
      <h3>Do you seriously want to delete this user? </h3>
-      <a href="{% url 'user_delete' username=i.username %}" class="btn btn-info">Confirm Delete</a>
+      <a href="{% url 'user_delete' username=i.username %}" class="btn btn-danger">Confirm Delete</a>
       <a href="{% url 'user_list'%}" class="btn btn-info">Cancel</a>
         {% endif %}
       {% endfor %}

@@ -7,7 +7,7 @@
     <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Dustbin List</h1>
+          <h1 class="h3 mb-2 text-gray-800">Area List</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -42,34 +42,22 @@
              
     <tr>
       <th scope="col">S/N</th>
-       <th scope="col">Sensor ID</th>
-      <th scope="col">Area</th>
-      <th scope="col">Street</th>
-      <th scope="col">Added by</th>
-      <th scope="col">Updated by</th>
+       <th scope="col">Area Name</th>
+      <th scope="col">User</th>
       <th scope="col">Location</th>
-      <th scope="col">Status </th>
-      <th scope="col">Added At</th>
       <th scope='col'>Settings</th>
     </tr>
   </thead>
   <tbody>
  
-      {% for i in bins %}
+      {% for i in area %}
 
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td>{{i.bin_no}}</td>
-      <td>{{i.bin_area}}</td>
-      <td>{{i.bin_street}}</td>
-      <td> {{i.added_by}}</td>
-      <td>{{i.updated_by}}</td>
-      <td><a href= https://www.google.com/maps/place/{{i.bin_logitude}}+{{i.bin_latitude}}/@{{i.bin_logitude}},{{i.bin_latitude}},15z target="_blank"><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a></td>
-      
-      
-      <td>{{i.bin_status}}</td>
-      <td><small>{{i.added_at}}</small></td>
-      <td> <a href="{% url 'delete_bins' bin_id=i.bin_no %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|<a href="{% url 'update_dustbin_data' bin_no=i.bin_no %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a></td>
+      <td>{{i.area_name}}</td>
+      <td>{{i.assigned_user}}</td>
+      <td><a href= https://www.google.com/maps/place/{{i.area_logitude}}+{{i.area_latitude}}/@{{i.area_logitude}},{{i.area_latitude}},15z target="_blank"><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a></td>
+      <td> <a href="#"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|<a href="#"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a></td>
 
     </tr>
     
@@ -81,18 +69,18 @@
    
   <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-end">
-     {% if bins.has_previous %}
+     {% if area.has_previous %}
                     
     <li>
-      <a class="page-link" href="?page={{ bins.previous_page_number }}" aria-disabled="">Previous</a>
+      <a class="page-link" href="?page={{ area.previous_page_number }}" aria-disabled="">Previous</a>
     </li>
     {% endif %}
-    <li class="page-item"><a class="page-link">{{ bins.number }}</a></li>
+    <li class="page-item"><a class="page-link">{{ area.number }}</a></li>
     <li class="page-item"><a class="page-link">of</a></li>
-    <li class="page-item"><a class="page-link">{{ bins.paginator.num_pages }}</a></li>
+    <li class="page-item"><a class="page-link">{{ area.paginator.num_pages }}</a></li>
     <li class="page-item">
-    {% if bins.has_next %}
-      <a class="page-link" href="?page={{ bins.next_page_number }}">Next</a>
+    {% if area.has_next %}
+      <a class="page-link" href="?page={{ area.next_page_number }}">Next</a>
    
         {% endif %}
     </li>
