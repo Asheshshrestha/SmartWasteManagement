@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% block body %}
  <div class="container-fluid">
-  <div class="card-header card-header-primary border-left-info border-right-info">
+  <div class="card-header card-header-primary border-left-primary border-right-primary">
   
 
   {% if user.is_superuser %}
@@ -16,11 +16,8 @@
               {{ form|crispy }}
           </fieldset>
           <div class="form-group">
-              <button class="btn btn-info" type="submit">Create</button>
-               <a href="{% url 'user_list'%}" class="btn btn-info">Cancel</a>
-              <small class="text-muted">
-              <a class="ml-2" href="#">Forget Password?</a>
-          </small>
+              <button class="btn btn-primary" type="submit">Create</button>
+              
           </div>
       </form>
    {% else %}

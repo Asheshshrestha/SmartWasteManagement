@@ -1,23 +1,46 @@
 {% extends 'base_layout.html' %}
 {% load crispy_forms_tags %}
+{% block head %}
+<style>
+#formcss{
+    
 
+}
+
+</style>
+{% endblock head%}
 
   {% block body %}
+    <div class="container-fluid">
+  <div class="card-header card-header-primary border-left-primary border-right-primary">
+  
+  
   
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">
               <legend class="border-bottom mb-4"> Update Profile</legend>
+              
               <img src="{{ i.userprofile.image.url }}" alt="Responsive image" class="rounded-circle" width="100" height="100">
+              
               <p>UsernameName:{{i.username}}</p>
+
+       
+
               {{ u_form|crispy }}
               {{ p_form|crispy }}
+
+              
+              
+              
+            
           </fieldset>
           <div class="form-group">
-              <button class="btn btn-info" type="submit">Update</button>
-               <a href="{% url 'profile'%}" class="btn btn-info">Cancel</a>
+              <button class="btn btn-primary" type="submit">Update</button>
               
           </div>
       </form>
+      </div>
+      </div>
    {% endblock body %}
  

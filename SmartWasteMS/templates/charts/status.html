@@ -1,299 +1,296 @@
-{% extends 'base_layout.html' %}
-{% load static %}
-{% load chartkick %}
-{% load crispy_forms_tags %}
-
-{% block head %}
+{% extends 'base_layout.html' %} {% load static %} {% load chartkick %} {% load crispy_forms_tags %} {% block head %}
 <style>
-.anyClass {
-    scroll-behavior: smooth;
-}
+    .anyClass {
+        scroll-behavior: smooth;
+    }
+    .chart_style{
+      height:auto;
+    }
 </style>
-{% endblock head %}
-    {% block body %}
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+{% endblock head %} {% block body %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-          <!-- Page Heading -->
-          
+    <!-- Page Heading -->
 
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
-            <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm active" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-download fa-sm text-white-50"></i> Generate Route</a>
-          </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
-          <!-- Content Row -->
-          <div class="row">
+        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm active" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-download fa-sm text-white-50"></i> Generate Route</a>
+    </div>
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-danger shadow h-100 py-2">
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Full Dustbins</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{f}}</div>
-                    </div>
-                    <div class="col-auto">
-                      <img src="{% static 'images/full.png' %}" alt="Full Dustbin" width="50" height="50">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Half Dustbins</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{h}}</div>
-                    </div>
-                    <div class="col-auto">
-                       <img src="{% static 'images/half.png' %}" alt="Half Dustbin" width="50" height="50">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Empty Dustbins</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Total:{{e}}</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Full Dustbins</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{f}}</div>
                         </div>
-                        
-                      </div>
+                        <div class="col-auto">
+                            <img src="{% static 'images/full.png' %}" alt="Full Dustbin" width="50" height="50">
+                        </div>
                     </div>
-                    <div class="col-auto">
-                     <img src="{% static 'images/empty.png' %}" alt="Empty Dustbin" width="50" height="50">
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
+        </div>
 
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-secondary shadow h-100 py-2">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Damage Dustbins</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{t}}</div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Half Dustbins</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{h}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="{% static 'images/half.png' %}" alt="Half Dustbin" width="50" height="50">
+                        </div>
                     </div>
-                    <div class="col-auto">
-                     <img src="{% static 'images/damage.png' %}" alt="Damage Dustbin" width="50" height="50">
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 
-          <!-- Content Row -->
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Empty Dustbins</div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Total:{{e}}</div>
+                                </div>
 
-          <div class="row">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="{% static 'images/empty.png' %}" alt="Empty Dustbin" width="50" height="50">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-secondary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Damage Dustbins</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{t}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <img src="{% static 'images/damage.png' %}" alt="Damage Dustbin" width="50" height="50">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Dustbin Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dustbin status:</div>
-                      <a class="dropdown-item" href="#">Download</a>
-                      <a class="dropdown-item" href="#">Refresh</a>
-                      <div class="dropdown-divider"></div>
-                     
+                    <h6 class="m-0 font-weight-bold text-primary">Dustbin Overview</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dustbin status:</div>
+                            <a class="dropdown-item" href="#">Download</a>
+                            <a class="dropdown-item" href="#">Refresh</a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
-                   
-                    {% column_chart data_eff %}
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
+                    <div class="chart-area chart_style">
 
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
+                        {% column_chart data_eff %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Members:</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Members:</div>
-                      <a class="dropdown-item" href="#">Download</a>
-                      <a class="dropdown-item" href="#">Refresh</a>
-                      <div class="dropdown-divider"></div>
-                    
+                    <h6 class="m-0 font-weight-bold text-primary">Members:</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Members:</div>
+                            <a class="dropdown-item" href="#">Download</a>
+                            <a class="dropdown-item" href="#">Refresh</a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <div class="card border-left-secondary shadow">
-                <div class="card-body">
-                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Active User:</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{active_user}}</div>
-                      </div></div>
+                    <div class="chart-pie pt-4 pb-2 chart_style">
                         <div class="card border-left-secondary shadow">
-                <div class="card-body">
-                       <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Inactive User:</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{inactive_user}}</div>
-                      </div></div>
+                            <div class="card-body">
+                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Active User:</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{active_user}}</div>
+                            </div>
+                        </div>
                         <div class="card border-left-secondary shadow">
-                <div class="card-body">
-                       <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Area:</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{area_count}}</div>
-                      </div></div>
-               
-                  </div>
+                            <div class="card-body">
+                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Inactive User:</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{inactive_user}}</div>
+                            </div>
+                        </div>
+                        <div class="card border-left-secondary shadow">
+                            <div class="card-body">
+                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Area:</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Total:{{area_count}}</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
 
 
     <!-- Content Row -->
 
-          <div class="row">
+    <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-6 col-lg-5">
-              <div class="card shadow mb-4">
+        <!-- Area Chart -->
+        <div class="col-xl-6 col-lg-5">
+            <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Dustbin Overview</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dustbin status:</div>
-                      <a class="dropdown-item" href="#">Download</a>
-                      <a class="dropdown-item" href="#">Refresh</a>
-                      <div class="dropdown-divider"></div>
-                     
+                    <h6 class="m-0 font-weight-bold text-primary">Dustbin Overview</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dustbin status:</div>
+                            <a class="dropdown-item" href="#">Download</a>
+                            <a class="dropdown-item" href="#">Refresh</a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area">
-                   
-                     {% pie_chart data %}
-                    
-                  </div>
+                    <div class="chart-area chart_style">
+
+                        {% pie_chart data %}
+
+                    </div>
                 </div>
-              </div>
             </div>
-             <div class="col-xl-6 col-lg-5">
-              <div class="card shadow mb-4">
+        </div>
+        <div class="col-xl-6 col-lg-5">
+            <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dustbin status:</div>
-                      <a class="dropdown-item" href="#">Download</a>
-                      <a class="dropdown-item" href="#">Refresh</a>
-                      <div class="dropdown-divider"></div>
-                     
+                    <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dustbin status:</div>
+                            <a class="dropdown-item" href="#">Download</a>
+                            <a class="dropdown-item" href="#">Refresh</a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <div class="chart-area overflow-hidden" >
-                   <table class="table table-hoverx anyClass" >
-  <thead>
-    <tr>
-      <th scope="col">Image</th>
-      <th scope="col">User</th>
-      <th scope="col">Task</th>
-      <th scope="col">Time</th>
-    </tr>
-  </thead>
-  <tbody >
-  {% for i in notice_contexts %}
-    <tr>
-      <th scope="row"><img class="rounded-circle" src="{{i.actor.userprofile.image.url}}" alt="" height="20px"></th>
-      <td>{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</td>
-      <td><small>{{i.verb}}</small></td>
-      <td><small>{{i.timestamp}}</small></td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-                    
-                  </div>
+                    <div class="chart-area overflow-hidden">
+                        <table class="table table-hoverx anyClass">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in notice_contexts %}
+                                <tr>
+                                    <th scope="row"><img class="rounded-circle" src="{{i.actor.userprofile.image.url}}" alt="" height="20px"></th>
+                                    <td>{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</td>
+                                    <td><small>{{i.verb}}</small></td>
+                                    <td><small>{{i.timestamp}}</small></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
-              </div>
             </div>
-            </div>
-           
-           <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Work sheet(Register)</h5> 
-        
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="POST">
-      <div class="modal-body">
-   
-
-  {% csrf_token %}
-          <fieldset class="form-group">
-             
-              {{ u_form|crispy }}
-          </fieldset>
-
-      </div>
-      <div class="modal-footer">
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </form>
+        </div>
     </div>
-  </div>
-</div>
 
-         {% endblock %}
-         
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Work sheet(Register)</h5>
 
-     
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="POST">
+                    <div class="modal-body">
+
+
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+
+                            {{ u_form|crispy }}
+                        </fieldset>
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

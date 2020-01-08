@@ -2,15 +2,17 @@
 
 {% block body %}
 
-
   <div class="container-fluid">
-
+      {% for i in user%}
+      {% if i.username == username %}
           <!-- Page Heading -->
-           <h1> Successfully suspended  the user.  </h1>
+           <h1> Successfully {% if i.is_active %} activated{% else %}  suspended{% endif %} the user.({{username}}
+)  </h1>
        <a  class="btn btn-success" href='{% url 'user_list' %}' >Back</a>
         </div>
         <!-- /.container-fluid -->
-
+        {% endif %}
+{% endfor %}
       </div>
 
 

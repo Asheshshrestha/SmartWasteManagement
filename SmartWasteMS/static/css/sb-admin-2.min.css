@@ -10907,21 +10907,21 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+    background: url(../images/600.jpg) no-repeat;
     background-position: center;
-    background-size: cover
+    background-size: 350px;
 }
 
 .bg-register-image {
-    background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);
+    background: url(../images/600.jpg) no-repeat;
     background-position: center;
-    background-size: cover
+    background-size: 350px;
 }
 
 .bg-password-image {
-    background: url(https://source.unsplash.com/oWTW-jNGl9I/600x800);
+    background: url(../images/600.jpg) no-repeat;
     background-position: center;
-    background-size: cover
+    background-size: 350px;
 }
 
 form.user .custom-checkbox.small label {

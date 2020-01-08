@@ -45,8 +45,8 @@
       <input onclick="deleteMarkers();" type=button value="Delete Markers">
     </div>
     <div class="row" id="row">
-    <div id="map" class="col-md-8 card-header card-header-primary border-left-info border-right-info"></div>
-    <div id="formadd" class=" col-md-3 card card-profile border-left-info bx-3">
+    <div id="map" class="col-md-8 card-header card-header-primary border-left-primary border-right-primary"></div>
+    <div id="formadd" class=" col-md-3 card card-profile border-left-primary bx-3">
     
                   <form method="POST">
                     {% csrf_token %}
@@ -56,8 +56,8 @@
                                        
                                   </fieldset>
                                     <div class="form-group">
-                                        <button class="btn btn-info" type="submit">Add</button>
-                                        <a href="{% url 'profile'%}" class="btn btn-info">Cancel</a>
+                                        <button class="btn btn-primary btn-block" type="submit">Add</button>
+                                        
 
                                         
                                     

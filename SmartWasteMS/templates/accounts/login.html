@@ -40,6 +40,13 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
+                  {% if messages %}
+
+    {% for message in messages %}
+    <div {% if message.tags == 'error' %} class="alert alert-danger" {% else %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">{{ message }}</div>
+    {% endfor %}
+
+{% endif %}
                    <form method="POST">
           {% csrf_token %}
           <fieldset class="form-group">

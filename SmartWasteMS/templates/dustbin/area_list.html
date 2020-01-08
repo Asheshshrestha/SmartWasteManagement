@@ -1,106 +1,116 @@
-{% extends 'base_layout.html' %}
-
-{% load static %}
-
-{% block body %}
-
-    <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Area List</h1>
-
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-  <div class="row">
-<div class="col-md-4">
-<form class="form-inline active-cyan-3 active-cyan-4" method='GET' action=''>
-  <i class="fas fa-search" aria-hidden="true"></i>
-  <input class="form-control form-control-sm ml-3 w-75" name='q' type="text" placeholder="Search" aria-label="Search" value='{{ request.GET.q }}'>
-</form>
-</div>
-<div class="col-md-8">
-
-
-<a href="{% url 'create_area'%}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">Add Area</a>
-<a href="{% url 'create_street'%}" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">Add Street</a>
-<a href="{% url 'create_dustbin'%}" class="btn btn-info btn-sm">Create Dustbin</a>
-<a href="{% url 'area_list_display'%}" class="btn btn-info btn-sm">View Area</a>
-<a href="{% url 'street_list_display'%}" class="btn btn-info btn-sm">View Street</a>
-
-
-
-</div>
-</div>
-   
-   
-  </div>
-            <div class="card-body">
-              <div class="table-responsive ">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">             
-             <thead>
-             
-    <tr>
-      <th scope="col">S/N</th>
-       <th scope="col">Area Name</th>
-      <th scope="col">User</th>
-      <th scope="col">Location</th>
-      <th scope='col'>Settings</th>
-    </tr>
-  </thead>
-  <tbody>
- 
-      {% for i in area %}
-
-    <tr>
-      <td>{{ forloop.counter }}</td>
-      <td>{{i.area_name}}</td>
-      <td>{{i.assigned_user}}</td>
-      <td><a href= https://www.google.com/maps/place/{{i.area_logitude}}+{{i.area_latitude}}/@{{i.area_logitude}},{{i.area_latitude}},15z target="_blank"><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a></td>
-      <td> <a href="#"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|<a href="#"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a></td>
-
-    </tr>
+{% extends 'base_layout.html' %} {% load static %} {% block head %}
+<style>
+    #btn_edit {
+        margin: 10px;
+        width: 150px;
+    }
     
-        {% endfor %}
+    #serch_edit {
+        padding: 10px;
+    }
+</style>
+{% endblock head %} {% block body %}
 
-  </tbody>
-  </table>
-  <!--START-->
-   
-  <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-     {% if area.has_previous %}
-                    
-    <li>
-      <a class="page-link" href="?page={{ area.previous_page_number }}" aria-disabled="">Previous</a>
-    </li>
-    {% endif %}
-    <li class="page-item"><a class="page-link">{{ area.number }}</a></li>
-    <li class="page-item"><a class="page-link">of</a></li>
-    <li class="page-item"><a class="page-link">{{ area.paginator.num_pages }}</a></li>
-    <li class="page-item">
-    {% if area.has_next %}
-      <a class="page-link" href="?page={{ area.next_page_number }}">Next</a>
-   
-        {% endif %}
-    </li>
-  </ul>
-</nav>
-  <!-- end -->
-    
+<div class="container-fluid">
 
-   
-    
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Area List</h1>
 
-              </div>
-            </div>
-          </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                    <form class="form-inline active-cyan-3 active-cyan-4 " id="serch_edit" method='GET' action=''>
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                        <input class="form-control form-control-sm ml-3 w-75" name='q' type="text" placeholder="Search" aria-label="Search" value='{{ request.GET.q }}'>
+                    </form>
+                    <a href="{% url 'create_area'%}" id="btn_edit" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">Add Area</a>
+                    <a href="{% url 'create_street'%}" id="btn_edit" class="btn btn-primary active btn-sm" role="button" aria-pressed="true">Add Street</a>
+                    <a href="{% url 'create_dustbin'%}" id="btn_edit" class="btn btn-primary active btn-sm">Create Dustbin</a>
+                    <a href="{% url 'area_list_display'%}" id="btn_edit" class="btn btn-primary active btn-sm">View Area</a>
+                    <a href="{% url 'street_list_display'%}" id="btn_edit" class="btn btn-primary active btn-sm">View Street</a>
+
+
+
+                </div>
+            </nav>
+
 
         </div>
-        <!-- /.container-fluid -->
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
 
-      </div>
-   
+                        <tr>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Area Name</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Location</th>
+                            <th scope='col'>Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in area %}
+
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{i.area_name}}</td>
+                            <td>{{i.assigned_user}}</td>
+                            <td>
+                                <a href=h ttps://www.google.com/maps/place/{{i.area_logitude}}+{{i.area_latitude}}/@{{i.area_logitude}},{{i.area_latitude}},15z target="_blank"><img src="https://img.icons8.com/dotty/80/000000/map-marker.png" width="20" height="20"></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" href="#"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|
+                                <a class="btn btn-info btn-sm" href="#"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a>
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+                <!--START-->
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        {% if area.has_previous %}
+
+                        <li>
+                            <a class="page-link" href="?page={{ area.previous_page_number }}" aria-disabled="">Previous</a>
+                        </li>
+                        {% endif %}
+                        <li class="page-item"><a class="page-link">{{ area.number }}</a></li>
+                        <li class="page-item"><a class="page-link">of</a></li>
+                        <li class="page-item"><a class="page-link">{{ area.paginator.num_pages }}</a></li>
+                        <li class="page-item">
+                            {% if area.has_next %}
+                            <a class="page-link" href="?page={{ area.next_page_number }}">Next</a> {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+                <!-- end -->
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+
 
 
 

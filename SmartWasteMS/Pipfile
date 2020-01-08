@@ -6,15 +6,14 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-pillow = "==6.2.1"
 django-crispy-forms = "==1.8.1"
 django-notifications-hq = "==1.5.0"
 jsonfield = "==2.0.2"
 chartkick = "==0.5.0"
 psycopg2 = "==2.8.4"
 Django = "==2.2.2"
-json = "*"
-simplejson = "*"
+Pillow = "==6.2.1"
+celery = "==4.3.0"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

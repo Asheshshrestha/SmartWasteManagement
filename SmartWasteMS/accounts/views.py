@@ -29,6 +29,7 @@ from django.db.models import Q
 
 
 # Create your views here.
+@login_required
 
 def success(request):
     template_name='accounts/success.html'
@@ -89,7 +90,10 @@ def display_users(request):
     if query:
         user_obj= user_obj.filter(
             Q(username__icontains=query) |
-            Q(email__icontains=query) 
+            Q(email__icontains=query) |
+            Q(userprofile__address__icontains=query) |
+            Q(userprofile__gender__icontains=query) |
+            Q(userprofile__age__icontains=query)
             ).distinct()
     paginator = Paginator(user_obj, 6) # Show 6 user per page
     page = request.GET.get('page')
@@ -99,7 +103,7 @@ def display_users(request):
             
 
 #==============================================================================
-
+@login_required
 def delete_user(request,username):
     user = User.objects.all()
     template_name='accounts/delete_success.html'
@@ -110,7 +114,7 @@ def delete_user(request,username):
     return render(request,template_name)
 
 #=====================================================================================
-
+@login_required
 def delete_user_confirm(request,username):
     username=username
     user = User.objects.all()
@@ -127,6 +131,7 @@ def delete_user_confirm(request,username):
 
 
 #===================================================================================
+@login_required
 def inactive_user(request,username):
     username= username
     user= User.objects.all()
@@ -138,9 +143,14 @@ def inactive_user(request,username):
             else:
                 i.is_active = True
             i.save()
+    context={
+        'username':username,
+        'user' : user
+    }
     
-    return render(request,template_name)
+    return render(request,template_name,context)
 #===================================================================================
+@login_required
 def inactive_user_confirm(request,username):
     username=username
     user = User.objects.all()
@@ -199,7 +209,7 @@ def update_user_profile(request,username):
                     u_form.save()
                     p_form.save()
                     messages.success(request,f'Your accounts has been updated!')
-                    return redirect('profile')
+                    return redirect('user_list')
 
             else:
                 u_form = UserUpdateForm(instance=i)
@@ -213,6 +223,7 @@ def update_user_profile(request,username):
             }
             return render(request,'accounts/update_user_profile.html',  context)
 #========================================================================================
+@login_required
 def reset_user_password(request,username):
     user_obj = User.objects.get(username=username)
     template_name = 'accounts/reset_user_password.html'
@@ -230,12 +241,13 @@ def reset_user_password(request,username):
             to_mail = [user_obj.email]
             signup_message = """ Wellcome to TrashCan SmartWaste management system. To configure you profile please visit http://127.0.0.1:8080/login \nUsername:"""+username+"""\nPassword:"""+password1+"""Dear"""+username+""",\nYour password has been changed by admin("""+request.user.username+""") now you can sign in you account easyily . \n Thank you """
             send_mail(subject = subject,from_email=from_email,recipient_list=to_mail,message=signup_message,fail_silently=False)
-            
+            return redirect('/login/')
         else:
             messages.error(request,'Password doesnot match!')
     return render(request,template_name,{'user_obj':user_obj})#========================================
         
 #========================================================================================
+
 class SignUpView(View):
     
     def get(self, request, *args, **kwargs):
@@ -291,7 +303,10 @@ def active_user_list(request):
     if query:
         user_obj= user_obj.filter(
             Q(username__icontains=query) |
-            Q(email__icontains=query) 
+            Q(email__icontains=query) |
+            Q(userprofile__address__icontains=query) |
+            Q(userprofile__gender__icontains=query) |
+            Q(userprofile__age__icontains=query)
             ).distinct()
     paginator = Paginator(user_obj, 6) # Show 6 user per page
     page = request.GET.get('page')
@@ -307,7 +322,10 @@ def inactive_user_list(request):
     if query:
         user_obj= user_obj.filter(
             Q(username__icontains=query) |
-            Q(email__icontains=query) 
+            Q(email__icontains=query) |
+            Q(userprofile__address__icontains=query) |
+            Q(userprofile__gender__icontains=query) |
+            Q(userprofile__age__icontains=query)
             ).distinct()
     paginator = Paginator(user_obj, 6) # Show 6 user per page
     page = request.GET.get('page')

@@ -9,7 +9,7 @@
 
 
 
-<div id="floating-panel" class="col-md-12 card-header card-header-primary border-left-info border-right-info">
+<div id="floating-panel" class="col-md-12 card-header card-header-primary border-left-primary border-right-primary">
     <input onclick="clearMarkers();" type=button value="Hide Markers">
     <input onclick="showMarkers();" type=button value="Show All Markers">
     <input onclick="deleteMarkers();" type=button value="Delete Markers">
@@ -17,8 +17,8 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div id="map" class=" col-md-8 card-header card-header-primary border-left-info border-right-info"></div>
-        <div class=" col-md-4 card card-profile border-left-info bx-3">
+        <div id="map" class=" col-md-8 card-header card-header-primary border-left-primary border-right-primary"></div>
+        <div class=" col-md-4 card card-profile border-left-primary bx-3">
 
             <form method="POST">
                 {% csrf_token %}
@@ -41,8 +41,8 @@
                     </div>
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-info" type="submit">Add</button>
-                    <a href="{% url 'status'%}" class="btn btn-info">Cancel</a>
+                    <button class="btn btn-primary btn-block" type="submit">Add</button>
+                
 
 
                 </div>

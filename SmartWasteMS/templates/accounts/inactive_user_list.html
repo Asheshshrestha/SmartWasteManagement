@@ -1,41 +1,16 @@
 {% extends 'base_layout.html'%}
 {% load static %}
 {% block head %}
-<script>
-.active-pink-2 input[type=text]:focus:not([readonly]) {
-border-bottom: 1px solid #f48fb1;
-box-shadow: 0 1px 0 0 #f48fb1;
-}
-.active-pink input[type=text] {
-border-bottom: 1px solid #f48fb1;
-box-shadow: 0 1px 0 0 #f48fb1;
-}
-.active-purple-2 input[type=text]:focus:not([readonly]) {
-border-bottom: 1px solid #ce93d8;
-box-shadow: 0 1px 0 0 #ce93d8;
-}
-.active-purple input[type=text] {
-border-bottom: 1px solid #ce93d8;
-box-shadow: 0 1px 0 0 #ce93d8;
-}
-.active-cyan-2 input[type=text]:focus:not([readonly]) {
-border-bottom: 1px solid #4dd0e1;
-box-shadow: 0 1px 0 0 #4dd0e1;
-}
-.active-cyan input[type=text] {
-border-bottom: 1px solid #4dd0e1;
-box-shadow: 0 1px 0 0 #4dd0e1;
-}
-.active-cyan .fa, .active-cyan-2 .fa {
-color: #4dd0e1;
-}
-.active-purple .fa, .active-purple-2 .fa {
-color: #ce93d8;
-}
-.active-pink .fa, .active-pink-2 .fa {
-color: #f48fb1;
-}
-</script>
+<style>
+    #btn_edit {
+        margin: 10px;
+        width: 150px;
+    }
+    
+    #serch_edit {
+        padding: 10px;
+    }
+</style>
 {% endblock head %}
 
 {% block body %}
@@ -53,20 +28,26 @@ color: #f48fb1;
             <div class="card-header py-3">
              
               <!-- Search form -->
-<div class="row">
-<div class="col-md-4">
-<form class="form-inline active-cyan-3 active-cyan-4" method='GET' action=''>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+<form id="serch_edit" class="form-inline active-cyan-3 active-cyan-4" method='GET' action=''>
   <i class="fas fa-search" aria-hidden="true"></i>
   <input class="form-control form-control-sm ml-3 w-75" name='q' type="text" placeholder="Search" aria-label="Search" value='{{ request.GET.q }}'>
 </form>
 
-</div>
 
-<a href="{% url 'signup'%}" class="btn btn-info btn-sm mx-2">Create User</a>
-<a href="{% url 'user_list'%}" class="btn btn-info btn-sm mx-2">All User</a>
-<a href="{% url 'active_user_list'%}" class="btn btn-info btn-sm mx-2">Active User</a>
-<a href="{% url 'inactive_user_list'%}" class="btn btn-info btn-sm mx-2">Inactive User</a>
+
+<a href="{% url 'signup'%}" id="btn_edit" class="btn btn-primary btn-sm mx-2">Create User</a>
+<a href="{% url 'user_list'%}" id="btn_edit" class="btn btn-primary btn-sm mx-2">All User</a>
+<a href="{% url 'active_user_list'%}" id="btn_edit" class="btn btn-primary btn-sm mx-2">Active User</a>
+<a href="{% url 'inactive_user_list'%}" id="btn_edit" class="btn btn-primary btn-sm mx-2">Inactive User</a>
+
 </div>
+  </nav>
   
 
             </div>
@@ -102,7 +83,7 @@ color: #f48fb1;
       <td>{{i.userprofile.address}}</td>
       <td>{{i.userprofile.gender}}</td>
       {% if request.user.is_superuser %}
-      <td> {% if not i.is_superuser%}<a href="{% url 'delete_user_confirm' username=i.username %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|{% endif %}<a href = "{% url 'update_user_profile' username=i.username %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a>|<a href = "{% url 'reset-user-password' username=i.username %}"><img src="https://img.icons8.com/windows/32/000000/password1.png"  width="20" height="20"></a></td>
+      <td> {% if not i.is_superuser%}<a class="btn btn-danger btn-sm" href="{% url 'delete_user_confirm' username=i.username %}"><img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" width="20" height="20"></a>|{% endif %}<a class="btn btn-primary btn-sm" href = "{% url 'update_user_profile' username=i.username %}"><img src="https://img.icons8.com/ios-filled/50/000000/update-left-rotation.png" width="20" height="20"></a>|<a class="btn btn-info btn-sm" href = "{% url 'reset-user-password' username=i.username %}"><img src="https://img.icons8.com/windows/32/000000/password1.png"  width="20" height="20"></a></td>
       {% endif %}
     </tr>
         {% endfor %}
