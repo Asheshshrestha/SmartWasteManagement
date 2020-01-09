@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["XpkEf"]); }
+
+__d("XGamesVideoModerationRulesNuxController",["XController"],(function(a,b,c,d,e,f){e.exports=b("XController").create("/games/moderation_rules_nux/",{})}),null);

@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["DWIG4"]); }
+
+__d("GamesVideoCommentRemovedDialogDeferred.react",["requireDeferredForDisplay","deferredLoadComponent"],(function(a,b,c,d,e,f){"use strict";a=b("deferredLoadComponent")(b("requireDeferredForDisplay")("GamesVideoCommentRemovedDialog.react"));e.exports=a}),null);

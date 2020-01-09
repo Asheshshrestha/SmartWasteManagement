@@ -26,10 +26,20 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  
+    <style>
+    #loading {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff 
+    url('http://127.0.0.1:8080/static/images/pre_loader.gif')
+     no-repeat center;
+    z-index: 9999;
+      }
+   </style>
     
   </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" onload="myFunction()">
   
   <div class="site-wrap">
 
@@ -81,7 +91,6 @@
                 <li><a href="#team-section" class="nav-link">Team</a></li>
                 <li><a href="#services-section" class="nav-link">Services</a></li>
                 <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
-                <li><a href="#blog-section" class="nav-link">Notice</a></li>
                 <li><a href="#contact-section" class="nav-link">Contact</a></li>
               </ul>
             </nav>
@@ -188,7 +197,9 @@ Waste analytics platform
               <img src="{% static 'images/wachas.jpg' %}" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
               <h3>Wachas Arya</h3>
               <p class="position text-muted">Co-Founder, President</p>
-              <p class="mb-4">Every time you make the hard, correct decision you become a bit more courageous, and every time you make the easy, wrong decision you become a bit more cowardly. If you are CEO, these choices will lead to a courageous or cowardly company.</p>
+              <p class="mb-4">One of our step for the managment of simple and tiny problem but creating the big
+              prolem in our socienty, that's smart waste managment system. Also working for the development of our 
+            system for better facility and feature.</p>
               <ul class="ul-social-circle">
                 <li><a href="#"><span class="icon-facebook"></span></a></li>
                 <li><a href="#"><span class="icon-twitter"></span></a></li>
@@ -293,20 +304,20 @@ Waste analytics platform
         <div class="row align-items-stretch">
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary icon-autorenew"></span></div>
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-business_center"></span></div>
               <div>
-                <h3>Business Consulting</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <h3>Waste Managment</h3>
+                <p>The waste that collected from the bin are properly disposed far from the city area and the site where the waste is being to dispose is also choosen safe from any natural harm like soil polution and water polution</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary icon-backspace"></span></div>
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-beenhere"></span></div>
               <div>
-                <h3>Market Analysis</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <h3>Instillation</h3>
+                <p>If any place that need to new dustbin the we install the dustbin as fast as possible.</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
@@ -315,8 +326,8 @@ Waste analytics platform
             <div class="unit-4 d-flex">
               <div class="unit-4-icon mr-4"><span class="text-primary icon-av_timer"></span></div>
               <div>
-                <h3>User Monitoring</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <h3>Time based work</h3>
+                <p>We and our employ are working on the basis of time ,means waste picking ,instillation ,repair all done without delaying time.</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
@@ -325,30 +336,30 @@ Waste analytics platform
 
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary icon-beenhere"></span></div>
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-cloud_done"></span></div>
               <div>
-                <h3>Insurance Consulting</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <h3>Maintenance</h3>
+                <p>If any bin may need maintenace then our team will react quick on that as well as frequently check of all dustbin status</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary icon-business_center"></span></div>
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-backspace"></span></div>
               <div>
-                <h3>Financial Investment</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <h3>Quick Disposal</h3>
+                <p>In present it takes weeks of time to dispose the waste and due to which the air get polluted of that area ,So we work on the disposal as fast as possible</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
             <div class="unit-4 d-flex">
-              <div class="unit-4-icon mr-4"><span class="text-primary icon-cloud_done"></span></div>
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-autorenew"></span></div>
               <div>
-                <h3>Financial Management</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
+                <h3>Recycle</h3>
+                <p>The waste that can be reuse of recycle the our works seprate all of that and the remaining waste are disposed.</p>
                 <p><a href="#">Learn More</a></p>
               </div>
             </div>
@@ -371,12 +382,12 @@ Waste analytics platform
           </div>
         </div>
       </div>
-      <div class="slide-one-item home-slider owl-carousel">
+    <div class="slide-one-item home-slider owl-carousel">
           <div>
-            <div class="testimonial">
+              <div class="testimonial">
               
               <blockquote class="mb-5">
-                <p>&ldquo;this is best online website which helps to solve our regular home problem.i.e waste problem where to through and how to manage it &rdquo;</p>
+                <p>&ldquo;This is best online website which helps to solve our regular home problem.i.e waste problem where to through and how to manage it &rdquo;</p>
               </blockquote>
 
               <figure class="mb-4 d-flex align-items-center justify-content-center">
@@ -389,11 +400,11 @@ Waste analytics platform
             <div class="testimonial">
 
               <blockquote class="mb-5">
-                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                <p>&ldquo;One of the frequent and fast working group and best site for the waste managment&rdquo;</p>
               </blockquote>
               <figure class="mb-4 d-flex align-items-center justify-content-center">
-                <div><img src="{% static 'images/person_2.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
-                <p>Christine Aguilar</p>
+                <div><img src="{% static 'images/janak.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Janak Mahato</p>
               </figure>
               
             </div>
@@ -403,11 +414,11 @@ Waste analytics platform
             <div class="testimonial">
 
               <blockquote class="mb-5">
-                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                <p>&ldquo;Love the group and team work, valued the time and by this our time also shaved&rdquo;</p>
               </blockquote>
               <figure class="mb-4 d-flex align-items-center justify-content-center">
-                <div><img src="{% static 'images/person_4.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
-                <p>Robert Spears</p>
+                <div><img src="{% static 'images/mukesh.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Rabin Raut</p>
               </figure>
 
               
@@ -418,11 +429,11 @@ Waste analytics platform
             <div class="testimonial">
 
               <blockquote class="mb-5">
-                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+                <p>&ldquo;This is own of the best site and we also looking for something this and boom look we have smart waste managment system.&rdquo;</p>
               </blockquote>
               <figure class="mb-4 d-flex align-items-center justify-content-center">
-                <div><img src="{% static 'images/person_4.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
-                <p>Bruce Rogers</p>
+                <div><img src="{% static 'images/rabin.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Mukesh Mahato</p>
               </figure>
 
             </div>
@@ -444,14 +455,14 @@ Waste analytics platform
 
               
               <div class="col-12 mb-4">
-                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet incidunt magnam corrupti, odit eos harum quaerat nostrum voluptatibus aspernatur eligendi accusantium cum, impedit blanditiis voluptate commodi doloribus, nemo dignissimos recusandae.</p>
+                <p class="lead">We are working on the advancment of our work, look what we will update in upcoming days. Present, the time of technology and this is one of our step to solve the basic and every persons problem that we facing mainly in city area.</p>
               </div>
               <div class="col-md-12 mb-md-5 mb-0 col-lg-6">
                 <div class="unit-4">
                   <div class="unit-4-icon mr-4 mb-3"><span class="text-primary icon-adb"></span></div>
                   <div>
                     <h3>Web &amp; Mobile Specialties</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis consect.</p>
+                    <p>The system is based on technology and it is applicable in laptop,mobile,tablet.</p>
                     <p class="mb-0"><a href="#">Learn More</a></p>
                   </div>
                 </div>
@@ -460,8 +471,8 @@ Waste analytics platform
                 <div class="unit-4">
                   <div class="unit-4-icon mr-4 mb-3"><span class="text-primary icon-assignment"></span></div>
                   <div>
-                    <h3>Intuitive Thinkers</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis.</p>
+                    <h3>Thinking</h3>
+                    <p>Over viewing on our concept for the advancement of our on goning project for more sercices and facilities.</p>
                     <p class="mb-0"><a href="#">Learn More</a></p>
                   </div>
                 </div>
@@ -472,44 +483,12 @@ Waste analytics platform
         </div>
       </div>
     </section>
-  
-    
-    
-
-    <section class="site-section" id="blog-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h3 class="section-sub-title">Notice</h3>
-            <h2 class="section-title mb-3">Our Notice</h2>
-          </div>
-        </div>
-
-        <div class="row">
-           {% for i in blogs %}
-            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-              <div class="h-entry">
-                <img src="{{i.cover_image.url}}" alt="Image" class="img-fluid">
-                <h2 class="font-size-regular"><a href="#">{{i.title}}</a></h2>
-                <div class="meta mb-4">{{i.author}} <span class="mx-2">&bullet;</span>{{i.created_at}}<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
-                <p>{{i.article}}</p>
-                <p><a href="#">Continue Reading...</a></p>
-              </div> 
-            </div>
-          {% endfor %}
-         
-        </div>
-      </div>
-    </section>
-
    
-
-
     <section class="site-section bg-light" id="contact-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h3 class="section-sub-title">Contacts</h3>
+            <h3 class="section-sub-title">Not Done Yet</h3>
             <h2 class="section-title mb-3">Our Contacts</h2>
           </div>
         </div>
@@ -520,7 +499,7 @@ Waste analytics platform
 
             <form action="#" class="p-5 bg-white">
               
-              <h2 class="h4 text-black mb-5">Contact Form</h2> 
+              <h2 class="h4 text-black mb-5">Contact Form(Not Done)</h2> 
 
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
@@ -569,13 +548,13 @@ Waste analytics platform
             
             <div class="p-4 mb-3 bg-white">
               <p class="mb-0 font-weight-bold">Address</p>
-              <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+              <p class="mb-4">Kathmandu,Nepal</p>
 
               <p class="mb-0 font-weight-bold">Phone</p>
               <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
 
               <p class="mb-0 font-weight-bold">Email Address</p>
-              <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+              <p class="mb-0"><a href="#">smartwastemanagment@domain.com</a></p>
 
             </div>
             
@@ -600,15 +579,19 @@ Waste analytics platform
             <div class="row">
               <div class="col-md-5">
                 <h2 class="footer-heading mb-4">About Us</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+                <p>A team (We) tried to manage the process of collecting the waste from our society in better way .
+                Also working on the system for betterment of the system for future</p>
               </div>
               <div class="col-md-3 ml-auto">
                 <h2 class="footer-heading mb-4">Quick Links</h2>
                 <ul class="list-unstyled">
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Services</a></li>
-                  <li><a href="#">Testimonials</a></li>
-                  <li><a href="#">Contact Us</a></li>
+                   <li><a href="#home-section">Home</a></li>
+                  <li><a href="#about-section">About Us</a></li>
+                   <li><a href="#team-section">Team</a></li>
+                  <li><a href="#services-section">Services</a></li>
+                  <li><a href="#testimonials-section">Testimonials</a></li>
+                  <li><a href="#blog-section">Notice</a></li>
+                  <li><a href="#contact-section">Contact Us</a></li>
                 </ul>
               </div>
               <div class="col-md-3">
@@ -621,7 +604,7 @@ Waste analytics platform
             </div>
           </div>
           <div class="col-md-3">
-            <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+            <h2 class="footer-heading mb-4">Conect TO Us</h2>
             <form action="#" method="post" class="footer-subscribe">
               <div class="input-group mb-3">
                 <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
@@ -663,7 +646,14 @@ Waste analytics platform
 
   
   <script src="{% static 'js/main.js' %}"></script>
+  <script>
 
+var preloader = document.getElementById('loading');
+
+function myFunction(){
+  preloader.style.display = 'none';
+}
+</script>
     
   </body>
 </html>

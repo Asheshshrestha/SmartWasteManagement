@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["PlLUZ"]); }
+
+__d("GamesVideoDeleteCommentDialogDeferred.react",["requireDeferredForDisplay","deferredLoadComponent"],(function(a,b,c,d,e,f){"use strict";a=b("deferredLoadComponent")(b("requireDeferredForDisplay")("GamesVideoDeleteCommentDialog.react"));e.exports=a}),null);

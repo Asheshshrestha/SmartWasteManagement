@@ -11,11 +11,11 @@
 #include <ESP8266HTTPClient.h>
  
 const char* ssid = "vianet_ashesh";
-const char* password = "Pointbreak";
+const char* password = "Pointbreak123";
 
 // defines pins numbers
-const int trigPin = 2;  //D4
-const int echoPin = 0;  //D3
+const int trigPin = 4;  //D2
+const int echoPin = 5;  //D1
 
 // defines variables
 long duration;
@@ -23,7 +23,8 @@ int distance,getdistance;
 
 //Dustbin number
 
-String dustbin_no="1";
+String dustbin_no="1114";
+int height = 100;
 
 
 void setup () {
@@ -48,12 +49,12 @@ void loop() {
 if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
  
 HTTPClient http;  //Declare an object of class HTTPClient
-//===========================================================================================================================
+//===================================================================================================
  getdistance = depth();
 
 //====================================================================================================
  
-http.begin("http://192.168.1.11:8080/bin_update/"+dustbin_no+"/"+getdistance);  //Specify request destination
+http.begin("http://192.168.1.15:8080/bin_update/"+dustbin_no+"/"+getdistance);  //Specify request destination
 int httpCode = http.GET();                //Send the request
  
 if (httpCode > 0) { //Check the returning code
@@ -67,7 +68,7 @@ http.end();   //Close connection
  
 }
  
-delay(3000);    //Send a request every 30 seconds
+delay(300);    //Send a request every 30 seconds
  
 }
 
@@ -83,6 +84,8 @@ digitalWrite(trigPin, LOW);
 
 // Reads the echoPin, returns the sound wave travel time in microseconds
 duration = pulseIn(echoPin, HIGH);
+Serial.println("Distance: ");
+Serial.print(duration);
 
 // Calculating the distance
 distance= duration*0.034/2;

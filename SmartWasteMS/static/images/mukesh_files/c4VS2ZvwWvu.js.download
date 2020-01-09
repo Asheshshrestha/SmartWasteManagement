@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["lo79b"]); }
+
+__d("GamesVideoModerationRulesNuxDeferred.react",["requireDeferredForDisplay","deferredLoadComponent"],(function(a,b,c,d,e,f){"use strict";a=b("deferredLoadComponent")(b("requireDeferredForDisplay")("GamesVideoModerationRulesNux.react"));e.exports=a}),null);

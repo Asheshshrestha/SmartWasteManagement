@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["4ZHtf"]); }
+
+__d("GamesVideoModerationRuleToken.react",["cx","React","TetraText.react"],(function(a,b,c,d,e,f,g){"use strict";function a(a){a=a.label;return b("React").jsx("div",{className:"_8inl",children:b("React").jsx(b("TetraText.react"),{color:"primary",numberOfLines:1,type:"button2",children:a})})}e.exports=b("React").memo(a)}),null);

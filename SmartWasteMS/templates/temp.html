@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>TrashCan-The Smart Waste Management system</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+    #loading {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff 
+    url('http://127.0.0.1:8080/static/images/pre_loader.gif')
+     no-repeat center;
+    z-index: 9999;
+      }
+   </style>
+    
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" onload="myFunction()">
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+    <div class="top-bar py-3 bg-light" id="home-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 text-left">
+            <ul class="social-media">
+              <li><a href="#" class="p-2"><span class="icon-facebook"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-twitter"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-instagram"></span></a></li>
+              <li><a href="#" class="p-2"><span class="icon-linkedin"></span></a></li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <p class="mb-0 float-right">
+              <span class="mr-3"><a href="tel://#"> <span class="icon-phone mr-2"></span><span class="d-none d-lg-inline-block">+977 9862920744</span></a></span>
+              <span><a href="#"><span class="icon-envelope mr-2"></span><span class="d-none d-lg-inline-block">info@TrashCan.com</span></a></span>
+            </p>
+            
+          </div>
+        </div>
+      </div> 
+    </div>
+<!-- .....................NAV BAR .......................  -->
+    <header class="site-navbar py-4 bg-white js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-6 col-xl-2">
+            <h1 class="mb-0 site-logo"><a href="{% url 'home' %}" class="text-black h2 mb-0"><img src="{% static 'images/logo.png' %}">TrashCan<span class="text-primary">.</span> </a></h1>
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li><a href="#home-section" class="nav-link">Home</a></li>
+                <li><a href="#about-section" class="nav-link">About Us</a></li>
+                <li><a href="#team-section" class="nav-link">Team</a></li>
+                <li><a href="#services-section" class="nav-link">Services</a></li>
+                <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+      
+    </header>
+    <!-- ...........................END OF NAV BAR .......................  -->
+
+  
+     <!-- ..............BANNER.................. -->
+    <div class="site-blocks-cover overlay" style="background-image: url({% static 'images/ShowImage.jpg' %});" data-aos="fade">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+          <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
+                        
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <h1>Smart Waste Managment System</h1>
+                <p class="mb-5">Why work harder when you can work smarter?</p>
+                <div>
+                  <a href="{% url 'login' %}" class="btn btn-primary mr-2 mb-2">Login</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>  
+    <!-- ........................... END OF BANNER ................... -->
+
+    <!-- ........................... ABOUT US ........................-->
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row align-items-lg-center">
+          <div class="col-md-6 mb-5 mb-lg-0 position-relative">
+            <img src="{% static 'images/about_1.jpg' %}" class="img-fluid" alt="Image">
+            <div class="experience">
+              <span class="year">Thinking Big</span>
+              <span class="caption">On going project</span>
+            </div>
+          </div>
+          <div class="col-md-5 ml-auto">
+            <h3 class="section-sub-title">About Us</h3>
+            <h2 class="section-title mb-3">Welcome To TrashCan</h2>
+            <p class="mb-4">
+            TrashCan offers a comprehensive, smart waste management solution using industry leading cloud-based software connected to the latest IoT smart sensor and smart bin technology. Our integrated line of products includes:
+<ui>
+<li>
+Solar-powered waste  bins
+</li>
+<li>
+IoT fill-level sensors 
+</li>
+<li>
+Waste analytics platform 
+</li>
+
+
+</ui>
+            </p>
+            <p><a href="{% url 'download_proposal'%}" class="btn btn-primary btn-black--hover">Download</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ............................ END OF ABOUT US ......................-->
+
+    <!-- ............................ OUR TEAM ......................-->
+
+    <section class="site-section border-bottom" id="team-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h3 class="section-sub-title">Team</h3>
+            <h2 class="section-title mb-3">Our Team</h2>
+          </div>
+        </div>
+    
+        <div class="row">
+    <div class="col-md-6 col-lg-3 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="50">
+            <div class="person text-center">
+              <img src="{% static 'images/person4.jpg' %}" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>Ashesh Shrestha</h3>
+              <p class="position text-muted">Founder, CEO</p>
+              <p class="mb-4">In business, inspiration and experience often leads to wisdom and success. With nine of 10 businesses failing in the first year, it's almost natural for founders and CEOs to do just about everything possible to improve their performance. </p>
+              <ul class="ul-social-circle">
+                <li><a href="https://www.facebook.com/ashesh.shrestha.7731"><span class="icon-facebook"></span></a></li>
+                <li><a href="https://twitter.com/AsheshShresth14"><span class="icon-twitter"></span></a></li>
+                <li><a href="https://www.linkedin.com/in/ashesh-shrestha-37a122171/"><span class="icon-linkedin"></span></a></li>
+                <li><a href="https://www.instagram.com/ashesh.shrestha/"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+            <div class="person text-center">
+              <img src="{% static 'images/wachas.jpg' %}" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>Wachas Arya</h3>
+              <p class="position text-muted">Co-Founder, President</p>
+              <p class="mb-4">One of our step for the managment of simple and tiny problem but creating the big
+              prolem in our socienty, that's smart waste managment system. Also working for the development of our 
+            system for better facility and feature.</p>
+              <ul class="ul-social-circle">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+            <div class="person text-center">
+              <img src="{% static 'images/alaka.jpg' %}" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>Alaka Shrestha</h3>
+              <p class="position text-muted">Co-Founder, COO</p>
+              <p class="mb-4">I ask myself like almost every day is, ‘Am I doing the most important thing I could be doing?’… Unless I feel like I’m working on the most important problem that I can help with, then I’m not going to feel good about how I’m spending my time. And that’s what this company is.</p>
+              <ul class="ul-social-circle">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="300">
+            <div class="person text-center">
+              <img src="{% static 'images/sweta.jpg' %}" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>Sweta Singh</h3>
+              <p class="position text-muted">Marketing</p>
+              <p class="mb-4">It’s not about having a specific set time; both personal and professional lives are 24/7. It’s simply, more about making the right allocation to each one and recognizing that it’s going to be different every single day</p>
+              <ul class="ul-social-circle">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    <!-- ............................ END OF OUR TEAM ......................-->
+
+    <!-- ............................ HOW IT WORKS ......................-->
+
+    <section class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <h3 class="section-sub-title">Features</h3>
+            <h2 class="section-title mb-3">Features</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <div class=" box-with-humber">
+              <h2 class="text-black">Dynamic Routing</h2>
+              <p class="mb-4">Our solution uses real-time and historical data to optimize waste collection schedules and routes. Predictive analytics enables users to make decisions ahead of time and offers insight into waste bin locations.</p>
+             
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class=" box-with-humber">
+              <h2 class="text-black">Cost Reduction</h2>
+              <p class="mb-4">Our solution reduces waste collection frequency dramatically which enables you to save on fuel, labor, and fleet maintenance costs. Altogether our products can reduce your operational costs by up to 80%.</p>
+              
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class=" box-with-humber">
+              <h2 class="text-black">Improved cleaness</h2>
+              <p class="mb-4">In densely populated areas, rapid waste generation often leads to overflowing waste bins and littered streets. Our solution enables custodians to monitor fill-levels throughout the day and take action on notifications regarding overflowing bins.</p>
+             
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class=" box-with-humber">
+              <h2 class="text-black">CO2 Reduction</h2>
+              <p class="mb-4">Current waste collection methods are pollution heavy as it is well known that waste trucks get abysmal fuel efficiency. Our solution offers you the means to have fewer trucks on the road for less time, which means less carbon emissions, less noise, less traffic, and less wear and tear on roads.</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ............................ END OF HOW IT WORKS ......................-->
+
+
+
+    
+    <!-- ............................ OUR SERVICES ......................-->
+    <section class="site-section border-bottom bg-light" id="services-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h3 class="section-sub-title">Services</h3>
+            <h2 class="section-title mb-3">Our Services</h2>
+          </div>
+        </div>
+        <div class="row align-items-stretch">
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-business_center"></span></div>
+              <div>
+                <h3>Waste Managment</h3>
+                <p>The waste that collected from the bin are properly disposed far from the city area and the site where the waste is being to dispose is also choosen safe from any natural harm like soil polution and water polution</p>
+                <p><a href="#">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-beenhere"></span></div>
+              <div>
+                <h3>Instillation</h3>
+                <p>If any place that need to new dustbin the we install the dustbin as fast as possible.</p>
+                <p><a href="#">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-av_timer"></span></div>
+              <div>
+                <h3>Time based work</h3>
+                <p>We and our employ are working on the basis of time ,means waste picking ,instillation ,repair all done without delaying time.</p>
+                <p><a href="#">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-cloud_done"></span></div>
+              <div>
+                <h3>Maintenance</h3>
+                <p>If any bin may need maintenace then our team will react quick on that as well as frequently check of all dustbin status</p>
+                <p><a href="#">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-backspace"></span></div>
+              <div>
+                <h3>Quick Disposal</h3>
+                <p>In present it takes weeks of time to dispose the waste and due to which the air get polluted of that area ,So we work on the disposal as fast as possible</p>
+                <p><a href="#">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="unit-4 d-flex">
+              <div class="unit-4-icon mr-4"><span class="text-primary icon-autorenew"></span></div>
+              <div>
+                <h3>Recycle</h3>
+                <p>The waste that can be reuse of recycle the our works seprate all of that and the remaining waste are disposed.</p>
+                <p><a href="#">Learn More</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ............................ END OF OUR SERVICES ......................-->
+
+    <!-- ............................ TESTIMONIALS......................-->
+
+    <section class="site-section testimonial-wrap" id="testimonials-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h3 class="section-sub-title">People Says</h3>
+            <h2 class="section-title mb-3">Testimonials</h2>
+          </div>
+        </div>
+      </div>
+    <div class="slide-one-item home-slider owl-carousel">
+          <div>
+              <div class="testimonial">
+              
+              <blockquote class="mb-5">
+                <p>&ldquo;this is best online website which helps to solve our regular home problem.i.e waste problem where to through and how to manage it &rdquo;</p>
+              </blockquote>
+
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="{% static 'images/sajan.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Sajan Kafle</p>
+              </figure>
+            </div>
+          </div>
+          <div>
+            <div class="testimonial">
+
+              <blockquote class="mb-5">
+                <p>&ldquo;One of the frequent and fast working group and best site for the waste managment&rdquo;</p>
+              </blockquote>
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="{% static 'images/person_2.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Janak Mahato</p>
+              </figure>
+              
+            </div>
+          </div>
+
+          <div>
+            <div class="testimonial">
+
+              <blockquote class="mb-5">
+                <p>&ldquo;Love the group and team work, valued the time and by this our time also shaved&rdquo;</p>
+              </blockquote>
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="{% static 'images/person_4.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Rabin Raut</p>
+              </figure>
+
+              
+            </div>
+          </div>
+
+          <div>
+            <div class="testimonial">
+
+              <blockquote class="mb-5">
+                <p>&ldquo;This is own of the best site and we also looking for something this and boom look we have smart waste managment system.&rdquo;</p>
+              </blockquote>
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="{% static 'images/person_4.jpg' %}" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Mukesh Mahato</p>
+              </figure>
+
+            </div>
+          </div>
+
+        </div>
+    </section>
+
+    <section class="site-section" id="about-section">
+      <div class="container">
+        <div class="row mb-5">
+          
+          <div class="col-md-5 ml-auto mb-5 order-md-2" data-aos="fade">
+            <img src="{% static 'images/about_1.jpg' %}" alt="Image" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6 order-md-1" data-aos="fade">
+
+            <div class="row">
+
+              
+              <div class="col-12 mb-4">
+                <p class="lead">We are working on the advancment of our work, look what we will update in upcoming days. Present, the time of technology and this is one of our step to solve the basic and every persons problem that we facing mainly in city area.</p>
+              </div>
+              <div class="col-md-12 mb-md-5 mb-0 col-lg-6">
+                <div class="unit-4">
+                  <div class="unit-4-icon mr-4 mb-3"><span class="text-primary icon-adb"></span></div>
+                  <div>
+                    <h3>Web &amp; Mobile Specialties</h3>
+                    <p>The system is based on technology and it is applicable in laptop,mobile,tablet.</p>
+                    <p class="mb-0"><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-md-5 mb-0 col-lg-6">
+                <div class="unit-4">
+                  <div class="unit-4-icon mr-4 mb-3"><span class="text-primary icon-assignment"></span></div>
+                  <div>
+                    <h3>Thinking</h3>
+                    <p>Over viewing on our concept for the advancement of our on goning project for more sercices and facilities.</p>
+                    <p class="mb-0"><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+   
+    <section class="site-section bg-light" id="contact-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h3 class="section-sub-title">Not Done Yet</h3>
+            <h2 class="section-title mb-3">Our Contacts</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7 mb-5">
+
+            
+
+            <form action="#" class="p-5 bg-white">
+              
+              <h2 class="h4 text-black mb-5">Contact Form</h2> 
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">First Name</label>
+                  <input type="text" id="fname" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="lname">Last Name</label>
+                  <input type="text" id="lname" class="form-control">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="email">Email</label> 
+                  <input type="email" id="email" class="form-control">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                
+                <div class="col-md-12">
+                  <label class="text-black" for="subject">Subject</label> 
+                  <input type="subject" id="subject" class="form-control">
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="message">Message</label> 
+                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
+                </div>
+              </div>
+
+  
+            </form>
+          </div>
+          <div class="col-md-5">
+            
+            <div class="p-4 mb-3 bg-white">
+              <p class="mb-0 font-weight-bold">Address</p>
+              <p class="mb-4">Kathmandu,Nepal</p>
+
+              <p class="mb-0 font-weight-bold">Phone</p>
+              <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+
+              <p class="mb-0 font-weight-bold">Email Address</p>
+              <p class="mb-0"><a href="#">smartwastemanagment@domain.com</a></p>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <!-- <a href="#" class="bg-primary py-5 d-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md10"><h2 class="text-white">Let's Get Started</h2></div>
+        </div>
+      </div>  
+    </a>
+  -->
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-5">
+                <h2 class="footer-heading mb-4">About Us</h2>
+                <p>A team (We) tried to manage the process of collecting the waste from our society in better way .
+                Also working on the system for betterment of the system for future</p>
+              </div>
+              <div class="col-md-3 ml-auto">
+                <h2 class="footer-heading mb-4">Quick Links</h2>
+                <ul class="list-unstyled">
+                   <li><a href="#home-section">Home</a></li>
+                  <li><a href="#about-section">About Us</a></li>
+                   <li><a href="#team-section">Team</a></li>
+                  <li><a href="#services-section">Services</a></li>
+                  <li><a href="#testimonials-section">Testimonials</a></li>
+                  <li><a href="#blog-section">Notice</a></li>
+                  <li><a href="#contact-section">Contact Us</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">Follow Us</h2>
+                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h2 class="footer-heading mb-4">Conect TO Us</h2>
+            <form action="#" method="post" class="footer-subscribe">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-primary text-black" type="button" id="button-addon2">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+            <p>
+       
+      </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-ui.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/jquery.sticky.js' %}"></script>
+
+  
+  <script src="{% static 'js/main.js' %}"></script>
+  <script>
+
+var preloader = document.getElementById('loading');
+
+function myFunction(){
+  preloader.style.display = 'none';
+}
+</script>
+    
+  </body>
+</html>

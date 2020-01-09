@@ -182,7 +182,7 @@ def route_view(request,area):
     template_name='dustbin/pick_route.html'
     cord=[]
     for i in bins:
-        if( i.bin_status <= 30):
+        if( i.bin_status >= 30):
             cord.append(i)
     notify.send(request.user, recipient=user, verb=' Checked out the bins of '+str(area),action_object=request.user,description='Area:'+str(area))
            

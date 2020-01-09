@@ -1,0 +1,4 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["Doz\/j"]); }
+
+__d("QuickMarkers",["Banzai","GeneratedLoggerUtils"],(function(a,b,c,d,e,f){"use strict";function a(a){b("GeneratedLoggerUtils").log("logger:QuickMarkersSrcLoggerConfig",a,b("Banzai").VITAL)}e.exports={log:a}}),null);
+__d("QuickMarkersBlue",["QuickMarkers","performanceNow"],(function(a,b,c,d,e,f){"use strict";__p&&__p();var g,h,i;function a(a){h=a.event_id,i=a.weight,j("ClientInit")}function j(a){if(h==null)return;var c=Math.floor((g||(g=b("performanceNow")))());b("QuickMarkers").log({event_id:h,marker_id:a,marker_page_time:c,weight:i})}e.exports={startNewEvent:a,mark:j}}),null);
