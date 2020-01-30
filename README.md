@@ -1,0 +1,1 @@
+Smart Waste Managemnet system
