@@ -12,7 +12,7 @@ jsonfield = "==2.0.2"
 chartkick = "==0.5.0"
 psycopg2 = "==2.8.4"
 Django = "==2.2.2"
-Pillow = "==6.2.1"
+Pillow = "==8.1.1"
 celery = "==4.3.0"
 
 [requires]
