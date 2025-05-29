@@ -26,7 +26,7 @@
                         </div>
               </div>
         <div class="media-body">
-              <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="#">Detail</a><a class="close pull-right" href="{% url 'mark_as_read_notice' i.slug %}">Mark as Read</a></strong>
+              <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="{% url 'update_dustbin_data' i.target.bin_no %}">Detail</a><a class="close pull-right" href="{% url 'mark_as_read_notice' i.slug %}">Mark as Read</a></strong>
               <p class="notification-desc">{{i.description}}</p>
 
               <div class="notification-meta">
@@ -44,7 +44,7 @@
                         </div>
               </div>
         <div class="media-body">
-              <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="#">Detail</a></strong>
+              <strong class="notification-title"><a href="#">{% if i.actor.username == request.user.username %} you {% else %}{{i.actor}}{% endif %}</a> {{i.verb}}<a href="{% url 'update_dustbin_data' i.target.bin_no %}">Detail</a></strong>
               <p class="notification-desc">{{i.description}}</p>
 
               <div class="notification-meta">
